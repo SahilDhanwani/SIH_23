@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sih_23_audiometer/pages/background_noise.dart';
 import 'package:sih_23_audiometer/pages/headset.dart';
+// import 'package:sih_23_audiometer/pages/calibration_check.dart';
 import 'package:sih_23_audiometer/pages/home_page.dart';
 import 'package:sih_23_audiometer/pages/lefteartest.dart';
 import 'package:sih_23_audiometer/pages/student_dashboard.dart';
@@ -35,6 +36,8 @@ class MyApp extends StatelessWidget {
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.headset: (context) => const Headset(),
         MyRoutes.leftear: (context) => LeftEar(),
+        // MyRoutes.calibration_check:(context)=> Calibration(),
+        // MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
       },
     );
   }
