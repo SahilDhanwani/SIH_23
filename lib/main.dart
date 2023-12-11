@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sih_23_audiometer/pages/background_noise.dart';
 import 'package:sih_23_audiometer/pages/home_page.dart';
 import 'package:sih_23_audiometer/pages/student_dashboard.dart';
 import 'package:sih_23_audiometer/pages/student_login.dart';
 import 'package:sih_23_audiometer/pages/student_signup.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
-
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.studentLoginRoute: (context) => const student_login(),
         MyRoutes.studentDashboard: (context) => const StudentDashboard(),
         MyRoutes.studentSignupRoute: (context) => const StudentSignup(),
-        // MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
+        MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
       },
     ); 
   }
