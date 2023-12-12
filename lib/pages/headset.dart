@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:headset_connection_event/headset_event.dart';
 
-void main() => runApp(MyApp());
+class Headset extends StatefulWidget {
+  const Headset({super.key});
 
-// ignore: use_key_in_widget_constructors
-class MyApp extends StatefulWidget {
   @override
   // ignore: library_private_types_in_public_api
-  _MyAppState createState() => _MyAppState();
+  _HeadsetState createState() => _HeadsetState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _HeadsetState extends State<Headset> {
   final _headsetPlugin = HeadsetEvent();
   HeadsetState? _headsetState;
 
@@ -20,17 +19,15 @@ class _MyAppState extends State<MyApp> {
 
     _headsetPlugin.requestPermission();
 
-    // ignore: no_leading_underscores_for_local_identifiers
-    _headsetPlugin.getCurrentState.then((_val) {
+    _headsetPlugin.getCurrentState.then((val) {
       setState(() {
-        _headsetState = _val;
+        _headsetState = val;
       });
     });
 
-    // ignore: no_leading_underscores_for_local_identifiers
-    _headsetPlugin.setListener((_val) {
+    _headsetPlugin.setListener((val) {
       setState(() {
-        _headsetState = _val;
+        _headsetState = val;
       });
     });
   }
@@ -49,7 +46,7 @@ class _MyAppState extends State<MyApp> {
                 Column(
                   children: [
                     Image.asset(
-                      'assets\\images\\bluetooth_image.png',
+                      'assets\\images\\bluetooth.png',
                       width: 100,
                       height: 100,
                     ),
@@ -57,14 +54,14 @@ class _MyAppState extends State<MyApp> {
                   ],
                 ),
                 const SizedBox(
-                    height:
-                        20), // Add space between Bluetooth and Wired headphones
+                  height: 20,
+                ), // Add space between Bluetooth and Wired headphones
 
                 // Wired Headphones Image and Text
                 Column(
                   children: [
                     Image.asset(
-                      "assets\\images\\headphone_image.png",
+                      "assets\\images\\headphone.png",
                       width: 100,
                       height: 100,
                     ),
@@ -72,8 +69,8 @@ class _MyAppState extends State<MyApp> {
                   ],
                 ),
                 const SizedBox(
-                    height:
-                        20), // Add space between Wired headphones and button
+                  height: 20,
+                ), // Add space between Wired headphones and button
 
                 // Continue Button
                 ElevatedButton(

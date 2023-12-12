@@ -4,4 +4,5 @@ class MyRoutes {
   static String studentLoginRoute = '/StudentLoginRoute';
   static String studentDashboard = '/StudentDashboar';
   static String backgroundNoise = '/BackgroundNoise';
+  static String headset = '/Headset';
 }
