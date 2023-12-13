@@ -10,8 +10,8 @@ class LeftEar extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<LeftEar> {
-  int currentFrequency = 10;
-  int currentVolume = 60;
+  int currentFrequency = 250;
+  int currentVolume = 10;
 
   void playSound() {
     // Logic to play sound with the currentFrequency and currentVolume
@@ -21,23 +21,44 @@ class _MyHomePageState extends State<LeftEar> {
   }
 
   void onTickButtonPressed() {
+    setState(() {
+      currentVolume = 10;
+      currentFrequency = 2 * currentFrequency;
+    });
     // Logic when the tick button is pressed
-    if (currentVolume > 0) {
-      currentVolume -= 10;
-    } else {
-      currentFrequency += 100;
-      currentVolume = 100;
-    }
+    // if (currentVolume > 0) {
+    //currentVolume = 10;
+    // } else {
+    //currentFrequency = 2 * currentFrequency;
+    //  currentVolume = 100;
+    //}
 
     playSound();
   }
 
   void onCrossButtonPressed() {
-    // Logic when the cross button is pressed
-    currentFrequency += 100;
-    currentVolume = 100;
+    setState(() {
+      if (currentVolume < 90) {
+        currentVolume += 10;
+      } else {
+        currentFrequency = 2 * currentFrequency;
+        currentVolume = 10;
+      }
+    });
+
+    // if (currentVolume < 90) {
+    //   currentVolume += 10;
+    // } else {
+    //   currentFrequency = 2 * currentFrequency;
+    //   currentVolume = 10;
+    // }
 
     playSound();
+    // Logic when the cross button is pressed
+    //currentFrequency += 100;
+    //currentVolume = 100;
+
+    //playSound();
   }
 
   void onProceedButtonPressed() {
