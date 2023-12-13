@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:sih_23_audiometer/pages/background_noise.dart';
 import 'package:sih_23_audiometer/pages/headset.dart';
 import 'package:sih_23_audiometer/pages/home_page.dart';
@@ -12,7 +11,6 @@ import 'package:sih_23_audiometer/widgets/themes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Permission.microphone.request();
   runApp(const MyApp());
 }
 
