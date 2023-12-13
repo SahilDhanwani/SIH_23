@@ -77,72 +77,75 @@ class _CalibrationState extends State<Calibration> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(height: 2),
-        Image.asset(
-          'assets/images/abhi.png',
-          width: 250,
-        ),
-        const SizedBox(height: 30),
-        // Use a Container to display the dynamic value inside a box
-        Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black),
-            borderRadius: BorderRadius.circular(8),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: const Color.fromARGB(223, 217, 200, 243),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // const SizedBox(height: 2),
+          Image.asset(
+            'assets/images/abhi.png',
+            width: 250,
           ),
-          child: Text(
-            debameterValue,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-        ),
-        const SizedBox(height: 50),
-        const Text(
-          'HEADSET').text.xl5.bold.make(),
-        const Text(
-          'CALIBRATION').text.xl5.bold.make(),
-        const SizedBox(height: 30),
-        const Text("Play The Given Audio File ").text.xl2.bold.make(),
-        const Text("And Adjust Your ").text.xl2.bold.make(),
-        const Text("Phones Volume To 55 dB. ").text.xl2.bold.make(),
-        const SizedBox(height: 50),
-         Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // InkWell(
-                //   onTap: () {
-                //     player.seek(Duration(seconds: _position.inSeconds - 10));
-                //     setState(() {});
-                //   },
-                //   child: Image.asset('assets/icons/rewind.png'),
-                // ),
-                // const SizedBox(width: 20),
-                InkWell(
-                  onTap: playPause,
-                  child: Icon(
-                    isPlaying ? Icons.pause_circle : Icons.play_circle,
-                    color: const Color.fromARGB(255, 30, 220, 208),
-                    size: 100,
-                  ),
-                ),
-                const SizedBox(width: 20),
-                // InkWell(
-                //   onTap: () {
-                //     player.seek(Duration(seconds: _position.inSeconds + 10));
-                //     setState(() {});
-                //   },
-                //   child: Image.asset('assets/icons/forward.png'),
-                // ),
-              ],
+          // const SizedBox(height: 30),
+          // Use a Container to display the dynamic value inside a box
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black),
+              borderRadius: BorderRadius.circular(8),
             ),
-      ],
-      
-    )));
+            child: Text(
+              debameterValue,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          // const SizedBox(height: 50),
+          const Text(
+            'HEADSET').text.xl5.bold.make(),
+          const Text(
+            'CALIBRATION').text.xl5.bold.make(),
+          // const SizedBox(height: 30),
+          const Text("Play The Given Audio File ").text.xl2.bold.make(),
+          const Text("And Adjust Your ").text.xl2.bold.make(),
+          const Text("Phones Volume To 55 dB. ").text.xl2.bold.make(),
+          // const SizedBox(height: 50),
+           Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // InkWell(
+                  //   onTap: () {
+                  //     player.seek(Duration(seconds: _position.inSeconds - 10));
+                  //     setState(() {});
+                  //   },
+                  //   child: Image.asset('assets/icons/rewind.png'),
+                  // ),
+                  // const SizedBox(width: 20),
+                  InkWell(
+                    onTap: playPause,
+                    child: Icon(
+                      isPlaying ? Icons.pause_circle : Icons.play_circle,
+                      color: const Color.fromARGB(224, 97, 21, 227),
+                      size: 100,
+                    ),
+                  ),
+                  // const SizedBox(width: 20),
+                  // InkWell(
+                  //   onTap: () {
+                  //     player.seek(Duration(seconds: _position.inSeconds + 10));
+                  //     setState(() {});
+                  //   },
+                  //   child: Image.asset('assets/icons/forward.png'),
+                  // ),
+                ],
+              ),
+        ],
+        
+      ))),
+    );
   }
 }
