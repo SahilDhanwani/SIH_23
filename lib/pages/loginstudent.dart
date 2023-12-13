@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
+
 // ignore: camel_case_types
 class loginstudent extends StatefulWidget {
   const loginstudent({super.key});
@@ -39,8 +40,8 @@ class _loginState extends State<loginstudent> {
           child: Column(
             children: [
               //Image.asset(
-               // "assets/images/login.png",
-               // fit: BoxFit.cover,
+              // "assets/images/login.png",
+              // fit: BoxFit.cover,
               //),
               SizedBox(
                 height: 20,
@@ -60,7 +61,7 @@ class _loginState extends State<loginstudent> {
                   ),
                   validator: (value) {
                     if (value?.isEmpty ?? true) {
-                      return "username cana=not be empty";
+                      return "username can not be empty";
                     }
                     return null;
                   },
@@ -126,8 +127,7 @@ class _loginState extends State<loginstudent> {
                   style: TextButton.styleFrom(maximumSize: Size.fromWidth(100)),
                   child: Text("Login"),
                 )*/
-              ]
-              )
+              ])
             ],
           ),
         )));

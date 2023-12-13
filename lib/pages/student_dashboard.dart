@@ -8,7 +8,7 @@ class StudentDashboard extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Blank Screen'),
+          title: const Text('Home page'),
         ),
         body: Container(), // An empty container to create a blank screen
       ),

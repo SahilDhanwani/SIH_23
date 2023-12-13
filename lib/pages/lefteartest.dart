@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utils/routes.dart';
+
 // ignore: use_key_in_widget_constructors
 
 // ignore: use_key_in_widget_constructors
@@ -63,6 +65,7 @@ class _MyHomePageState extends State<LefttEar> {
 
   void onProceedButtonPressed() {
     // Logic when the proceed button for the right ear is pressed
+    Navigator.pushNamed(context, MyRoutes.rightear);
     // ignore: avoid_print
     print('Proceed');
     // You can navigate to the next screen or perform other actions here
