@@ -68,9 +68,8 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
-<<<<<<< HEAD
-   - assets/audio/tone.mp3
-   - assets/images/abhi.png
+   - assets\audio\tone.mp3
+   - assets\images\abhi.png
    - assets\images\bluetooth.png
    - assets\images\headphone.png
    - assets\images\eduapp_student_login.jpg
@@ -78,18 +77,6 @@ flutter:
    - assets\images\leftear.png   
    - assets\images\rightear.png 
    - assets\images\eduapp_student_login.jpg
-   - assets\images\admin.png
-=======
-    - assets/
-    - assets\images\bluetooth.png
-    - assets\images\headphone.png
-    - assets\images\eduapp_student_login.jpg
-    - assets\images\admin.png
-    - assets\images\leftear.png
-    - assets\images\rightear.png
-    - assets\images\eduapp_student_login.jpg
-    - assets\images\admin.png
->>>>>>> 6ecc73f (added MainActivity.kt)
   #  - assets\audio\
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
