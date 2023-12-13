@@ -2,9 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
-
-
+//import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -60,10 +58,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
- 
-
-
-  class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> {
   late List<leftData> _chartData;
   late List<rightData> _chartDatar;
 

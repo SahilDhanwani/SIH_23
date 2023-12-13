@@ -1,29 +1,17 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+// ignore: use_key_in_widget_constructors
 
 // ignore: use_key_in_widget_constructors
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyHomePage(),
-    );
-  }
-}
-
-// ignore: use_key_in_widget_constructors
-class MyHomePage extends StatefulWidget {
+class LeftEar extends StatefulWidget {
   @override
   // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int currentFrequency = 10;
-  int currentVolume = 60;
+class _MyHomePageState extends State<LeftEar> {
+  int currentFrequency = 250;
+  int currentVolume = 10;
 
   void playSound() {
     // Logic to play sound with the currentFrequency and currentVolume
@@ -33,23 +21,44 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void onTickButtonPressed() {
+    setState(() {
+      currentVolume = 10;
+      currentFrequency = 2 * currentFrequency;
+    });
     // Logic when the tick button is pressed
-    if (currentVolume > 0) {
-      currentVolume -= 10;
-    } else {
-      currentFrequency += 100;
-      currentVolume = 100;
-    }
+    // if (currentVolume > 0) {
+    //currentVolume = 10;
+    // } else {
+    //currentFrequency = 2 * currentFrequency;
+    //  currentVolume = 100;
+    //}
 
     playSound();
   }
 
   void onCrossButtonPressed() {
-    // Logic when the cross button is pressed
-    currentFrequency += 100;
-    currentVolume = 100;
+    setState(() {
+      if (currentVolume < 90) {
+        currentVolume += 10;
+      } else {
+        currentFrequency = 2 * currentFrequency;
+        currentVolume = 10;
+      }
+    });
+
+    // if (currentVolume < 90) {
+    //   currentVolume += 10;
+    // } else {
+    //   currentFrequency = 2 * currentFrequency;
+    //   currentVolume = 10;
+    // }
 
     playSound();
+    // Logic when the cross button is pressed
+    //currentFrequency += 100;
+    //currentVolume = 100;
+
+    //playSound();
   }
 
   void onProceedButtonPressed() {
@@ -70,16 +79,23 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Test for left ear',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                const Text(
+                  'Test for left ear',
+                ),
+                Image.asset('assets\\images\\leftear.png',
+                    height: 50, width: 50),
+              ],
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
                 Text('Frequency: $currentFrequency'),
-                Image.asset('assets/images/leftear.png', height: 50, width: 50),
               ],
             ),
             const SizedBox(height: 16),
@@ -88,18 +104,12 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Text('Volume: $currentVolume'),
                 const SizedBox(width: 16),
-                // Box widget for volume control
-                Container(
-                  width: 50,
-                  height: 30,
-                  color: Colors.blue, // Customize the color or appearance
-                ),
               ],
             ),
             const SizedBox(height: 16),
-            const Text(
-              'Can you hear?',
-              style: TextStyle(fontWeight: FontWeight.bold),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [Text('Can you hear?')],
             ),
             const SizedBox(height: 16),
             Row(
@@ -107,12 +117,12 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 ElevatedButton(
                   onPressed: onCrossButtonPressed,
-                  child: const Text('Cross'),
+                  child: const Text('No'),
                 ),
                 const SizedBox(width: 16),
                 ElevatedButton(
                   onPressed: onTickButtonPressed,
-                  child: const Text('Tick'),
+                  child: const Text('Yes'),
                 ),
               ],
             ),
