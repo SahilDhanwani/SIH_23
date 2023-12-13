@@ -10,7 +10,7 @@ packages:
     source: hosted
     version: "2.11.0"
   audio_streamer:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: audio_streamer
       sha256: f9084f3d4c98bd83ad5255a8b9250adcc81515de170efd7ef16a7663f8b8d95c
@@ -207,7 +207,7 @@ packages:
     source: hosted
     version: "9.2.13"
   flutter_test:
-    dependency: "direct dev"
+    dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"

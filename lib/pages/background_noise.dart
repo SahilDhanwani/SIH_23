@@ -1,10 +1,8 @@
-
 import 'dart:async';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:noise_meter/noise_meter.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class BackgroundNoise extends StatefulWidget {
   const BackgroundNoise({super.key});
@@ -16,151 +14,85 @@ class BackgroundNoise extends StatefulWidget {
 
 class _BackgroundNoiseState extends State<BackgroundNoise> {
   bool _isRecording = false;
-  // ignore: cancel_subscriptions
+  NoiseReading? _latestReading;
   StreamSubscription<NoiseReading>? _noiseSubscription;
-  late NoiseMeter _noiseMeter;
-  double? maxDB;
-  double? meanDB;
-  List<_ChartData> chartData = <_ChartData>[];
-  // ChartSeriesController? _chartSeriesController;
-  late int previousMillis;
+  NoiseMeter? noiseMeter;
 
   @override
-  void initState() {
-    super.initState();
-    _noiseMeter = NoiseMeter();
+  void dispose() {
+    _noiseSubscription?.cancel();
+    super.dispose();
   }
 
-  void onData(NoiseReading noiseReading) {
-    setState(() {
-      if (!_isRecording) _isRecording = true;
-    });
-    maxDB = noiseReading.maxDecibel;
-    meanDB = noiseReading.meanDecibel;
+  void onData(NoiseReading noiseReading) =>
+      setState(() => _latestReading = noiseReading);
 
-    chartData.add(
-      _ChartData(
-        maxDB,
-        meanDB,
-        ((DateTime.now().millisecondsSinceEpoch - previousMillis) / 1000)
-            .toDouble(),
-      ),
-    );
+  void onError(Object error) {
+    // ignore: avoid_print
+    print(error);
+    stop();
   }
 
-  void start() async {
-    previousMillis = DateTime.now().millisecondsSinceEpoch;
-    try {
-      _noiseSubscription = _noiseMeter.noise.listen(onData);
-    } catch (e) {
-      // ignore: avoid_print
-      print(e);
-    }
+  /// Check if microphone permission is granted.
+  Future<bool> checkPermission() async => await Permission.microphone.isGranted;
+
+  /// Request the microphone permission.
+  Future<void> requestPermission() async =>
+      await Permission.microphone.request();
+
+  /// Start noise sampling.
+  Future<void> start() async {
+    // Create a noise meter, if not already done.
+    noiseMeter ??= NoiseMeter();
+
+    // Check permission to use the microphone.
+    //
+    // Remember to update the AndroidManifest file (Android) and the
+    // Info.plist and pod files (iOS).
+    if (!(await checkPermission())) await requestPermission();
+
+    // Listen to the noise stream.
+    _noiseSubscription = noiseMeter?.noise.listen(onData, onError: onError);
+    setState(() => _isRecording = true);
   }
 
-  void stop() async {
-    try {
-      _noiseSubscription!.cancel();
-      _noiseSubscription = null;
-
-      setState(() => _isRecording = false);
-    } catch (e) {
-      // ignore: avoid_print
-      print('stopRecorder error: $e');
-    }
-    previousMillis = 0;
-    chartData.clear();
+  /// Stop sampling.
+  void stop() {
+    _noiseSubscription?.cancel();
+    setState(() => _isRecording = false);
   }
 
-  void copyValue(
-    bool theme,
-  ) {
-    Clipboard.setData(
-      ClipboardData(
-          text: 'It\'s about ${maxDB!.toStringAsFixed(1)}dB loudness'),
-    ).then((_) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          behavior: SnackBarBehavior.floating,
-          duration: const Duration(milliseconds: 2500),
-          content: Row(
-            children: [
-              Icon(
-                Icons.check,
-                size: 14,
-                color: theme ? Colors.white70 : Colors.black,
-              ),
-              const SizedBox(width: 10),
-              const Text('Copied')
-            ],
+  @override
+  Widget build(BuildContext context) => MaterialApp(
+        home: Scaffold(
+          body: Center(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                Container(
+                    margin: const EdgeInsets.all(25),
+                    child: Column(children: [
+                      Container(
+                        margin: const EdgeInsets.only(top: 20),
+                        child: Text(_isRecording ? "Mic: ON" : "Mic: OFF",
+                            style: const TextStyle(fontSize: 25, color: Colors.blue)),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 20),
+                        child: Text(
+                          'Noise: ${_latestReading?.meanDecibel.toStringAsFixed(2)} dB',
+                        ),
+                      ),
+                      Text(
+                        'Max: ${_latestReading?.maxDecibel.toStringAsFixed(2)} dB',
+                      )
+                    ])),
+              ])),
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: _isRecording ? Colors.red : Colors.green,
+            onPressed: _isRecording ? stop : start,
+            child: _isRecording ? const Icon(Icons.stop) : const Icon(Icons.mic),
           ),
         ),
       );
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    bool isDark = Theme.of(context).brightness == Brightness.light;
-    if (chartData.length >= 25) {
-      chartData.removeAt(0);
-    }
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: isDark ? Colors.green : Colors.green.shade800,
-        title: const Text('dB Sound Meter'),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton.extended(
-        label: Text(_isRecording ? 'Stop' : 'Start'),
-        onPressed: _isRecording ? stop : start,
-        icon: !_isRecording ? const Icon(Icons.circle) : null,
-        backgroundColor: _isRecording ? Colors.red : Colors.green,
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Center(
-              child: Text(
-                maxDB != null ? maxDB!.toStringAsFixed(2) : 'Press start',
-                style: GoogleFonts.exo2(fontSize: 76),
-              ),
-            ),
-          ),
-          Text(
-            meanDB != null
-                ? 'Mean: ${meanDB!.toStringAsFixed(2)}'
-                : 'Awaiting data',
-            style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 14),
-          ),
-          Expanded(
-            child: SfCartesianChart(
-              series: <LineSeries<_ChartData, double>>[
-                LineSeries<_ChartData, double>(
-                    dataSource: chartData,
-                    xAxisName: 'Time',
-                    yAxisName: 'dB',
-                    name: 'dB values over time',
-                    xValueMapper: (_ChartData value, _) => value.frames,
-                    yValueMapper: (_ChartData value, _) => value.maxDB,
-                    animationDuration: 0),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 68,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _ChartData {
-  final double? maxDB;
-  final double? meanDB;
-  final double frames;
-
-  _ChartData(this.maxDB, this.meanDB, this.frames);
 }
