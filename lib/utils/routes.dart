@@ -6,5 +6,6 @@ class MyRoutes {
   static String backgroundNoise = '/BackgroundNoise';
   static String headset = '/Headset';
   static String leftear = '/LeftEar';
+  // ignore: non_constant_identifier_names
   static String calibration_check = '/calibration_check';
 }
