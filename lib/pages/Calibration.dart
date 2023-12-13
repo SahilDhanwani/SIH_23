@@ -1,5 +1,8 @@
-import 'package:audioplayers/audioplayers.dart';
+import 'dart:async';
+import 'package:noise_meter/noise_meter.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Calibration extends StatefulWidget {
@@ -8,12 +11,13 @@ class Calibration extends StatefulWidget {
   @override
   // ignore: library_private_types_in_public_api
   _CalibrationState createState() => _CalibrationState();
-
 }
 
 class _CalibrationState extends State<Calibration> {
-
   bool isPlaying = false;
+  NoiseReading? _latestReading;
+  StreamSubscription<NoiseReading>? _noiseSubscription;
+  NoiseMeter? noiseMeter;
   late final AudioPlayer player;
   late final AssetSource path;
 
@@ -23,14 +27,52 @@ class _CalibrationState extends State<Calibration> {
 
   @override
   void initState() {
+    //Calibration
     initPlayer();
     super.initState();
   }
 
   @override
   void dispose() {
+    //Calibration + Background
+    _noiseSubscription?.cancel();
     player.dispose();
     super.dispose();
+  }
+
+  void onError(Object error) {
+    //Background
+    // ignore: avoid_print
+    print(error);
+    stop();
+  }
+
+  Future<bool> checkPermission() async => //Background
+      await Permission.microphone.isGranted;
+
+  Future<void> requestPermission() async => //Background
+      await Permission.microphone.request();
+
+  void onData(NoiseReading noiseReading) => // Background
+      setState(() => _latestReading = noiseReading);
+
+  Future<void> start() async {
+    //background
+
+    // Create a noise meter, if not already done.
+    noiseMeter ??= NoiseMeter();
+
+    if (!(await checkPermission())) await requestPermission();
+
+    // Listen to the noise stream.
+    _noiseSubscription = noiseMeter?.noise.listen(onData, onError: onError);
+    // setState(() => isPlaying = true);
+  }
+
+  void stop() {
+    //Background
+    _noiseSubscription?.cancel();
+    setState(() => isPlaying = false);
   }
 
   Future initPlayer() async {
@@ -39,7 +81,9 @@ class _CalibrationState extends State<Calibration> {
 
     // set a callback for changing duration
     player.onDurationChanged.listen((Duration d) {
-      setState(() => _duration = d);
+      setState(
+        () => _duration = d,
+      );
     });
 
     // set a callback for position change
@@ -58,91 +102,64 @@ class _CalibrationState extends State<Calibration> {
       player.pause();
       isPlaying = false;
     } else {
+      start();
       player.play(path);
       isPlaying = true;
     }
     setState(() {});
   }
 
-  // Initialize a variable to store the dynamic value
-  String debameterValue = 'Your Initial Value';
-  
-
-  // Your function to update the debameterValue based on some logic
-  void updateDebameterValue() {
-    // Your logic to update debameterValue
-    // For example, you can simulate some dynamic changes
-    debameterValue = 'New Value';
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(height: 2),
-        Image.asset(
-          'assets/images/abhi.png',
-          width: 250,
-        ),
-        const SizedBox(height: 30),
-        // Use a Container to display the dynamic value inside a box
-        Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Text(
-            debameterValue,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-        ),
-        const SizedBox(height: 50),
-        const Text(
-          'HEADSET').text.xl5.bold.make(),
-        const Text(
-          'CALIBRATION').text.xl5.bold.make(),
-        const SizedBox(height: 30),
-        const Text("Play The Given Audio File ").text.xl2.bold.make(),
-        const Text("And Adjust Your ").text.xl2.bold.make(),
-        const Text("Phones Volume To 55 dB. ").text.xl2.bold.make(),
-        const SizedBox(height: 50),
-         Row(
+        body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // InkWell(
-                //   onTap: () {
-                //     player.seek(Duration(seconds: _position.inSeconds - 10));
-                //     setState(() {});
-                //   },
-                //   child: Image.asset('assets/icons/rewind.png'),
-                // ),
-                // const SizedBox(width: 20),
-                InkWell(
-                  onTap: playPause,
-                  child: Icon(
-                    isPlaying ? Icons.pause_circle : Icons.play_circle,
-                    color: const Color.fromARGB(255, 30, 220, 208),
-                    size: 100,
+                const SizedBox(height: 2),
+                Image.asset(
+                  'assets/images/abhi2.png',
+                  width: 250,
+                ),
+                const SizedBox(height: 30),
+                // Use a Container to display the dynamic value inside a box
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    '${_latestReading?.meanDecibel.toStringAsFixed(2)} dB',
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
-                const SizedBox(width: 20),
-                // InkWell(
-                //   onTap: () {
-                //     player.seek(Duration(seconds: _position.inSeconds + 10));
-                //     setState(() {});
-                //   },
-                //   child: Image.asset('assets/icons/forward.png'),
-                // ),
+                const SizedBox(height: 50),
+                const Text('HEADSET').text.xl5.bold.make(),
+                const Text('CALIBRATION').text.xl5.bold.make(),
+                const SizedBox(height: 30),
+                const Text("Play The Given Audio File ").text.xl2.bold.make(),
+                const Text("And Adjust Your ").text.xl2.bold.make(),
+                const Text("Phones Volume To 55 dB. ").text.xl2.bold.make(),
+                const SizedBox(height: 50),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: playPause,
+                      child: Icon(
+                        isPlaying ? Icons.pause_circle : Icons.play_circle,
+                        color: const Color.fromARGB(255, 30, 220, 208),
+                        size: 100,
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                  ],
+                ),
               ],
-            ),
-      ],
-      
-    )));
+            )));
   }
 }
