@@ -9,6 +9,7 @@ import 'package:sih_23_audiometer/pages/loginadmin.dart';
 import 'package:sih_23_audiometer/pages/loginstudent.dart';
 import 'package:sih_23_audiometer/pages/logsignadmin.dart';
 import 'package:sih_23_audiometer/pages/logsignstu.dart';
+import 'package:sih_23_audiometer/pages/righteartest.dart';
 import 'package:sih_23_audiometer/pages/studadmin.dart';
 import 'package:sih_23_audiometer/pages/student_dashboard.dart';
 import 'package:sih_23_audiometer/pages/student_login.dart';
@@ -32,7 +33,11 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
+<<<<<<< HEAD
       initialRoute: MyRoutes.Calibration,
+=======
+      initialRoute: MyRoutes.rightear,
+>>>>>>> de64243 (right ear added)
       routes: {
         MyRoutes.homeRoute: (context) => const HomePage(),
         MyRoutes.studentLoginRoute: (context) => const student_login(),
@@ -41,7 +46,13 @@ class MyApp extends StatelessWidget {
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.headset: (context) => const Headset(),
         MyRoutes.leftear: (context) => LeftEar(),
+<<<<<<< HEAD
         
+=======
+        MyRoutes.rightear: (context) => RightEar(),
+        // MyRoutes.calibration_check:(context)=> Calibration(),
+        MyRoutes.calibration_check: (context) => const Calibration(),
+>>>>>>> de64243 (right ear added)
         // MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.studadmin: (context) => const studadmin(),
         MyRoutes.logsignstu: (context) => const logsignstu(),
