@@ -6,4 +6,10 @@ class MyRoutes {
   static String backgroundNoise = '/BackgroundNoise';
   static String headset = '/Headset';
   static String leftear = '/LeftEar';
-}
+  static String logsignstu = '/logsignstu';
+   static String studadmin = '/studadmin';
+      static String loginstudent = '/loginstudent';
+      static String loginadmin = '/loginadmin';
+      static String logsignadmin = '/logsignadmin';
+      static String  adminsignup= '/adminsignup';
+  }
