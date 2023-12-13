@@ -17,7 +17,6 @@ import 'package:sih_23_audiometer/widgets/themes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Permission.microphone.request();
   runApp(const MyApp());
 }
 
