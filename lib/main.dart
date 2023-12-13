@@ -34,10 +34,14 @@ class MyApp extends StatelessWidget {
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
 <<<<<<< HEAD
+<<<<<<< HEAD
       initialRoute: MyRoutes.Calibration,
 =======
       initialRoute: MyRoutes.rightear,
 >>>>>>> de64243 (right ear added)
+=======
+      initialRoute: MyRoutes.leftear,
+>>>>>>> 6ecc73f (added MainActivity.kt)
       routes: {
         MyRoutes.homeRoute: (context) => const HomePage(),
         MyRoutes.studentLoginRoute: (context) => const student_login(),
@@ -45,10 +49,14 @@ class MyApp extends StatelessWidget {
         MyRoutes.studentSignupRoute: (context) => const StudentSignup(),
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.headset: (context) => const Headset(),
+<<<<<<< HEAD
         MyRoutes.leftear: (context) => LeftEar(),
 <<<<<<< HEAD
         
 =======
+=======
+        MyRoutes.leftear: (context) => const LeftEar(),
+>>>>>>> 6ecc73f (added MainActivity.kt)
         MyRoutes.rightear: (context) => RightEar(),
         // MyRoutes.calibration_check:(context)=> Calibration(),
         MyRoutes.calibration_check: (context) => const Calibration(),

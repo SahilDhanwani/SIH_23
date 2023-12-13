@@ -1,23 +1,54 @@
+// ignore_for_file: unused_field
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:audioplayers/audioplayers.dart';
 
-// ignore: use_key_in_widget_constructors
-
-// ignore: use_key_in_widget_constructors
 class LeftEar extends StatefulWidget {
+  const LeftEar({super.key});
+
   @override
   // ignore: library_private_types_in_public_api
-  _MyHomePageState createState() => _MyHomePageState();
+  _LeftEarState createState() => _LeftEarState();
 }
 
-class _MyHomePageState extends State<LeftEar> {
+class _LeftEarState extends State<LeftEar> {
+  static const MethodChannel _volumeChannel =
+      MethodChannel('com.example.volume_control');
   int currentFrequency = 250;
   int currentVolume = 10;
 
-  void playSound() {
-    // Logic to play sound with the currentFrequency and currentVolume
-    // ignore: avoid_print
-    print(
-        'Playing sound: Frequency - $currentFrequency, Volume - $currentVolume');
+  late AudioPlayer _audioPlayer;
+  bool _isPlaying = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _audioPlayer = AudioPlayer();
+    _audioPlayer.onPlayerCompletion.listen((event) {
+      setState(() {
+        _isPlaying = false;
+      });
+    });
+  }
+
+  Future<void> playSound() async {
+    String audioFileName = '$currentFrequency.mp3';
+    String audioFilePath = 'assets/audios/$audioFileName';
+
+    await _audioPlayer.play(audioFilePath, isLocal: true);
+    setState(() {
+      _isPlaying = true;
+    });
+  }
+
+  Future<void> adjustVolume(int change) async {
+    try {
+      await _volumeChannel.invokeMethod('adjustVolume', {'change': change});
+    } catch (e) {
+      // ignore: avoid_print
+      print('Failed to adjust volume: $e');
+    }
   }
 
   void onTickButtonPressed() {
@@ -25,13 +56,6 @@ class _MyHomePageState extends State<LeftEar> {
       currentVolume = 10;
       currentFrequency = 2 * currentFrequency;
     });
-    // Logic when the tick button is pressed
-    // if (currentVolume > 0) {
-    //currentVolume = 10;
-    // } else {
-    //currentFrequency = 2 * currentFrequency;
-    //  currentVolume = 100;
-    //}
 
     playSound();
   }
@@ -40,32 +64,27 @@ class _MyHomePageState extends State<LeftEar> {
     setState(() {
       if (currentVolume < 90) {
         currentVolume += 10;
+        adjustVolume(10); // Adjust volume by 10
       } else {
         currentFrequency = 2 * currentFrequency;
         currentVolume = 10;
       }
     });
 
-    // if (currentVolume < 90) {
-    //   currentVolume += 10;
-    // } else {
-    //   currentFrequency = 2 * currentFrequency;
-    //   currentVolume = 10;
-    // }
-
     playSound();
-    // Logic when the cross button is pressed
-    //currentFrequency += 100;
-    //currentVolume = 100;
-
-    //playSound();
   }
 
   void onProceedButtonPressed() {
-    // Logic when the proceed button for the right ear is pressed
     // ignore: avoid_print
     print('Proceeding to the right ear');
+    // Logic when the proceed button for the right ear is pressed
     // You can navigate to the next screen or perform other actions here
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
   }
 
   @override
@@ -127,7 +146,8 @@ class _MyHomePageState extends State<LeftEar> {
               ],
             ),
             Expanded(
-                child: Container()), // Spacer to push buttons to the bottom
+              child: Container(),
+            ), // Spacer to push buttons to the bottom
             Align(
               alignment: Alignment.bottomRight,
               child: ElevatedButton(
