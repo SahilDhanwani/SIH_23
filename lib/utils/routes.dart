@@ -4,5 +4,6 @@ class MyRoutes {
   static String studentLoginRoute = '/StudentLoginRoute';
   static String studentDashboard = '/StudentDashboar';
   static String backgroundNoise = '/BackgroundNoise';
+  // ignore: non_constant_identifier_names
   static String calibration_check = '/calibration_check';
 }
