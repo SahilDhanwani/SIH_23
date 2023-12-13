@@ -7,7 +7,7 @@ class MyRoutes {
   static String headset = '/Headset';
   static String leftear = '/LeftEar';
   // ignore: non_constant_identifier_names
-  static String calibration_check = '/calibration_check';
+  static String Calibration = '/Calibration';
   static String logsignstu = '/logsignstu';
    static String studadmin = '/studadmin';
       static String loginstudent = '/loginstudent';

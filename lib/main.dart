@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.studadmin,
+      initialRoute: MyRoutes.Calibration,
       routes: {
         MyRoutes.homeRoute: (context) => const HomePage(),
         MyRoutes.studentLoginRoute: (context) => const student_login(),
@@ -45,8 +45,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.headset: (context) => const Headset(),
         MyRoutes.leftear: (context) => LeftEar(),
-        // MyRoutes.calibration_check:(context)=> Calibration(),
-        MyRoutes.calibration_check: (context) => const Calibration(),
+        
         // MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.studadmin: (context) => const studadmin(),
         MyRoutes.logsignstu: (context) => const logsignstu(),
@@ -54,6 +53,8 @@ class MyApp extends StatelessWidget {
         MyRoutes.logsignadmin: (context) => logsignadmin(),
         MyRoutes.loginstudent: (context) => const loginstudent(),
         MyRoutes.adminsignup: (context) => const adminsignup(),
+        MyRoutes.Calibration:(context)=> const Calibration(),
+
       },
     );
   }

@@ -73,7 +73,8 @@ flutter:
     # For details regarding fonts from package dependencies,
     # see https://flutter.dev/custom-fonts/#from-packages
   assets:
-   - assets/
+   - assets/audio/tone.mp3
+   - assets/images/abhi.png
    - assets\images\bluetooth.png
    - assets\images\headphone.png
    - assets/images/eduapp_student_login.jpg
