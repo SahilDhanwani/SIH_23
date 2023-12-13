@@ -5,13 +5,13 @@ import '../utils/routes.dart';
 // ignore: use_key_in_widget_constructors
 
 // ignore: use_key_in_widget_constructors
-class LefttEar extends StatefulWidget {
+class RightEar extends StatefulWidget {
   @override
   // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<LefttEar> {
+class _MyHomePageState extends State<RightEar> {
   int currentFrequency = 250;
   int currentVolume = 10;
 
@@ -65,7 +65,7 @@ class _MyHomePageState extends State<LefttEar> {
 
   void onProceedButtonPressed() {
     // Logic when the proceed button for the right ear is pressed
-    Navigator.pushNamed(context, MyRoutes.rightear);
+    Navigator.pushNamed(context, MyRoutes.graph);
     // ignore: avoid_print
     print('Proceed');
     // You can navigate to the next screen or perform other actions here
@@ -75,7 +75,7 @@ class _MyHomePageState extends State<LefttEar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Left Ear Test'),
+        title: const Text('Right Ear Test'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -86,9 +86,9 @@ class _MyHomePageState extends State<LefttEar> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  'Test for left ear',
+                  'Test for right ear',
                 ),
-                Image.asset('assets\\images\\leftear.png',
+                Image.asset('assets\\images\\rightear.png',
                     height: 50, width: 50),
               ],
             ),
@@ -135,7 +135,7 @@ class _MyHomePageState extends State<LefttEar> {
               alignment: Alignment.bottomRight,
               child: ElevatedButton(
                 onPressed: onProceedButtonPressed,
-                child: const Text('Proceed for right ear'),
+                child: const Text('Proceed'),
               ),
             ),
           ],

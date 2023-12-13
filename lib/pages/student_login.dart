@@ -14,32 +14,36 @@ class student_login extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          //  Image.asset(
-             // 'assets/images/admin.png',
-              //height: 150,
+            //  Image.asset(
+            // 'assets/images/admin.png',
+            //height: 150,
             //),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, MyRoutes.studentSignupRoute); // Navigate to home screen
+                Navigator.pushNamed(context,
+                    MyRoutes.studentSigninRoute); // Navigate to home screen
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: MyTheme.buttonColor, // Use the button color from theme
+                backgroundColor:
+                    MyTheme.buttonColor, // Use the button color from theme
               ),
-              child: const Text('Signup'),
+              child: const Text('Login'),
             ),
             const SizedBox(height: 20),
-           // Image.asset(
+            // Image.asset(
             //  'assets/images/eduapp_student_login.jpg',
             //  height: 150,
             //),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, MyRoutes.studentDashboard); // Navigate to home screen
+                Navigator.pushNamed(context,
+                    MyRoutes.studentsignup); // Navigate to signup screen
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: MyTheme.buttonColor, // Use the button color from theme
+                backgroundColor:
+                    MyTheme.buttonColor, // Use the button color from theme
               ),
-              child: const Text('Login'),
+              child: const Text('Signup'),
             ),
           ],
         ),

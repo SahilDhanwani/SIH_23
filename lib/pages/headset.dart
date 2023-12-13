@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:headset_connection_event/headset_event.dart';
 
+import '../utils/routes.dart';
+
 class Headset extends StatefulWidget {
   const Headset({super.key});
 
@@ -78,6 +80,7 @@ class _HeadsetState extends State<Headset> {
                       ? () {
                           // Handle button click
                           // This block will only execute if the headset is connected
+                          Navigator.pushNamed(context, MyRoutes.calibration);
                           // ignore: avoid_print
                           print('Continue button clicked');
                         }
