@@ -35,7 +35,7 @@ class _CalibrationState extends State<Calibration> {
 
   Future initPlayer() async {
     player = AudioPlayer();
-    path = AssetSource('audios/tone.mp3');
+    path = AssetSource('audio/tone.mp3');
 
     // set a callback for changing duration
     player.onDurationChanged.listen((Duration d) {
@@ -86,7 +86,7 @@ class _CalibrationState extends State<Calibration> {
       children: [
         const SizedBox(height: 2),
         Image.asset(
-          'assets/images/abhi2.png',
+          'assets/images/abhi.png',
           width: 250,
         ),
         const SizedBox(height: 30),
