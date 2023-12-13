@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:noise_meter/noise_meter.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -33,14 +32,14 @@ class _BackgroundNoiseState extends State<BackgroundNoise> {
     stop();
   }
 
-  /// Check if microphone permission is granted.
+  // Check if microphone permission is granted.
   Future<bool> checkPermission() async => await Permission.microphone.isGranted;
 
-  /// Request the microphone permission.
+  // Request the microphone permission.
   Future<void> requestPermission() async =>
       await Permission.microphone.request();
 
-  /// Start noise sampling.
+  // Start noise sampling.
   Future<void> start() async {
     // Create a noise meter, if not already done.
     noiseMeter ??= NoiseMeter();
