@@ -5,4 +5,5 @@ class MyRoutes {
   static String studentDashboard = '/StudentDashboar';
   static String backgroundNoise = '/BackgroundNoise';
   static String headset = '/Headset';
+  static String leftear = '/LeftEar';
 }
