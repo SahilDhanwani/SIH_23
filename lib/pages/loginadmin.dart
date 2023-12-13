@@ -2,14 +2,16 @@
 // login for admin 
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
-import 'package:sih_23_audiometer/widgets/themes.dart';
 
 // ignore: camel_case_types
 class loginadmin extends StatefulWidget {
+  const loginadmin({super.key});
+
   @override
   State<loginadmin> createState() => _loginState();
 }
 
+// ignore: camel_case_types
 class _loginState extends State<loginadmin> {
   String name = "";
   bool changebutton = false;
@@ -20,6 +22,7 @@ class _loginState extends State<loginadmin> {
         changebutton = true;
       });
       await Future.delayed(Duration(seconds: 1));
+      // ignore: use_build_context_synchronously
       await Navigator.pushNamed(context, MyRoutes.studentDashboard);
       setState(() {
         changebutton = false;

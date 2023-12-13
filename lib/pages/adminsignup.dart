@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sih_23_audiometer/utils/routes.dart';
-import 'package:sih_23_audiometer/widgets/themes.dart';
 class User {
   String name = '';
   String rollNo = '';
@@ -16,9 +14,11 @@ class adminsignup extends StatefulWidget {
   const adminsignup({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _adminsignupState createState() => _adminsignupState();
 }
 
+// ignore: camel_case_types
 class _adminsignupState extends State<adminsignup> {
   final User user = User();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();

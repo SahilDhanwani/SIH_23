@@ -12,4 +12,4 @@ class MyRoutes {
       static String loginadmin = '/loginadmin';
       static String logsignadmin = '/logsignadmin';
       static String  adminsignup= '/adminsignup';
-}
+  }

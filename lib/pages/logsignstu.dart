@@ -5,6 +5,8 @@ import 'package:sih_23_audiometer/widgets/themes.dart';
 
 // ignore: camel_case_types
 class logsignstu extends StatelessWidget {
+  const logsignstu({super.key});
+
   //const LoginPage({super.key});
 
   @override
