@@ -14,4 +14,6 @@ class MyRoutes {
       static String loginadmin = '/loginadmin';
       static String logsignadmin = '/logsignadmin';
       static String  adminsignup= '/adminsignup';
-  }
+    // ignore: non_constant_identifier_names
+  static String calibration_check = '/calibration_check';
+}
