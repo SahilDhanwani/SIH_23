@@ -119,7 +119,9 @@ class _HeadsetState extends State<Headset> {
                         height: 100,
                       ),
                       const SizedBox(height: 8),
-                      const Text('Bluetooth', style: TextStyle(color: Color.fromARGB(255, 226, 9, 9))),
+                      const Text('Bluetooth',
+                          style:
+                              TextStyle(color: Color.fromARGB(255, 226, 9, 9))),
                     ],
                   ),
                 ),
@@ -132,7 +134,7 @@ class _HeadsetState extends State<Headset> {
                       .color(const Color.fromARGB(255, 7, 5, 5))
                       .make(),
                 ),
-                 const SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Wired Headphones Image and Text
                 Expanded(
                   child: Column(
@@ -143,7 +145,9 @@ class _HeadsetState extends State<Headset> {
                         height: 100,
                       ),
                       const SizedBox(height: 8),
-                      const Text('Wired Headphones', style: TextStyle(color: Color.fromARGB(255, 237, 1, 1))),
+                      const Text('Wired Headphones',
+                          style:
+                              TextStyle(color: Color.fromARGB(255, 237, 1, 1))),
                     ],
                   ),
                 ),
