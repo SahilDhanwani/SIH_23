@@ -1,3 +1,7 @@
+// ignore: duplicate_ignore
+// ignore: file_names
+// ignore_for_file: file_names
+
 import 'package:audioplayers/audioplayers.dart';
 import 'dart:async';
 import 'package:noise_meter/noise_meter.dart';
@@ -108,7 +112,15 @@ class _CalibrationState extends State<Calibration> {
     }
     setState(() {});
   }
+  // Initialize a variable to store the dynamic value
+  String debameterValue = 'Your Initial Value';
 
+  // Your function to update the debameterValue based on some logic
+  void updateDebameterValue() {
+    // Your logic to update debameterValue
+    // For example, you can simulate some dynamic changes
+    debameterValue = 'New Value';
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,7 +132,8 @@ class _CalibrationState extends State<Calibration> {
               children: [
                 const SizedBox(height: 2),
                 Image.asset(
-                  'assets\\images\\abhi2.png',
+
+                  'assets/images/abhi2.png',
                   width: 250,
                 ),
                 const SizedBox(height: 30),
@@ -136,6 +149,48 @@ class _CalibrationState extends State<Calibration> {
                     style: const TextStyle(
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
+                  child: Text(
+                    debameterValue,
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const SizedBox(height: 50),
+                const Text('HEADSET').text.xl5.bold.make(),
+                const Text('CALIBRATION').text.xl5.bold.make(),
+                const SizedBox(height: 30),
+                const Text("Play The Given Audio File ").text.xl2.bold.make(),
+                const Text("And Adjust Your ").text.xl2.bold.make(),
+                const Text("Phones Volume To 55 dB. ").text.xl2.bold.make(),
+                const SizedBox(height: 50),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // InkWell(
+                    //   onTap: () {
+                    //     player.seek(Duration(seconds: _position.inSeconds - 10));
+                    //     setState(() {});
+                    //   },
+                    //   child: Image.asset('assets/icons/rewind.png'),
+                    // ),
+                    // const SizedBox(width: 20),
+                    InkWell(
+                      onTap: playPause,
+                      child: Icon(
+                        isPlaying ? Icons.pause_circle : Icons.play_circle,
+                        color: const Color.fromARGB(255, 30, 220, 208),
+                        size: 100,
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    // InkWell(
+                    //   onTap: () {
+                    //     player.seek(Duration(seconds: _position.inSeconds + 10));
+                    //     setState(() {});
+                    //   },
+                    //   child: Image.asset('assets/icons/forward.png'),
+                    // ),
+                  ],
                 ),
                 const SizedBox(height: 50),
                 const Text('HEADSET').text.xl5.bold.make(),
