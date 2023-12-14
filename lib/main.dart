@@ -4,10 +4,6 @@ import 'package:sih_23_audiometer/pages/graph.dart';
 import 'package:sih_23_audiometer/pages/studentsignup.dart';
 import 'package:sih_23_audiometer/pages/background_noise.dart';
 import 'package:sih_23_audiometer/pages/headset.dart';
-// import 'package:sih_23_audiometer/pages/Calibration.dart';
-// import 'package:permission_handler/permission_handler.dart';
-// import 'package:sih_23_audiometer/pages/calibration_check.dart';
-// import 'package:sih_23_audiometer/pages/calibration_check.dart';
 import 'package:sih_23_audiometer/pages/home_page.dart';
 import 'package:sih_23_audiometer/pages/lefteartest.dart';
 import 'package:sih_23_audiometer/pages/loginadmin.dart';
@@ -40,14 +36,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: MyRoutes.homeRoute,
       routes: {
-        MyRoutes.homeRoute: (context) =>
-            const HomePage(), //First page(Admin/Student)
-        MyRoutes.studentLoginRoute: (context) =>
-            const student_login(), //Second page(Logini/Signup)
-        MyRoutes.studentDashboard: (context) =>
-            const StudentDashboard(), //Student Home Page
-        MyRoutes.studentSigninRoute: (context) =>
-            const StudentSignin(), //Student Login
+        MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
+        MyRoutes.studentLoginRoute: (context) => const student_login(), //Second page(Logini/Signup)
+        MyRoutes.studentDashboard: (context) => const StudentDashboard(), //Student Home Page
+        MyRoutes.studentSigninRoute: (context) => const StudentSignin(), //Student Login
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.headset: (context) => const Headset(),
         MyRoutes.leftear: (context) => LefttEar(),
@@ -59,8 +51,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.loginadmin: (context) => const loginadmin(),
         MyRoutes.logsignadmin: (context) => logsignadmin(),
         MyRoutes.loginstudent: (context) => const loginstudent(),
-        MyRoutes.studentsignup: (context) =>
-            const StudentSignup(), //Student signup
+        MyRoutes.studentsignup: (context) => const StudentSignup(), //Student signup
       },
     );
   }
