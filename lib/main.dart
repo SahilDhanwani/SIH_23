@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/pages/Calibration.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
+import 'package:sih_23_audiometer/pages/mixadmin.dart';
 import 'package:sih_23_audiometer/pages/studentsignup.dart';
 import 'package:sih_23_audiometer/pages/background_noise.dart';
 import 'package:sih_23_audiometer/pages/headset.dart';
@@ -8,6 +9,7 @@ import 'package:sih_23_audiometer/pages/home_page.dart';
 import 'package:sih_23_audiometer/pages/lefteartest.dart';
 import 'package:sih_23_audiometer/pages/loginadmin.dart';
 import 'package:sih_23_audiometer/pages/loginstudent.dart';
+import 'package:sih_23_audiometer/pages/mixstudent.dart';
 import 'package:sih_23_audiometer/pages/logsignadmin.dart';
 import 'package:sih_23_audiometer/pages/logsignstu.dart';
 import 'package:sih_23_audiometer/pages/righteartest.dart';
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.leftear,
+      initialRoute: MyRoutes.studadmin,
       routes: {
         MyRoutes.homeRoute: (context) =>
             const HomePage(), //First page(Admin/Student)
@@ -45,19 +47,24 @@ class MyApp extends StatelessWidget {
         MyRoutes.studentSigninRoute: (context) =>
             const StudentSignin(), //Student Login
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
-        MyRoutes.headset: (context) => const Headset(),
         MyRoutes.leftear: (context) => const LeftEar(),
         MyRoutes.rightear: (context) => const RightEar(),
         MyRoutes.graph: (context) => const Graph(),
-        MyRoutes.calibration: (context) => const Calibration(),
+      
         MyRoutes.studadmin: (context) => const studadmin(),
-        MyRoutes.logsignstu: (context) => const logsignstu(),
+        MyRoutes.logsignstu: (context) => LogSignStu(),
         MyRoutes.loginadmin: (context) => const loginadmin(),
         MyRoutes.logsignadmin: (context) => logsignadmin(),
-        MyRoutes.loginstudent: (context) => const loginstudent(),
+        MyRoutes.loginstudent: (context) => const LoginStudent(),
         MyRoutes.studentsignup: (context) =>
             const StudentSignup(), //Student signup
-     //   MyRoutes.lefteartest: (context) => const LeftEar() ,
+
+        // Files of AbhishekBHosale02
+        MyRoutes.mixstudent: (context) => mixstudent(),
+        MyRoutes.mixadmin: (context) => mixadmin(),
+        MyRoutes.calibration: (context) => const Calibration(),
+        MyRoutes.headset: (context) => const Headset(),
+
       },
     );
   }

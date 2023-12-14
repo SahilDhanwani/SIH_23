@@ -61,7 +61,7 @@ class _BackgroundNoiseState extends State<BackgroundNoise> {
 
   bool isNoiseBelowThreshold() {
     return _latestReading?.meanDecibel != null &&
-        _latestReading!.meanDecibel < 40;
+        _latestReading!.meanDecibel < 80;
   }
 
   @override
@@ -97,7 +97,7 @@ class _BackgroundNoiseState extends State<BackgroundNoise> {
                       ElevatedButton(
                         onPressed: isNoiseBelowThreshold()
                             ? () {
-                                Navigator.pushNamed(context, MyRoutes.headset);
+                                Navigator.pushNamed(context, MyRoutes.leftear);
                               }
                             : null,
                         child: const Text('Proceed'),

@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MyTheme {
   static Color buttonColor = Colors.deepPurple;
+
+  static var primaryColor;
   static ThemeData lightTheme(BuildContext context) => ThemeData(
         primarySwatch: Colors.purple,
         fontFamily: GoogleFonts.poppins().fontFamily,
