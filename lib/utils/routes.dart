@@ -17,5 +17,5 @@ class MyRoutes {
   static String studentsignup = '/studentsignup';
   static String graph = '/Graph';
   // ignore: non_constant_identifier_names
-  // static String calibration_check = '/calibration_check';
+   static String Calibration = '/Calibration';
 }

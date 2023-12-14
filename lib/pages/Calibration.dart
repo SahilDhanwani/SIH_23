@@ -120,7 +120,7 @@ class _CalibrationState extends State<Calibration> {
               children: [
                 const SizedBox(height: 2),
                 Image.asset(
-                  'assets\\images\\abhi2.png',
+                  'assets\\images\\abhi.png',
                   width: 250,
                 ),
                 const SizedBox(height: 30),
