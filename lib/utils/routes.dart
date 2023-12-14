@@ -20,5 +20,11 @@ class MyRoutes {
  //   static String righteartest = '/ righteartest ';
     
   // ignore: non_constant_identifier_names
-  // static String calibration_check = '/calibration_check';
+   
+   // Files of AbhishekBHosale02
+   // ignore: non_constant_identifier_names
+   static String Calibration = '/Calibration';
+   static String mixstudent = '/mixstudent';
+   static String mixadmin = '/mixadmin';
+   
 }
