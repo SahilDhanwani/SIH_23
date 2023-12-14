@@ -3,8 +3,6 @@ import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 
 class LogSignStu extends StatelessWidget {
-  const LogSignStu({Key? key}) : super(key: key);
-class LogSignStu extends StatelessWidget {
   const LogSignStu({super.key});
 
   @override

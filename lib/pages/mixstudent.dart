@@ -68,7 +68,7 @@ class _StudentPageState extends State<StudentPage> {
                     _currentPage = index;
                   });
                 },
-                children: [
+                children: const [
                   // Student Login Page
                   const StudentLoginForm(),
                   // Student Signup Page
