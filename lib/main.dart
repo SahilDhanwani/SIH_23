@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/pages/Calibration.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
-import 'package:sih_23_audiometer/pages/headset.dart';
 import 'package:sih_23_audiometer/pages/home_page.dart';
 import 'package:sih_23_audiometer/pages/lefteartest.dart';
 import 'package:sih_23_audiometer/pages/logsignadmin.dart';
-import 'package:sih_23_audiometer/pages/mixadmin.dart';
 import 'package:sih_23_audiometer/pages/studentsignup.dart';
 import 'package:sih_23_audiometer/pages/background_noise.dart';
 import 'package:sih_23_audiometer/pages/loginadmin.dart';
 import 'package:sih_23_audiometer/pages/loginstudent.dart';
-import 'package:sih_23_audiometer/pages/mixstudent.dart';
 import 'package:sih_23_audiometer/pages/logsignstu.dart';
 import 'package:sih_23_audiometer/pages/righteartest.dart';
 import 'package:sih_23_audiometer/pages/studadmin.dart';
@@ -58,13 +55,6 @@ class MyApp extends StatelessWidget {
         MyRoutes.loginstudent: (context) => const LoginStudent(),
         MyRoutes.studentsignup: (context) =>
             const StudentSignup(), //Student signup
-
-        // Files of AbhishekBHosale02
-        MyRoutes.mixstudent: (context) => const mixstudent(),
-        MyRoutes.mixadmin: (context) => const mixadmin(),
-        MyRoutes.calibration: (context) => const Calibration(),
-        MyRoutes.headset: (context) => const Headset(),
-
       },
     );
   }
