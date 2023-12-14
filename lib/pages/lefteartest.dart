@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:sih_23_audiometer/pages/righteartest.dart';
 import '../utils/routes.dart';
+
 
 class LeftEar extends StatefulWidget {
   const LeftEar({super.key});
@@ -12,6 +14,16 @@ class LeftEar extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<LeftEar> {
+  // double left250 = 10;
+  // late double leftValues ;
+  late double left250 = 10.0;
+  late double left500 = 20;
+  late double left1000 = 30;
+  late double left2000 = 40;
+  late double left4000 = 50;
+  late double left8000 = 60;
+  late final List<double> leftValues;
+
   int i = 0;
   double j = 0.1;
   bool isPlaying = true;
@@ -159,15 +171,33 @@ class _MyHomePageState extends State<LeftEar> {
                 ),
               ],
             ),
+
             Expanded(
                 child: Container()), // Spacer to push buttons to the bottom
-            Align(
-              alignment: Alignment.bottomRight,
-              child: ElevatedButton(
-                onPressed: onProceedButtonPressed,
-                child: const Text('Proceed for right ear'),
-              ),
-            ),
+            ElevatedButton(
+                onPressed: () {
+                  // Navigator to the next page.
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      // Builder for the nextpage
+                      // class's constructor.
+
+                      // Date as arguments to
+                      // send to next page.
+                      builder: (context) =>  RightEar(
+                        leftValues: [
+                          left250,
+                          left500,
+                          left1000,
+                          left2000,
+                          left4000,
+                          left8000
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                child: const Text("SEND"))
           ],
         ),
       ),

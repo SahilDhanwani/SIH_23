@@ -2,12 +2,12 @@ name: sih_23_audiometer
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.1.2 <4.0.0'
+  sdk: ">=3.1.2 <4.0.0"
 
 dependencies:
   audio_streamer: ^4.0.0
@@ -37,7 +37,6 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -86,6 +85,8 @@ flutter:
     - assets\audio\2000hz.mp3
     - assets\audio\4000hz.mp3
     - assets\audio\8000hz.mp3
+    - assets\images\bluecrossgraph.png
+
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
