@@ -57,6 +57,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.loginstudent: (context) => const loginstudent(),
         MyRoutes.studentsignup: (context) =>
             const StudentSignup(), //Student signup
+     //   MyRoutes.lefteartest: (context) => const LeftEar() ,
       },
     );
   }

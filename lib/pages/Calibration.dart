@@ -7,6 +7,8 @@ import 'dart:async';
 import 'package:noise_meter/noise_meter.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sih_23_audiometer/utils/routes.dart';
+import 'package:sih_23_audiometer/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Calibration extends StatefulWidget {
@@ -113,6 +115,7 @@ class _CalibrationState extends State<Calibration> {
     setState(() {});
   }
 
+
   // Initialize a variable to store the dynamic value
   String debameterValue = 'Your Initial Value';
 
@@ -135,9 +138,9 @@ class _CalibrationState extends State<Calibration> {
                 const SizedBox(height: 2),
                 Image.asset(
                   'assets/images/abhi.png',
-                  width: 250,
+                  width: MediaQuery.of(context).size.width * 0.5,
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
                 // Use a Container to display the dynamic value inside a box
                 Container(
                   padding: const EdgeInsets.all(10),
@@ -179,37 +182,22 @@ class _CalibrationState extends State<Calibration> {
                       ),
                     ),
                     const SizedBox(width: 20),
-                    // InkWell(
-                    //   onTap: () {
-                    //     player.seek(Duration(seconds: _position.inSeconds + 10));
-                    //     setState(() {});
-                    //   },
-                    //   child: Image.asset('assets/icons/forward.png'),
-                    // ),
+ ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                    context, MyRoutes.leftear); // Navigate to home screen
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    MyTheme.buttonColor, // Use the button color from theme
+              ),
+              child: const Text('Signup'),
+            ),
+
                   ],
                 ),
-                const SizedBox(height: 50),
-                const Text('HEADSET').text.xl5.bold.make(),
-                const Text('CALIBRATION').text.xl5.bold.make(),
-                const SizedBox(height: 30),
-                const Text("Play The Given Audio File ").text.xl2.bold.make(),
-                const Text("And Adjust Your ").text.xl2.bold.make(),
-                const Text("Phones Volume To 55 dB. ").text.xl2.bold.make(),
-                const SizedBox(height: 50),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: playPause,
-                      child: Icon(
-                        isPlaying ? Icons.pause_circle : Icons.play_circle,
-                        color: const Color.fromARGB(255, 30, 220, 208),
-                        size: 100,
-                      ),
-                    ),
-                    const SizedBox(width: 20),
-                  ],
-                ),
+                
+               
               ],
             )));
   }
