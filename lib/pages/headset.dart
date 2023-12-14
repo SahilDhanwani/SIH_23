@@ -6,8 +6,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onBackPress;
   final VoidCallback? onRefreshPress;
 
-  const CustomAppBar({Key? key, this.onBackPress, this.onRefreshPress})
-      : super(key: key);
+  const CustomAppBar({super.key, this.onBackPress, this.onRefreshPress});
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +30,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class Headset extends StatefulWidget {
-  const Headset({Key? key}) : super(key: key);
+  const Headset({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _HeadsetState createState() => _HeadsetState();
 }
 
@@ -77,7 +77,7 @@ class _HeadsetState extends State<Headset> {
           //   onRefreshPress: _refreshConnectionState,
           // ),
           body: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -92,7 +92,7 @@ class _HeadsetState extends State<Headset> {
               children: <Widget>[
                 const SizedBox(height: 50),
                 Center(
-                  child: Text("Dear Student")
+                  child: const Text("Dear Student")
                       .text
                       .xl4
                       .bold
@@ -101,7 +101,7 @@ class _HeadsetState extends State<Headset> {
                 ),
                 const SizedBox(height: 16),
                 Center(
-                  child: Text("Connect Your Headsets")
+                  child: const Text("Connect Your Headsets")
                       .text
                       .xl4
                       .bold
@@ -127,7 +127,7 @@ class _HeadsetState extends State<Headset> {
                 ),
                 const SizedBox(height: 10),
                 Center(
-                  child: Text("OR")
+                  child: const Text("OR")
                       .text
                       .xl4
                       .bold
@@ -156,6 +156,7 @@ class _HeadsetState extends State<Headset> {
                 ElevatedButton(
                   onPressed: _headsetState == HeadsetState.CONNECT
                       ? () {
+                          // ignore: avoid_print
                           print('Continue button clicked');
                         }
                       : null,
@@ -200,5 +201,5 @@ class _HeadsetState extends State<Headset> {
 }
 
 void main() {
-  runApp(Headset());
+  runApp(const Headset());
 }

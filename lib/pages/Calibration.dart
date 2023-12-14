@@ -1,3 +1,6 @@
+// ignore: file_names
+// ignore: file_names
+// ignore: file_names
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
