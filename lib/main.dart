@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.studentSigninRoute: (context) => const StudentSignin(), //Student Login
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.headset: (context) => const Headset(),
-        MyRoutes.leftear: (context) => LefttEar(),
+        MyRoutes.leftear: (context) => const LeftEar(),
         MyRoutes.rightear: (context) => RightEar(),
         MyRoutes.graph: (context) => const Graph(),
         MyRoutes.calibration: (context) => const Calibration(),
