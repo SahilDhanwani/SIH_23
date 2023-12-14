@@ -1,8 +1,8 @@
 import 'dart:async';
-
 import 'package:noise_meter/noise_meter.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sih_23_audiometer/utils/routes.dart';
 
 class BackgroundNoise extends StatefulWidget {
   const BackgroundNoise({super.key});
@@ -24,8 +24,11 @@ class _BackgroundNoiseState extends State<BackgroundNoise> {
     super.dispose();
   }
 
-  void onData(NoiseReading noiseReading) =>
-      setState(() => _latestReading = noiseReading);
+  void onData(NoiseReading noiseReading) {
+    setState(() {
+      _latestReading = noiseReading;
+    });
+  }
 
   void onError(Object error) {
     // ignore: avoid_print
@@ -33,49 +36,54 @@ class _BackgroundNoiseState extends State<BackgroundNoise> {
     stop();
   }
 
-  /// Check if microphone permission is granted.
   Future<bool> checkPermission() async => await Permission.microphone.isGranted;
 
-  /// Request the microphone permission.
   Future<void> requestPermission() async =>
       await Permission.microphone.request();
 
-  /// Start noise sampling.
   Future<void> start() async {
-    // Create a noise meter, if not already done.
     noiseMeter ??= NoiseMeter();
 
-    // Check permission to use the microphone.
-    //
-    // Remember to update the AndroidManifest file (Android) and the
-    // Info.plist and pod files (iOS).
     if (!(await checkPermission())) await requestPermission();
 
-    // Listen to the noise stream.
     _noiseSubscription = noiseMeter?.noise.listen(onData, onError: onError);
-    setState(() => _isRecording = true);
+    setState(() {
+      _isRecording = true;
+    });
   }
 
-  /// Stop sampling.
   void stop() {
     _noiseSubscription?.cancel();
-    setState(() => _isRecording = false);
+    setState(() {
+      _isRecording = false;
+    });
+  }
+
+  bool isNoiseBelowThreshold() {
+    return _latestReading?.meanDecibel != null &&
+        _latestReading!.meanDecibel < 40;
   }
 
   @override
   Widget build(BuildContext context) => MaterialApp(
         home: Scaffold(
           body: Center(
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
                 Container(
-                    margin: const EdgeInsets.all(25),
-                    child: Column(children: [
+                  margin: const EdgeInsets.all(25),
+                  child: Column(
+                    children: [
                       Container(
                         margin: const EdgeInsets.only(top: 20),
-                        child: Text(_isRecording ? "Mic: ON" : "Mic: OFF",
-                            style: const TextStyle(fontSize: 25, color: Colors.blue)),
+                        child: Text(
+                          _isRecording ? "Mic: ON" : "Mic: OFF",
+                          style: const TextStyle(
+                            fontSize: 25,
+                            color: Colors.blue,
+                          ),
+                        ),
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 20),
@@ -85,13 +93,26 @@ class _BackgroundNoiseState extends State<BackgroundNoise> {
                       ),
                       Text(
                         'Max: ${_latestReading?.maxDecibel.toStringAsFixed(2)} dB',
-                      )
-                    ])),
-              ])),
+                      ),
+                      ElevatedButton(
+                        onPressed: isNoiseBelowThreshold()
+                            ? () {
+                                Navigator.pushNamed(context, MyRoutes.headset);
+                              }
+                            : null,
+                        child: const Text('Proceed'),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
           floatingActionButton: FloatingActionButton(
             backgroundColor: _isRecording ? Colors.red : Colors.green,
             onPressed: _isRecording ? stop : start,
-            child: _isRecording ? const Icon(Icons.stop) : const Icon(Icons.mic),
+            child:
+                _isRecording ? const Icon(Icons.stop) : const Icon(Icons.mic),
           ),
         ),
       );

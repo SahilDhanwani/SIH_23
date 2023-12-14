@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+
+import '../utils/routes.dart';
+
 class User {
   String name = '';
   String rollNo = '';
-  DateTime dob = DateTime.now();
+  int age = 0; // Change the type to int for age
   String gender = '';
   String username = '';
   String classCode = '';
   String password = '';
 }
 
-// ignore: camel_case_types
-class adminsignup extends StatefulWidget {
-  const adminsignup({super.key});
+class StudentSignup extends StatefulWidget {
+  const StudentSignup({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -19,7 +21,7 @@ class adminsignup extends StatefulWidget {
 }
 
 // ignore: camel_case_types
-class _adminsignupState extends State<adminsignup> {
+class _adminsignupState extends State<StudentSignup> {
   final User user = User();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -35,7 +37,8 @@ class _adminsignupState extends State<adminsignup> {
           key: _formKey,
           child: ListView(
             children: [
-              Image.asset('assets/your_image.png'), // Replace with your image asset
+              Image.asset(
+                  'assets/images/eduapp_student_login.jpg'), // Replace with your image asset
 
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Name'),
@@ -64,14 +67,17 @@ class _adminsignupState extends State<adminsignup> {
               ),
 
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Date of Birth'),
+                decoration: const InputDecoration(labelText: 'Age'),
+                keyboardType:
+                    TextInputType.number, // Set keyboard type to number
                 validator: (value) {
-                  // You can add date validation logic if needed
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your age';
+                  }
                   return null;
                 },
                 onSaved: (value) {
-                  // Convert the string to DateTime and assign it to user.dob
-                  user.dob = DateTime.parse(value!);
+                  user.age = int.parse(value!); // Convert string to int for age
                 },
               ),
 
@@ -161,7 +167,7 @@ class NextPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Next Page'),
+        title: const Text('Home Page'),
       ),
       body: Center(
         child: Column(
@@ -170,12 +176,24 @@ class NextPage extends StatelessWidget {
             const Text('User Details:'),
             Text('Name: ${user.name}'),
             Text('Roll No: ${user.rollNo}'),
-            Text('DOB: ${user.dob}'),
+            Text('Age: ${user.age}'), // Display age instead of DOB
             Text('Gender: ${user.gender}'),
             Text('Username: ${user.username}'),
             Text('Class Code: ${user.classCode}'),
             Text('Password: ${user.password}'),
           ],
+        ),
+      ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Align(
+          alignment: Alignment.bottomRight,
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, MyRoutes.backgroundNoise);
+            },
+            child: const Text('Proceed'),
+          ),
         ),
       ),
     );
