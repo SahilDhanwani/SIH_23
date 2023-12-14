@@ -53,6 +53,7 @@ class _MyHomePageState extends State<RightEar> {
     if (i < tunes.length) {
       path = AssetSource(tunes[i]);
       player.setVolume(j);
+      player.setBalance(1.0);
       player.play(path);
       setState(() {});
     } else {
@@ -61,6 +62,7 @@ class _MyHomePageState extends State<RightEar> {
       i = 0;
       path = AssetSource(tunes[i]);
       player.setVolume(j);
+      player.setBalance(1.0);
       player.play(path);
       setState(() {});
     }
