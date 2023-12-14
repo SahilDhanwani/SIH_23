@@ -19,6 +19,7 @@ class LogSignStu extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, MyRoutes.loginstudent);
+                Navigator.pushNamed(context, MyRoutes.loginstudent);
               },
               style: ElevatedButton.styleFrom(
                 // ignore: deprecated_member_use
@@ -39,6 +40,7 @@ class LogSignStu extends StatelessWidget {
             // Want a ticket to the Elegant Affair? Press the Signup Button!
             ElevatedButton(
               onPressed: () {
+                Navigator.pushNamed(context, MyRoutes.studentDashboard);
                 Navigator.pushNamed(context, MyRoutes.studentDashboard);
               },
               style: ElevatedButton.styleFrom(
