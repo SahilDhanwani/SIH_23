@@ -29,6 +29,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
+import '../utils/routes.dart';
+
 class Headset extends StatefulWidget {
   const Headset({super.key});
 
@@ -156,6 +158,9 @@ class _HeadsetState extends State<Headset> {
                 ElevatedButton(
                   onPressed: _headsetState == HeadsetState.CONNECT
                       ? () {
+                          // Handle button click
+                          // This block will only execute if the headset is connected
+                          Navigator.pushNamed(context, MyRoutes.calibration);
                           // ignore: avoid_print
                           print('Continue button clicked');
                         }
@@ -198,8 +203,4 @@ class _HeadsetState extends State<Headset> {
       });
     });
   }
-}
-
-void main() {
-  runApp(const Headset());
 }
