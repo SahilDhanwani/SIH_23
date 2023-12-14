@@ -2,15 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class Graph extends StatelessWidget {
-  final List<double> leftValues;
+  final List<double> leftValues; // Define a list parameter
   final List<double> rightValues;
+  Graph({super.key, required this.leftValues, required this.rightValues});
 
-  const Graph({
-    super.key,
-    required this.leftValues,
-    required this.rightValues,
-  });
-
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -148,6 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   List<rightData> getChartDatar() {
+   
     return [
       rightData(250, widget.rightValues[0]),
       rightData(500, widget.rightValues[1]),

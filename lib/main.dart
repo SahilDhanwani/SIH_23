@@ -12,6 +12,8 @@ import 'package:sih_23_audiometer/pages/mixstudent.dart';
 import 'package:sih_23_audiometer/pages/mixadmin.dart';
 import 'package:sih_23_audiometer/pages/studentsignup.dart';
 import 'package:sih_23_audiometer/pages/background_noise.dart';
+import 'package:sih_23_audiometer/pages/headset.dart';
+import 'package:sih_23_audiometer/pages/home_page.dart';
 import 'package:sih_23_audiometer/pages/loginadmin.dart';
 import 'package:sih_23_audiometer/pages/loginstudent.dart';
 import 'package:sih_23_audiometer/pages/mixstudent.dart';
