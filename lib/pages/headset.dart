@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:headset_connection_event/headset_event.dart';
 import 'package:velocity_x/velocity_x.dart';
+import '../utils/routes.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onBackPress;
@@ -28,8 +29,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
-
-import '../utils/routes.dart';
 
 class Headset extends StatefulWidget {
   const Headset({super.key});
