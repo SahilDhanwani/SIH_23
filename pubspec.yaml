@@ -21,9 +21,9 @@ dependencies:
   flutter_sound: ^9.2.13
   flutter_test:
     sdk: flutter
-  google_fonts: ^4.0.4
+  google_fonts: ^6.1.0
   headset_connection_event: ^3.1.0
-  microphone: ^0.1.0
+  
   noise_meter: ^5.0.2
   permission_handler: ^11.1.0
   syncfusion_flutter_charts: ^23.2.7
@@ -71,6 +71,8 @@ flutter:
   assets:
     - assets\audio\tone.mp3
     - assets\images\abhi.png
+    - assets\images\login.jpg
+    - assets\images\signup.png
     - assets\images\bluetooth.png
     - assets\images\headphone.png
     - assets\images\eduapp_student_login.jpg
