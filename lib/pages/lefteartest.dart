@@ -16,10 +16,17 @@ class _MyHomePageState extends State<LeftEar> {
   double j = 0.1;
   bool isPlaying = true;
   late final AudioPlayer player;
-  late final AssetSource path;
+  late AssetSource path;
   int currentFrequency = 250;
   int currentVolume = 10;
-  List<String> tunes = ['audio/250hz.mp3','audio/500hz.mp3','audio/1000hz.mp3','audio/2000hz.mp3','audio/4000hz.mp3','audio/8000hz.mp3'];
+  List<String> tunes = [
+    'audio/250hz.mp3',
+    'audio/500hz.mp3',
+    'audio/1000hz.mp3',
+    'audio/2000hz.mp3',
+    'audio/4000hz.mp3',
+    'audio/8000hz.mp3'
+  ];
 
   @override
   void initState() {
@@ -29,7 +36,7 @@ class _MyHomePageState extends State<LeftEar> {
     playTune();
   }
 
-  Future initPlayer() async {
+  Future<void> initPlayer() async {
     player = AudioPlayer();
     path = AssetSource(tunes[i]);
   }
@@ -42,13 +49,25 @@ class _MyHomePageState extends State<LeftEar> {
   }
 
   void playTune() async {
+    // Check if there are more tunes to play
+    if (i < tunes.length) {
+      path = AssetSource(tunes[i]);
       player.setVolume(j);
       player.play(path);
-    setState(() {});
+      setState(() {});
+    } else {
+      // All tunes played, you can handle this case accordingly
+      // For now, let's reset to the first tune
+      i = 0;
+      path = AssetSource(tunes[i]);
+      player.setVolume(j);
+      player.play(path);
+      setState(() {});
+    }
   }
 
   void stopTune() async {
-      player.pause();
+    player.pause();
     setState(() {});
   }
 
@@ -65,9 +84,9 @@ class _MyHomePageState extends State<LeftEar> {
 
   void onCrossButtonPressed() {
     setState(() {
-        j = j + 0.1;
-        stopTune();
-        playTune();
+      j = j + 0.1;
+      stopTune();
+      playTune();
     });
   }
 
@@ -98,8 +117,7 @@ class _MyHomePageState extends State<LeftEar> {
                 const Text(
                   'Test for left ear',
                 ),
-                Image.asset('assets/images/leftear.png',
-                    height: 50, width: 50),
+                Image.asset('assets/images/leftear.png', height: 50, width: 50),
               ],
             ),
             const SizedBox(

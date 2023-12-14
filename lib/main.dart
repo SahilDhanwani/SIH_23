@@ -34,16 +34,20 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.headset,
+      initialRoute: MyRoutes.leftear,
       routes: {
-        MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
-        MyRoutes.studentLoginRoute: (context) => const student_login(), //Second page(Logini/Signup)
-        MyRoutes.studentDashboard: (context) => const StudentDashboard(), //Student Home Page
-        MyRoutes.studentSigninRoute: (context) => const StudentSignin(), //Student Login
+        MyRoutes.homeRoute: (context) =>
+            const HomePage(), //First page(Admin/Student)
+        MyRoutes.studentLoginRoute: (context) =>
+            const student_login(), //Second page(Logini/Signup)
+        MyRoutes.studentDashboard: (context) =>
+            const StudentDashboard(), //Student Home Page
+        MyRoutes.studentSigninRoute: (context) =>
+            const StudentSignin(), //Student Login
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.headset: (context) => const Headset(),
         MyRoutes.leftear: (context) => const LeftEar(),
-        MyRoutes.rightear: (context) => RightEar(),
+        MyRoutes.rightear: (context) => const RightEar(),
         MyRoutes.graph: (context) => const Graph(),
         MyRoutes.calibration: (context) => const Calibration(),
         MyRoutes.studadmin: (context) => const studadmin(),
@@ -51,7 +55,8 @@ class MyApp extends StatelessWidget {
         MyRoutes.loginadmin: (context) => const loginadmin(),
         MyRoutes.logsignadmin: (context) => logsignadmin(),
         MyRoutes.loginstudent: (context) => const loginstudent(),
-        MyRoutes.studentsignup: (context) => const StudentSignup(), //Student signup
+        MyRoutes.studentsignup: (context) =>
+            const StudentSignup(), //Student signup
       },
     );
   }

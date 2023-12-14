@@ -112,6 +112,7 @@ class _CalibrationState extends State<Calibration> {
     }
     setState(() {});
   }
+
   // Initialize a variable to store the dynamic value
   String debameterValue = 'Your Initial Value';
 
@@ -121,6 +122,7 @@ class _CalibrationState extends State<Calibration> {
     // For example, you can simulate some dynamic changes
     debameterValue = 'New Value';
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,8 +134,7 @@ class _CalibrationState extends State<Calibration> {
               children: [
                 const SizedBox(height: 2),
                 Image.asset(
-
-                  'assets/images/abhi2.png',
+                  'assets/images/abhi.png',
                   width: 250,
                 ),
                 const SizedBox(height: 30),
@@ -146,11 +147,6 @@ class _CalibrationState extends State<Calibration> {
                   ),
                   child: Text(
                     '${_latestReading?.meanDecibel.toStringAsFixed(2)} dB',
-                    style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  child: Text(
-                    debameterValue,
                     style: const TextStyle(
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
