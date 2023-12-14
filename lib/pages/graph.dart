@@ -148,6 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   List<rightData> getChartDatar() {
+   
     return [
       rightData(250, widget.rightValues[0]),
       rightData(500, widget.rightValues[1]),
