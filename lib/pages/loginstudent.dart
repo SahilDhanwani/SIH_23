@@ -24,7 +24,6 @@ class _LoginState extends State<LoginStudent> {
       await Navigator.pushNamed(context, MyRoutes.studentDashboard);
       setState(() {
         changeButton = false;
-        changeButton = false;
       });
     }
   }

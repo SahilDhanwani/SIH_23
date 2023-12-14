@@ -106,26 +106,25 @@ class _BackgroundNoiseState extends State<BackgroundNoise> {
                             color: _isRecording ? Colors.red : Colors.green,
                           ),
                         ),
-                        const SizedBox(height: 20),
-                        Text(
-                          'Noise Level: ${_latestReading?.meanDecibel.toStringAsFixed(2)} dB',
-                          style: const TextStyle(
-                            fontSize: 18,
-                          ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 20),
+                        child: Text(
+                          'Noise: ${_latestReading?.meanDecibel.toStringAsFixed(2)} dB',
                         ),
-                   
-                        const SizedBox(height: 20),
-                        ElevatedButton(
-                          onPressed: isNoiseBelowThreshold()
-                              ? () {
-                                  Navigator.pushNamed(
-                                      context, MyRoutes.leftear);
-                                }
-                              : null,
-                          child: const Text('Proceed'),
-                        ),
-                      ],
-                    ),
+                      ),
+                      Text(
+                        'Max: ${_latestReading?.maxDecibel.toStringAsFixed(2)} dB',
+                      ),
+                      ElevatedButton(
+                        onPressed: isNoiseBelowThreshold()
+                            ? () {
+                                Navigator.pushNamed(context, MyRoutes.leftear);
+                              }
+                            : null,
+                        child: const Text('Proceed'),
+                      ),
+                    ],
                   ),
                 ),
               ],
