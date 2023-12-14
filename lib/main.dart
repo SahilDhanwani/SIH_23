@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.graph: (context) => const Graph(),
       
         MyRoutes.studadmin: (context) => const studadmin(),
-        MyRoutes.logsignstu: (context) => LogSignStu(),
+        MyRoutes.logsignstu: (context) => const LogSignStu(),
         MyRoutes.loginadmin: (context) => const loginadmin(),
         MyRoutes.logsignadmin: (context) => logsignadmin(),
         MyRoutes.loginstudent: (context) => const LoginStudent(),
@@ -60,8 +60,8 @@ class MyApp extends StatelessWidget {
             const StudentSignup(), //Student signup
 
         // Files of AbhishekBHosale02
-        MyRoutes.mixstudent: (context) => mixstudent(),
-        MyRoutes.mixadmin: (context) => mixadmin(),
+        MyRoutes.mixstudent: (context) => const mixstudent(),
+        MyRoutes.mixadmin: (context) => const mixadmin(),
         MyRoutes.calibration: (context) => const Calibration(),
         MyRoutes.headset: (context) => const Headset(),
 

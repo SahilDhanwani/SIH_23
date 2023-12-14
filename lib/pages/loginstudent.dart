@@ -18,7 +18,8 @@ class _LoginState extends State<LoginStudent> {
       setState(() {
         changeButton = true;
       });
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
+      // ignore: use_build_context_synchronously
       await Navigator.pushNamed(context, MyRoutes.studentDashboard);
       setState(() {
         changeButton = false;
@@ -62,13 +63,13 @@ class _LoginState extends State<LoginStudent> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
                 child: TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: "Enter your username",
                     labelText: "User name",
                     hintStyle: TextStyle(color: Colors.white),
                     labelStyle: TextStyle(color: Colors.white),
                   ),
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                   validator: (value) {
                     if (value?.isEmpty ?? true) {
                       return "User name cannot be empty";
@@ -86,13 +87,13 @@ class _LoginState extends State<LoginStudent> {
                 padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
                 child: TextFormField(
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: "Enter your password",
                     labelText: "Password",
                     hintStyle: TextStyle(color: Colors.white),
                     labelStyle: TextStyle(color: Colors.white),
                   ),
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                   validator: (value) {
                     if (value?.isEmpty ?? true) {
                       return "Password cannot be empty";
@@ -110,7 +111,7 @@ class _LoginState extends State<LoginStudent> {
                 child: InkWell(
                   onTap: () => moveToHome(context),
                   child: AnimatedContainer(
-                    duration: Duration(seconds: 1),
+                    duration: const Duration(seconds: 1),
                     width: changeButton ? screenHeight * 0.1 : screenWidth * 0.3,
                     height: screenHeight * 0.06,
                     alignment: Alignment.center,
@@ -119,7 +120,7 @@ class _LoginState extends State<LoginStudent> {
                       borderRadius: BorderRadius.circular(screenHeight * 0.03),
                     ),
                     child: changeButton
-                        ? Icon(
+                        ? const Icon(
                             Icons.done,
                             color: Colors.white,
                           )

@@ -1,56 +1,62 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(mixstudent());
+  runApp(const mixstudent());
 }
 
+// ignore: camel_case_types
 class mixstudent extends StatelessWidget {
+  const mixstudent({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: StudentPage(),
     );
   }
 }
 
 class StudentPage extends StatefulWidget {
+  const StudentPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _StudentPageState createState() => _StudentPageState();
 }
 
 class _StudentPageState extends State<StudentPage> {
-  PageController _pageController = PageController(initialPage: 0);
+  final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Student Login/Signup"),
+        title: const Text("Student Login/Signup"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ToggleButtons(
-              children: [
-                Text("Login"),
-                Text("Signup"),
-              ],
               isSelected: [_currentPage == 0, _currentPage == 1],
               onPressed: (index) {
                 setState(() {
                   _currentPage = index;
                   _pageController.animateToPage(index,
-                      duration: Duration(milliseconds: 300),
+                      duration: const Duration(milliseconds: 300),
                       curve: Curves.easeInOut);
                 });
               },
+              children: const [
+                Text("Login"),
+                Text("Signup"),
+              ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Expanded(
@@ -61,7 +67,7 @@ class _StudentPageState extends State<StudentPage> {
                     _currentPage = index;
                   });
                 },
-                children: [
+                children: const [
                   // Student Login Page
                   StudentLoginForm(),
                   // Student Signup Page
@@ -77,36 +83,38 @@ class _StudentPageState extends State<StudentPage> {
 }
 
 class StudentLoginForm extends StatelessWidget {
+  const StudentLoginForm({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: 'Username',
               hintText: 'Enter your username',
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: 'Password',
               hintText: 'Enter your password',
             ),
             obscureText: true,
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           ElevatedButton(
             onPressed: () {
               // Implement your student login logic here
             },
-            child: Text('Login'),
+            child: const Text('Login'),
           ),
         ],
       ),
@@ -115,90 +123,92 @@ class StudentLoginForm extends StatelessWidget {
 }
 
 class StudentSignupForm extends StatelessWidget {
+  const StudentSignupForm({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: 'Full Name',
               hintText: 'Enter your full name',
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: 'Roll No',
               hintText: 'Enter your roll number',
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: 'Class',
               hintText: 'Enter your class',
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: 'DOB',
               hintText: 'Enter your date of birth',
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: 'Age',
               hintText: 'Enter your age',
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: 'Gender',
               hintText: 'Enter your gender',
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: 'Class Code',
               hintText: 'Enter your class code',
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: 'Password',
               hintText: 'Enter your password',
             ),
             obscureText: true,
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           ElevatedButton(
             onPressed: () {
               // Implement your student signup logic here
             },
-            child: Text('Signup'),
+            child: const Text('Signup'),
           ),
         ],
       ),

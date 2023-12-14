@@ -1,56 +1,62 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(mixadmin());
+  runApp(const mixadmin());
 }
 
+// ignore: camel_case_types
 class mixadmin extends StatelessWidget {
+  const mixadmin({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: AdminPage(),
     );
   }
 }
 
 class AdminPage extends StatefulWidget {
+  const AdminPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _AdminPageState createState() => _AdminPageState();
 }
 
 class _AdminPageState extends State<AdminPage> {
-  PageController _pageController = PageController(initialPage: 0);
+  final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Admin Login/Signup"),
+        title: const Text("Admin Login/Signup"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ToggleButtons(
-              children: [
-                Text("Login"),
-                Text("Signup"),
-              ],
               isSelected: [_currentPage == 0, _currentPage == 1],
               onPressed: (index) {
                 setState(() {
                   _currentPage = index;
                   _pageController.animateToPage(index,
-                      duration: Duration(milliseconds: 300),
+                      duration: const Duration(milliseconds: 300),
                       curve: Curves.easeInOut);
                 });
               },
+              children: const [
+                Text("Login"),
+                Text("Signup"),
+              ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Expanded(
@@ -61,7 +67,7 @@ class _AdminPageState extends State<AdminPage> {
                     _currentPage = index;
                   });
                 },
-                children: [
+                children: const [
                   // Admin Login Page
                   AdminLoginForm(),
                   // Admin Signup Page
@@ -77,36 +83,38 @@ class _AdminPageState extends State<AdminPage> {
 }
 
 class AdminLoginForm extends StatelessWidget {
+  const AdminLoginForm({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: 'Class Code',
               hintText: 'Enter your class code',
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: 'Password',
               hintText: 'Enter your password',
             ),
             obscureText: true,
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           ElevatedButton(
             onPressed: () {
               // Implement your admin login logic here
             },
-            child: Text('Login'),
+            child: const Text('Login'),
           ),
         ],
       ),
@@ -115,64 +123,66 @@ class AdminLoginForm extends StatelessWidget {
 }
 
 class AdminSignupForm extends StatelessWidget {
+  const AdminSignupForm({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: 'Full Name',
               hintText: 'Enter your full name',
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: 'School Name',
               hintText: 'Enter your school name',
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: 'Class Code',
               hintText: 'Enter your class code',
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: 'Password',
               hintText: 'Enter your password',
             ),
             obscureText: true,
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: 'Confirm Password',
               hintText: 'Confirm your password',
             ),
             obscureText: true,
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           ElevatedButton(
             onPressed: () {
               // Implement your admin signup logic here
             },
-            child: Text('Signup'),
+            child: const Text('Signup'),
           ),
         ],
       ),
