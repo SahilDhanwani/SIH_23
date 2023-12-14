@@ -19,11 +19,9 @@ class _LoginState extends State<LoginStudent> {
       setState(() {
         changeButton = true;
       });
-      await Future.delayed(const Duration(seconds: 1));
-      // ignore: use_build_context_synchronously
+      await Future.delayed(Duration(seconds: 1));
       await Navigator.pushNamed(context, MyRoutes.studentDashboard);
       setState(() {
-        changeButton = false;
         changeButton = false;
       });
     }
