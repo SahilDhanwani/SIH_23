@@ -1,66 +1,74 @@
 import 'package:flutter/material.dart';
-
+import 'dart:async';
+import 'package:audioplayers/audioplayers.dart';
 import '../utils/routes.dart';
 
-// ignore: use_key_in_widget_constructors
+class LeftEar extends StatefulWidget {
+  const LeftEar({super.key});
 
-// ignore: use_key_in_widget_constructors
-class LefttEar extends StatefulWidget {
   @override
   // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<LefttEar> {
+class _MyHomePageState extends State<LeftEar> {
+  int i = 0;
+  double j = 0.1;
+  bool isPlaying = true;
+  late final AudioPlayer player;
+  late final AssetSource path;
   int currentFrequency = 250;
   int currentVolume = 10;
+  List<String> tunes = ['audio/250hz.mp3','audio/500hz.mp3','audio/1000hz.mp3','audio/2000hz.mp3','audio/4000hz.mp3','audio/8000hz.mp3'];
 
-  void playSound() {
-    // Logic to play sound with the currentFrequency and currentVolume
-    // ignore: avoid_print
-    print(
-        'Playing sound: Frequency - $currentFrequency, Volume - $currentVolume');
+  @override
+  void initState() {
+    //Calibration
+    initPlayer();
+    super.initState();
+    playTune();
+  }
+
+  Future initPlayer() async {
+    player = AudioPlayer();
+    path = AssetSource(tunes[i]);
+  }
+
+  @override
+  void dispose() {
+    //Calibration
+    player.dispose();
+    super.dispose();
+  }
+
+  void playTune() async {
+      player.setVolume(j);
+      player.play(path);
+    setState(() {});
+  }
+
+  void stopTune() async {
+      player.pause();
+    setState(() {});
   }
 
   void onTickButtonPressed() {
     setState(() {
       currentVolume = 10;
+      j = 0.1;
+      i = i + 1;
       currentFrequency = 2 * currentFrequency;
+      stopTune();
+      playTune();
     });
-    // Logic when the tick button is pressed
-    // if (currentVolume > 0) {
-    //currentVolume = 10;
-    // } else {
-    //currentFrequency = 2 * currentFrequency;
-    //  currentVolume = 100;
-    //}
-
-    playSound();
   }
 
   void onCrossButtonPressed() {
     setState(() {
-      if (currentVolume < 90) {
-        currentVolume += 10;
-      } else {
-        currentFrequency = 2 * currentFrequency;
-        currentVolume = 10;
-      }
+        j = j + 0.1;
+        stopTune();
+        playTune();
     });
-
-    // if (currentVolume < 90) {
-    //   currentVolume += 10;
-    // } else {
-    //   currentFrequency = 2 * currentFrequency;
-    //   currentVolume = 10;
-    // }
-
-    playSound();
-    // Logic when the cross button is pressed
-    //currentFrequency += 100;
-    //currentVolume = 100;
-
-    //playSound();
   }
 
   void onProceedButtonPressed() {
@@ -69,6 +77,8 @@ class _MyHomePageState extends State<LefttEar> {
     // ignore: avoid_print
     print('Proceed');
     // You can navigate to the next screen or perform other actions here
+    // ignore: avoid_print
+    print('Proceeding to the right ear');
   }
 
   @override
@@ -88,7 +98,7 @@ class _MyHomePageState extends State<LefttEar> {
                 const Text(
                   'Test for left ear',
                 ),
-                Image.asset('assets\\images\\leftear.png',
+                Image.asset('assets/images/leftear.png',
                     height: 50, width: 50),
               ],
             ),
