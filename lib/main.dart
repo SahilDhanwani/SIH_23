@@ -1,5 +1,4 @@
-// ignore_for_file: unused_import
-
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/pages/Calibration.dart';
 import 'package:sih_23_audiometer/pages/adminhome.dart';
@@ -24,9 +23,9 @@ import 'package:sih_23_audiometer/pages/student_signin.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Permission.microphone.request();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -56,6 +55,9 @@ class MyApp extends StatelessWidget {
         MyRoutes.logsignstu: (context) => const LogSignStu(),
         MyRoutes.loginadmin: (context) => const loginadmin(),
         MyRoutes.logsignadmin: (context) => logsignadmin(),
+        MyRoutes.loginstudent: (context) => const loginstudent(),
+        MyRoutes.adminsignup: (context) => const adminsignup(),
+        MyRoutes.Calibration:(context)=> const Calibration(),
         MyRoutes.loginstudent: (context) => const LoginStudent(),
         MyRoutes.studentsignup: (context) =>const StudentSignup(), 
 
