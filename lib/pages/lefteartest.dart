@@ -90,6 +90,8 @@ class _MyHomePageState extends State<LeftEar> {
       currentVolume = 10;
       j = 0.1;
       i = i + 1;
+      j = 0.1;
+      i = i + 1;
       currentFrequency = 2 * currentFrequency;
       stopTune();
       playTune();
@@ -98,10 +100,27 @@ class _MyHomePageState extends State<LeftEar> {
 
   void onCrossButtonPressed() {
     setState(() {
-      j = j + 0.1;
-      stopTune();
-      playTune();
+      if (currentVolume < 90) {
+        currentVolume += 10;
+      } else {
+        currentFrequency = 2 * currentFrequency;
+        currentVolume = 10;
+      }
     });
+
+    // if (currentVolume < 90) {
+    //   currentVolume += 10;
+    // } else {
+    //   currentFrequency = 2 * currentFrequency;
+    //   currentVolume = 10;
+    // }
+
+    playSound();
+    // Logic when the cross button is pressed
+    //currentFrequency += 100;
+    //currentVolume = 100;
+
+    //playSound();
   }
 
   void onProceedButtonPressed() {
@@ -131,7 +150,8 @@ class _MyHomePageState extends State<LeftEar> {
                 const Text(
                   'Test for left ear',
                 ),
-                Image.asset('assets/images/leftear.png', height: 50, width: 50),
+                Image.asset('assets\\images\\leftear.png',
+                    height: 50, width: 50),
               ],
             ),
             const SizedBox(

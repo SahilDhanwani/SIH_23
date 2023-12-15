@@ -139,6 +139,11 @@ class _CalibrationState extends State<Calibration> {
                     style: const TextStyle(
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
+                  child: Text(
+                    debameterValue,
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
                 ),
                 const SizedBox(height: 50),
                 const Text('HEADSET').text.xl5.bold.make(),
