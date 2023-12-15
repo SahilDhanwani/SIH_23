@@ -71,6 +71,9 @@ class MyApp extends StatelessWidget {
         MyRoutes.logsignstu: (context) => const LogSignStu(),
         MyRoutes.loginadmin: (context) => const loginadmin(),
         MyRoutes.logsignadmin: (context) => logsignadmin(),
+        MyRoutes.loginstudent: (context) => const loginstudent(),
+        MyRoutes.adminsignup: (context) => const adminsignup(),
+        MyRoutes.Calibration: (context) => const Calibration(),
         MyRoutes.loginstudent: (context) => const LoginStudent(),
         MyRoutes.studentsignup: (context) => const StudentSignup(),
         // Files of AbhishekBHosale02
