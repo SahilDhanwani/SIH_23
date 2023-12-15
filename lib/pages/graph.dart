@@ -5,7 +5,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 class Graph extends StatelessWidget {
   final List<double> leftValues; // Define a list parameter
   final List<double> rightValues;
-  Graph({super.key, required this.leftValues, required this.rightValues});
+  const Graph({super.key, required this.leftValues, required this.rightValues});
 
   // This widget is the root of your application.
   @override
@@ -41,7 +41,7 @@ class Graph extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   // ignore: non_constant_identifier_names
-  MyHomePage(
+  const MyHomePage(
       {super.key,
       required this.leftValues,
       required this.title,
@@ -157,6 +157,7 @@ class leftData {
   final double dbl;
 }
 
+// ignore: camel_case_types
 class rightData {
   rightData(this.frer, this.dbr);
   final double frer;
