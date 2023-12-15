@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:sih_23_audiometer/pages/graph.dart';
 import '../utils/routes.dart';
 
 class RightEar extends StatefulWidget {
-  const RightEar({super.key});
+  final List<double> leftValues; 
+ const RightEar({super.key, required this.leftValues});
+
 
   @override
   // ignore: library_private_types_in_public_api
@@ -12,6 +15,16 @@ class RightEar extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<RightEar> {
+
+
+
+  late double right250 = 60.0;
+  late double right500 = 50;
+  late double right1000 = 40;
+  late double right2000 = 30;
+  late double right4000 = 20;
+  late double right8000 = 10;
+  late final List<double> rightValues;
   int i = 0;
   double j = 0.1;
   bool isPlaying = true;
@@ -162,13 +175,38 @@ class _MyHomePageState extends State<RightEar> {
             ),
             Expanded(
                 child: Container()), // Spacer to push buttons to the bottom
-            Align(
-              alignment: Alignment.bottomRight,
-              child: ElevatedButton(
-                onPressed: onProceedButtonPressed,
-                child: const Text('Proceed'),
-              ),
-            ),
+             ElevatedButton(
+                onPressed: () {
+                  // Navigator to the next page.
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      // Builder for the nextpage
+                      // class's constructor.
+
+                      // Date as arguments to
+                      // send to next page.
+                      builder: (context) =>  Graph(
+                        leftValues: [
+                          widget.leftValues[0] ,
+                         widget.leftValues[1],
+                          widget.leftValues[2],
+                          widget.leftValues[3],
+                          widget.leftValues[4],
+                          widget.leftValues[5]
+                        ],
+                        rightValues: [
+                           right250,
+                           right500,
+                           right1000,
+                           right2000,
+                           right4000,
+                           right8000
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                child: const Text("SEND"))
           ],
         ),
       ),

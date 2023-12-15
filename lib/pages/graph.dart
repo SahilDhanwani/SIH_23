@@ -1,11 +1,11 @@
-// ignore_for_file: camel_case_types
-
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 //import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class Graph extends StatelessWidget {
-  const Graph({super.key});
+  final List<double> leftValues; // Define a list parameter
+  final List<double> rightValues;
+  const Graph({super.key, required this.leftValues, required this.rightValues});
 
   // This widget is the root of your application.
   @override
@@ -31,35 +31,36 @@ class Graph extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(
+          title: 'Flutter Demo Home Page',
+          leftValues: leftValues,
+          rightValues: rightValues),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
+  // ignore: non_constant_identifier_names
+  const MyHomePage(
+      {super.key,
+      required this.leftValues,
+      required this.title,
+      required this.rightValues});
   final String title;
-
+  final List<double> leftValues;
+  final List<double> rightValues;
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late TooltipBehavior _tooltipBehavior;
   late List<leftData> _chartData;
   late List<rightData> _chartDatar;
 
   @override
   void initState() {
+    _tooltipBehavior = TooltipBehavior(enable: true);
     _chartData = getChartData();
     _chartDatar = getChartDatar();
     super.initState();
@@ -69,28 +70,56 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: SfCartesianChart(
-          series: <ChartSeries<dynamic, double>>[
-            LineSeries<leftData, double>(
-              dataSource: _chartData,
-              xValueMapper: (leftData dbl, _) => dbl.frel,
-              yValueMapper: (leftData dbl, _) => dbl.dbl,
-              markerSettings: const MarkerSettings(isVisible: true),
+        body: SizedBox(
+          width: MediaQuery.of(context)
+              .size
+              .width, // Set width to match the screen width
+          height: 500,
+          child: Align(
+            alignment: Alignment.center,
+            child: SfCartesianChart(
+              borderColor: Colors.red,
+              borderWidth: 2,
+              // Sets 15 logical pixels as margin for all the 4 sides.
+              margin: const EdgeInsets.all(15),
+              tooltipBehavior: _tooltipBehavior,
+              series: <ChartSeries<dynamic, double>>[
+                LineSeries<leftData, double>(
+                  dataSource: _chartData,
+                  xValueMapper: (leftData dbl, _) => dbl.frel,
+                  yValueMapper: (leftData dbl, _) => dbl.dbl,
+                  markerSettings: const MarkerSettings(isVisible: true),
+                  enableTooltip: true,
+                ),
+                LineSeries<rightData, double>(
+                  dataSource: _chartDatar,
+                  xValueMapper: (rightData dbr, _) => dbr.frer,
+                  yValueMapper: (rightData dbr, _) => dbr.dbr,
+                  markerSettings: const MarkerSettings(
+                      isVisible: true,
+                      shape: DataMarkerType.image,
+                      // Renders the image as marker
+                      image: AssetImage('assets/images/bluecrossgraph.png')),
+                  enableTooltip: true,
+                ),
+              ],
+              primaryXAxis: CategoryAxis(
+                opposedPosition: true,
+                labelIntersectAction: AxisLabelIntersectAction.rotate45,
+                majorTickLines: const MajorTickLines(
+                    size: 0), // To hide the default major tick lines
+                labelPosition: ChartDataLabelPosition.outside,
+                interval: 1,
+                labelAlignment: LabelAlignment.start,
+              ),
+              primaryYAxis: NumericAxis(
+                isInversed: true,
+                minimum: 0,
+                maximum: 120,
+                interval: 10,
+                plotOffset: 10,
+              ),
             ),
-            LineSeries<rightData, double>(
-              dataSource: _chartDatar,
-              xValueMapper: (rightData dbr, _) => dbr.frer,
-              yValueMapper: (rightData dbr, _) => dbr.dbr,
-              markerSettings: const MarkerSettings(isVisible: true),
-            ),
-          ],
-          primaryXAxis: CategoryAxis(),
-          primaryYAxis: NumericAxis(
-            isInversed: true,
-            minimum: 0,
-            maximum: 120,
-            interval: 10,
-            plotOffset: 10,
           ),
         ),
       ),
@@ -99,33 +128,36 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<leftData> getChartData() {
     return [
-      leftData(250, 10),
-      leftData(500, 15),
-      leftData(1000, 20),
-      leftData(2000, 30),
-      leftData(4000, 20),
-      leftData(8000, 25),
+      leftData(250, widget.leftValues[0]),
+      leftData(500, widget.leftValues[1]),
+      leftData(1000, widget.leftValues[2]),
+      leftData(2000, widget.leftValues[3]),
+      leftData(4000, widget.leftValues[4]),
+      leftData(8000, widget.leftValues[5]),
     ];
   }
 
   List<rightData> getChartDatar() {
+   
     return [
-      rightData(250, 23),
-      rightData(500, 50),
-      rightData(1000, 20),
-      rightData(2000, 30),
-      rightData(4000, 80),
-      rightData(8000, 40),
+      rightData(250, widget.rightValues[0]),
+      rightData(500, widget.rightValues[1]),
+      rightData(1000, widget.rightValues[2]),
+      rightData(2000, widget.rightValues[3]),
+      rightData(4000, widget.rightValues[4]),
+      rightData(8000, widget.rightValues[5]),
     ];
   }
 }
 
+// ignore: camel_case_types
 class leftData {
   leftData(this.frel, this.dbl);
   final double frel;
   final double dbl;
 }
 
+// ignore: camel_case_types
 class rightData {
   rightData(this.frer, this.dbr);
   final double frer;
