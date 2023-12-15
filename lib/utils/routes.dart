@@ -25,5 +25,6 @@ class MyRoutes {
    static String Calibration = '/Calibration';
    static String mixstudent = '/mixstudent';
    static String mixadmin = '/mixadmin';
+   static String adminhome = '/adminhome';
    
 }
