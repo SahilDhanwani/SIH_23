@@ -114,8 +114,6 @@ class _MyHomePageState extends State<LeftEar> {
     //   currentFrequency = 2 * currentFrequency;
     //   currentVolume = 10;
     // }
-
-    playSound();
     // Logic when the cross button is pressed
     //currentFrequency += 100;
     //currentVolume = 100;
