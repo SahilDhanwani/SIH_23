@@ -54,7 +54,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: MyRoutes.leftear,
       routes: {
-        // MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
+        MyRoutes.homeRoute: (context) =>
+            const HomePage(), //First page(Admin/Student)
         MyRoutes.studentLoginRoute: (context) =>
             const student_login(), //Second page(Logini/Signup)
         MyRoutes.studentDashboard: (context) =>
