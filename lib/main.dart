@@ -13,7 +13,6 @@ import 'package:sih_23_audiometer/pages/studentsignup.dart';
 import 'package:sih_23_audiometer/pages/background_noise.dart';
 import 'package:sih_23_audiometer/pages/loginadmin.dart';
 import 'package:sih_23_audiometer/pages/loginstudent.dart';
-import 'package:sih_23_audiometer/pages/mixstudent.dart';
 import 'package:sih_23_audiometer/pages/logsignstu.dart';
 import 'package:sih_23_audiometer/pages/righteartest.dart';
 import 'package:sih_23_audiometer/pages/studadmin.dart';
@@ -41,12 +40,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: MyRoutes.adminhome,
       routes: {
-        // MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
+        MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
         MyRoutes.studentLoginRoute: (context) => const student_login(), //Second page(Logini/Signup)
-        MyRoutes.studentDashboard: (context) =>
-            const StudentDashboard(), //Student Home Page
-        MyRoutes.studentSigninRoute: (context) =>
-            const StudentSignin(), //Student Login
+        MyRoutes.studentDashboard: (context) => const StudentDashboard(), //Student Home Page
+        MyRoutes.studentSigninRoute: (context) => const StudentSignin(), //Student Login
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.leftear: (context) => const LeftEar(),
         MyRoutes.rightear: (context) =>  const RightEar(leftValues: [0, 0, 0, 0, 0, 0]),
@@ -55,8 +52,8 @@ class MyApp extends StatelessWidget {
         MyRoutes.logsignstu: (context) => const LogSignStu(),
         MyRoutes.loginadmin: (context) => const loginadmin(),
         MyRoutes.logsignadmin: (context) => logsignadmin(),
-        MyRoutes.loginstudent: (context) => const loginstudent(),
-        MyRoutes.adminsignup: (context) => const adminsignup(),
+        MyRoutes.loginstudent: (context) => const LoginStudent(),
+        // MyRoutes.adminsignup: (context) => const adminsignup(),
         MyRoutes.Calibration:(context)=> const Calibration(),
         MyRoutes.loginstudent: (context) => const LoginStudent(),
         MyRoutes.studentsignup: (context) =>const StudentSignup(), 
