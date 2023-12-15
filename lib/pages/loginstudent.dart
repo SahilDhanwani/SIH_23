@@ -10,6 +10,7 @@ class LoginStudent extends StatefulWidget {
 
 class _LoginState extends State<LoginStudent> {
   String name = "";
+
   bool changeButton = false;
   final _formKey = GlobalKey<FormState>();
 
@@ -22,6 +23,7 @@ class _LoginState extends State<LoginStudent> {
       // ignore: use_build_context_synchronously
       await Navigator.pushNamed(context, MyRoutes.studentDashboard);
       setState(() {
+        changeButton = false;
         changeButton = false;
       });
     }

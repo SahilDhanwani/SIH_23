@@ -86,6 +86,9 @@ flutter:
     - assets\audio\4000hz.mp3
     - assets\audio\8000hz.mp3
     - assets\images\bluecrossgraph.png
+    - assets\images\baground.jpg
+    - assets\images\admin.png
+
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

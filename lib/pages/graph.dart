@@ -1,54 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-//import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class Graph extends StatelessWidget {
-  final List<double> leftValues; // Define a list parameter
+  final List<double> leftValues;
   final List<double> rightValues;
-  const Graph({super.key, required this.leftValues, required this.rightValues});
 
-  // This widget is the root of your application.
+  const Graph({
+    super.key,
+    required this.leftValues,
+    required this.rightValues,
+  });
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       home: MyHomePage(
-          title: 'Flutter Demo Home Page',
-          leftValues: leftValues,
-          rightValues: rightValues),
+        title: 'Flutter Demo Home Page',
+        leftValues: leftValues,
+        rightValues: rightValues,
+        studentInfo: StudentInfo(
+          name: 'John Doe',
+          age: 25,
+          gender: 'Male',
+        ),
+      ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  // ignore: non_constant_identifier_names
-  const MyHomePage(
-      {super.key,
-      required this.leftValues,
-      required this.title,
-      required this.rightValues});
+  const MyHomePage({
+    super.key,
+    required this.leftValues,
+    required this.title,
+    required this.rightValues,
+    required this.studentInfo,
+  });
+
   final String title;
   final List<double> leftValues;
   final List<double> rightValues;
+  final StudentInfo studentInfo;
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -70,57 +68,69 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: SizedBox(
-          width: MediaQuery.of(context)
-              .size
-              .width, // Set width to match the screen width
-          height: 500,
-          child: Align(
-            alignment: Alignment.center,
-            child: SfCartesianChart(
-              borderColor: Colors.red,
-              borderWidth: 2,
-              // Sets 15 logical pixels as margin for all the 4 sides.
-              margin: const EdgeInsets.all(15),
-              tooltipBehavior: _tooltipBehavior,
-              series: <ChartSeries<dynamic, double>>[
-                LineSeries<leftData, double>(
-                  dataSource: _chartData,
-                  xValueMapper: (leftData dbl, _) => dbl.frel,
-                  yValueMapper: (leftData dbl, _) => dbl.dbl,
-                  markerSettings: const MarkerSettings(isVisible: true),
-                  enableTooltip: true,
-                ),
-                LineSeries<rightData, double>(
-                  dataSource: _chartDatar,
-                  xValueMapper: (rightData dbr, _) => dbr.frer,
-                  yValueMapper: (rightData dbr, _) => dbr.dbr,
-                  markerSettings: const MarkerSettings(
-                      isVisible: true,
-                      shape: DataMarkerType.image,
-                      // Renders the image as marker
-                      image: AssetImage('assets/images/bluecrossgraph.png')),
-                  enableTooltip: true,
-                ),
-              ],
-              primaryXAxis: CategoryAxis(
-                opposedPosition: true,
-                labelIntersectAction: AxisLabelIntersectAction.rotate45,
-                majorTickLines: const MajorTickLines(
-                    size: 0), // To hide the default major tick lines
-                labelPosition: ChartDataLabelPosition.outside,
-                interval: 1,
-                labelAlignment: LabelAlignment.start,
-              ),
-              primaryYAxis: NumericAxis(
-                isInversed: true,
-                minimum: 0,
-                maximum: 120,
-                interval: 10,
-                plotOffset: 10,
+        body: ListView(
+          children: [
+            // Display student information here
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Name: ${widget.studentInfo.name}'),
+                  Text('Age: ${widget.studentInfo.age}'),
+                  Text('Gender: ${widget.studentInfo.gender}'),
+                ],
               ),
             ),
-          ),
+            // Chart section
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SfCartesianChart(
+                  borderColor: const Color.fromARGB(255, 11, 9, 9),
+                  borderWidth: 2,
+                  margin: const EdgeInsets.all(15),
+                  tooltipBehavior: _tooltipBehavior,
+                  series: <ChartSeries<dynamic, double>>[
+                    LineSeries<leftData, double>(
+                      dataSource: _chartData,
+                      xValueMapper: (leftData dbl, _) => dbl.frel,
+                      yValueMapper: (leftData dbl, _) => dbl.dbl,
+                      markerSettings: const MarkerSettings(isVisible: true),
+                      enableTooltip: true,
+                    ),
+                    LineSeries<rightData, double>(
+                      dataSource: _chartDatar,
+                      xValueMapper: (rightData dbr, _) => dbr.frer,
+                      yValueMapper: (rightData dbr, _) => dbr.dbr,
+                      markerSettings: const MarkerSettings(
+                        isVisible: true,
+                        shape: DataMarkerType.image,
+                        image: AssetImage('assets/images/bluecrossgraph.png'),
+                      ),
+                      enableTooltip: true,
+                    ),
+                  ],
+                  primaryXAxis: CategoryAxis(
+                    opposedPosition: true,
+                    labelIntersectAction: AxisLabelIntersectAction.rotate45,
+                    majorTickLines: const MajorTickLines(size: 0),
+                    labelPosition: ChartDataLabelPosition.outside,
+                    interval: 1,
+                    labelAlignment: LabelAlignment.start,
+                    majorGridLines: const MajorGridLines(width: 0),
+                  ),
+                  primaryYAxis: NumericAxis(
+                    isInversed: true,
+                    minimum: 0,
+                    maximum: 120,
+                    interval: 10,
+                    plotOffset: 10,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -138,7 +148,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   List<rightData> getChartDatar() {
-   
     return [
       rightData(250, widget.rightValues[0]),
       rightData(500, widget.rightValues[1]),
@@ -162,4 +171,16 @@ class rightData {
   rightData(this.frer, this.dbr);
   final double frer;
   final double dbr;
+}
+
+class StudentInfo {
+  final String name;
+  final int age;
+  final String gender;
+
+  StudentInfo({
+    required this.name,
+    required this.age,
+    required this.gender,
+  });
 }
