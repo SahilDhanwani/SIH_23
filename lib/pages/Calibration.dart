@@ -1,4 +1,3 @@
-// ignore: file_names
 import 'package:audioplayers/audioplayers.dart';
 import 'dart:async';
 import 'package:noise_meter/noise_meter.dart';
@@ -112,7 +111,6 @@ class _CalibrationState extends State<Calibration> {
     setState(() {});
   }
 
-
   // Initialize a variable to store the dynamic value
   String debameterValue = 'Your Initial Value';
 
@@ -179,22 +177,19 @@ class _CalibrationState extends State<Calibration> {
                       ),
                     ),
                     const SizedBox(width: 20),
- ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                    context, MyRoutes.leftear); // Navigate to home screen
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    MyTheme.buttonColor, // Use the button color from theme
-              ),
-              child: const Text('Signup'),
-            ),
-
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context,
+                            MyRoutes.leftear); // Navigate to home screen
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: MyTheme
+                            .buttonColor, // Use the button color from theme
+                      ),
+                      child: const Text('Signup'),
+                    ),
                   ],
                 ),
-                
-               
               ],
             )));
   }
