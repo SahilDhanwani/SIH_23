@@ -6,7 +6,7 @@ import '../utils/routes.dart';
 
 class RightEar extends StatefulWidget {
   final List<double> leftValues; 
- RightEar({super.key, required this.leftValues});
+ const RightEar({super.key, required this.leftValues});
 
 
   @override
@@ -206,7 +206,7 @@ class _MyHomePageState extends State<RightEar> {
                     ),
                   );
                 },
-                child: Text("SEND"))
+                child: const Text("SEND"))
           ],
         ),
       ),

@@ -1,9 +1,9 @@
-// ignore: file_names
-import 'package:audioplayers/audioplayers.dart';
 import 'dart:async';
 import 'package:noise_meter/noise_meter.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+// ignore: file_names
+import 'package:audioplayers/audioplayers.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -112,17 +112,6 @@ class _CalibrationState extends State<Calibration> {
     setState(() {});
   }
 
-
-  // Initialize a variable to store the dynamic value
-  String debameterValue = 'Your Initial Value';
-
-  // Your function to update the debameterValue based on some logic
-  void updateDebameterValue() {
-    // Your logic to update debameterValue
-    // For example, you can simulate some dynamic changes
-    debameterValue = 'New Value';
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -199,3 +188,4 @@ class _CalibrationState extends State<Calibration> {
             )));
   }
 }
+
