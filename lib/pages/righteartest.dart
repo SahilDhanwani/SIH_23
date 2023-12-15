@@ -12,7 +12,7 @@ class RightEar extends StatefulWidget {
 }
 
 class _RightEarState extends State<RightEar> {
-  late double right250 =0;
+  late double right250 = 0;
   late double right500 = 0;
   late double right1000 = 0;
   late double right2000 = 0;
