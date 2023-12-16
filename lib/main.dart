@@ -37,6 +37,7 @@ Future main() async {
       : await Firebase.initializeApp();
 
   runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
 }
 // void main() async {
 //   WidgetsFlutterBinding.ensureInitialized();
