@@ -74,11 +74,10 @@ flutter:
     - assets\images\signup.png
     - assets\images\bluetooth.png
     - assets\images\headphone.png
-    - assets\images\eduapp_student_login.jpg
     - assets\images\admin.png
     - assets\images\leftear.png
     - assets\images\rightear.png
-    - assets\images\eduapp_student_login.jpg
+    - assets\images\student.jpg
     - assets\audio\250hz.mp3
     - assets\audio\500hz.mp3
     - assets\audio\1000hz.mp3

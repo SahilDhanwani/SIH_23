@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const mixstudent());
-}
-
 // ignore: camel_case_types
-class mixstudent extends StatelessWidget {
-  const mixstudent({super.key});
+class Mixstudent extends StatelessWidget {
+  const Mixstudent({super.key});
 
   @override
   Widget build(BuildContext context) {

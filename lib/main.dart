@@ -19,6 +19,8 @@ import 'package:sih_23_audiometer/pages/student_login.dart';
 import 'package:sih_23_audiometer/pages/student_signin.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
+import 'package:sih_23_audiometer/pages/studenthome.dart';
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.adminhome,
+      initialRoute: MyRoutes.studenthome,
       routes: {
         // MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
         MyRoutes.studentLoginRoute: (context) => const student_login(), //Second page(Logini/Signup)
@@ -58,10 +60,11 @@ class MyApp extends StatelessWidget {
         // Files of AbhishekBHosale02
         MyRoutes.studadmin: (context) => const studadmin(),
         MyRoutes.mixadmin: (context) => const mixadmin(),
-        MyRoutes.mixstudent: (context) => const mixstudent(),
+        MyRoutes.Mixstudent: (context) => const Mixstudent(),
         MyRoutes.headset: (context) => const Headset(),
         MyRoutes.adminhome: (context) => const adminhome(),
         MyRoutes.graph: (context) => const Graph(leftValues: [0, 0, 0, 0, 0, 0],rightValues: [0, 0, 0, 0, 0, 0]),
+        MyRoutes.studenthome: (context) => const studenthome(),
 
       },
     );
