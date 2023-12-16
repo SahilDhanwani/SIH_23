@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
         // Files of AbhishekBHosale02
         MyRoutes.studadmin: (context) => const studadmin(),
         MyRoutes.mixadmin: (context) => const mixadmin(),
-        MyRoutes.mixstudent: (context) => const Mixstudent(),
+        MyRoutes.Mixstudent: (context) => const Mixstudent(),
         MyRoutes.headset: (context) => const Headset(),
         MyRoutes.adminhome: (context) => const adminhome(),
         MyRoutes.graph: (context) => const Graph(leftValues: [0, 0, 0, 0, 0, 0],rightValues: [0, 0, 0, 0, 0, 0]),
