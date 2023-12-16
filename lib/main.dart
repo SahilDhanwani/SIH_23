@@ -22,6 +22,8 @@ import 'package:sih_23_audiometer/pages/student_login.dart';
 import 'package:sih_23_audiometer/pages/student_signin.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
+import 'package:sih_23_audiometer/pages/studenthome.dart';
+
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
