@@ -1,4 +1,3 @@
-// ignore: file_names
 import 'package:audioplayers/audioplayers.dart';
 import 'dart:async';
 import 'package:noise_meter/noise_meter.dart';
