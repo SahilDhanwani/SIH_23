@@ -30,13 +30,13 @@ dependencies:
   google_fonts: ^6.1.0
   google_sign_in: ^6.2.1
   headset_connection_event: ^3.1.0
-  volume_watcher: ^2.0.1
-  perfect_volume_control: ^1.0.5
   noise_meter: ^5.0.2
+  perfect_volume_control: ^1.0.5
   permission_handler: ^11.1.0
   syncfusion_flutter_charts: ^23.2.7
   url_launcher: ^6.2.2
   velocity_x: ^4.1.2
+  volume_watcher: ^2.0.1
 
 dev_dependencies:
   flutter_lints: ^3.0.1
@@ -73,7 +73,7 @@ flutter:
     - assets\leftear\hearingTest.online.warble_250_60_L.mp3
     - assets\leftear\hearingTest.online.warble_250_70_L.mp3
     - assets\leftear\hearingTest.online.warble_250_80_L.mp3
-    
+
     - assets\leftear\hearingTest.online.warble_500_10_L.mp3
     - assets\leftear\hearingTest.online.warble_500_20_L.mp3
     - assets\leftear\hearingTest.online.warble_500_30_L.mp3
@@ -119,7 +119,7 @@ flutter:
     - assets\leftear\hearingTest.online.warble_8000_70_L.mp3
     - assets\leftear\hearingTest.online.warble_8000_80_L.mp3
 
-    # RIGHT EAR : 
+    # RIGHT EAR :
     
     - assets\rightear\hearingTest.online.warble_250_10_R.mp3
     - assets\rightear\hearingTest.online.warble_250_20_R.mp3
@@ -129,7 +129,7 @@ flutter:
     - assets\rightear\hearingTest.online.warble_250_60_R.mp3
     - assets\rightear\hearingTest.online.warble_250_70_R.mp3
     - assets\rightear\hearingTest.online.warble_250_80_R.mp3
-    
+
     - assets\rightear\hearingTest.online.warble_500_10_R.mp3
     - assets\rightear\hearingTest.online.warble_500_20_R.mp3
     - assets\rightear\hearingTest.online.warble_500_30_R.mp3

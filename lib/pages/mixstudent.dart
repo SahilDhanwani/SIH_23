@@ -66,7 +66,7 @@ class _StudentPageState extends State<StudentPage> {
                 },
                 children: [
                   // Student Login Page
-                  const StudentLoginForm(),
+                  StudentLoginForm(),
                   // Student Signup Page
                   StudentSignupForm(),
                 ],
@@ -80,41 +80,53 @@ class _StudentPageState extends State<StudentPage> {
 }
 
 class StudentLoginForm extends StatelessWidget {
-  const StudentLoginForm({super.key});
+  StudentLoginForm({super.key});
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final password = TextEditingController();
+  final email = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const TextField(
-            decoration: InputDecoration(
-              labelText: 'Username',
-              hintText: 'Enter your username',
+      child: Form(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextFormField(
+              controller: email,
+              decoration: const InputDecoration(
+                labelText: 'E-mail Address',
+                hintText: 'Enter your email address',
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          const TextField(
-            decoration: InputDecoration(
-              labelText: 'Password',
-              hintText: 'Enter your password',
+
+            const SizedBox(
+              height: 16,
             ),
-            obscureText: true,
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              // Implement your student login logic here
-            },
-            child: const Text('Login'),
-          ),
-        ],
-      ),
+
+            TextFormField(
+              controller: password,
+              decoration: const InputDecoration(
+                labelText: 'Password',
+                hintText: 'Enter your password',
+              ),
+              obscureText: true,
+            ),
+
+            const SizedBox(
+              height: 16,
+            ),
+
+            ElevatedButton(
+              onPressed: () {
+                _auth.signInWithEmailAndPassword(email: email.text.toString(), password: password.text.toString());
+              },
+              child: const Text('Login'),
+            ),
+          ],
+        ),
+      )
     );
   }
 }
