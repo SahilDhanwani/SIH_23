@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sih_23_audiometer/pages/Calibration.dart';
+//import 'package:sih_23_audiometer/pages/Calibration.dart';
 import 'package:sih_23_audiometer/pages/adminhome.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
 import 'package:sih_23_audiometer/pages/headset.dart';
@@ -36,24 +36,27 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.adminhome,
+      initialRoute: MyRoutes.backgroundNoise,
       routes: {
         // MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
-        MyRoutes.studentLoginRoute: (context) => const student_login(), //Second page(Logini/Signup)
+        MyRoutes.studentLoginRoute: (context) =>
+            const student_login(), //Second page(Logini/Signup)
         MyRoutes.studentDashboard: (context) =>
             const StudentDashboard(), //Student Home Page
         MyRoutes.studentSigninRoute: (context) =>
             const StudentSignin(), //Student Login
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.leftear: (context) => const LeftEar(),
-        MyRoutes.rightear: (context) =>  const RightEar(leftValues: [0, 0, 0, 0, 0, 0]),
-        MyRoutes.graph: (context) => const Graph(leftValues: [0, 0, 0, 0, 0, 0],rightValues: [0, 0, 0, 0, 0, 0]),
-        MyRoutes.calibration: (context) => const Calibration(),
+        MyRoutes.rightear: (context) =>
+            const RightEar(leftValues: [0, 0, 0, 0, 0, 0]),
+        MyRoutes.graph: (context) => const Graph(
+            leftValues: [0, 0, 0, 0, 0, 0], rightValues: [0, 0, 0, 0, 0, 0]),
+        //  MyRoutes.calibration: (context) => const Calibration(),
         MyRoutes.logsignstu: (context) => const LogSignStu(),
         MyRoutes.loginadmin: (context) => const loginadmin(),
         MyRoutes.logsignadmin: (context) => logsignadmin(),
         MyRoutes.loginstudent: (context) => const LoginStudent(),
-        MyRoutes.studentsignup: (context) =>const StudentSignup(), 
+        MyRoutes.studentsignup: (context) => const StudentSignup(),
 
         // Files of AbhishekBHosale02
         MyRoutes.studadmin: (context) => const studadmin(),
@@ -61,8 +64,8 @@ class MyApp extends StatelessWidget {
         MyRoutes.mixstudent: (context) => const mixstudent(),
         MyRoutes.headset: (context) => const Headset(),
         MyRoutes.adminhome: (context) => const adminhome(),
-        MyRoutes.graph: (context) => const Graph(leftValues: [0, 0, 0, 0, 0, 0],rightValues: [0, 0, 0, 0, 0, 0]),
-
+        MyRoutes.graph: (context) => const Graph(
+            leftValues: [0, 0, 0, 0, 0, 0], rightValues: [0, 0, 0, 0, 0, 0]),
       },
     );
   }
