@@ -10,13 +10,15 @@ class volumeControl extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: Home(),
     );
   }
 }
 
 class Home extends StatefulWidget {
+  const Home({super.key});
+
   @override
   State<Home> createState() => _HomeState();
 }
@@ -65,7 +67,7 @@ class _HomeState extends State<Home> {
             Text("Current Volume (Linear): $currentvol"),
             Text("Current Volume (dB): ${linearToDb(currentvol).toStringAsFixed(2)} dB"),
 
-            Divider(),
+            const Divider(),
 
             Slider(
               value: currentvol,

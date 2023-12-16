@@ -10,7 +10,6 @@ class LoginStudent extends StatefulWidget {
 
 class _LoginState extends State<LoginStudent> {
   String name = "";
-
   bool changeButton = false;
   final _formKey = GlobalKey<FormState>();
 

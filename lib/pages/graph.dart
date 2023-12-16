@@ -4,7 +4,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 class Graph extends StatelessWidget {
   final List<double> leftValues; // Define a list parameter
   final List<double> rightValues;
-  Graph({super.key, required this.leftValues, required this.rightValues});
+  const Graph({super.key, required this.leftValues, required this.rightValues});
 
   // This widget is the root of your application.
   @override
