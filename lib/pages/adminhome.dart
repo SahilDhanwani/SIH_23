@@ -1,11 +1,9 @@
-// ignore_for_file: camel_case_types
-
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const adminhome());
-}
+import 'package:sih_23_audiometer/utils/routes.dart';
+import 'package:sih_23_audiometer/widgets/themes.dart';
 
+// ignore: camel_case_types
 class adminhome extends StatelessWidget {
   const adminhome({super.key});
 
@@ -46,32 +44,16 @@ class HomePage extends StatelessWidget {
                 backgroundImage: AssetImage(adminImagePath),
               ),
             ),
-            ListTile(
-              title: const Text(
-                'Home',
-                style: TextStyle(fontSize: 16.0),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text(
-                'Student Database',
-                style: TextStyle(fontSize: 16.0),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const StudentDatabaseScreen()),
-                );
-              },
-            ),
+            ElevatedButton(
+  onPressed: () {
+    Navigator.pushNamed(context, MyRoutes.leftear);
+  },
+  style: ElevatedButton.styleFrom(
+    backgroundColor: MyTheme.buttonColor,
+  ),
+  child: const Text('Database'),
+),
+
           ],
         ),
       ),
@@ -107,40 +89,12 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()),
-                );
+                Navigator.pushNamed(context, MyRoutes. leftear);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
+                backgroundColor: MyTheme.buttonColor,
               ),
-              child: const Text(
-                'Home',
-                style: TextStyle(fontSize: 16.0),
-              ),
-            ),
-            const SizedBox(height: 10.0),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const StudentDatabaseScreen()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-              child: const Text(
-                'Student Database',
-                style: TextStyle(fontSize: 16.0),
-              ),
+              child: const Text('Home'),
             ),
           ],
         ),
@@ -160,22 +114,6 @@ class HomeScreen extends StatelessWidget {
       ),
       body: const Center(
         child: Text('Welcome to the Home Screen!'),
-      ),
-    );
-  }
-}
-
-class StudentDatabaseScreen extends StatelessWidget {
-  const StudentDatabaseScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Student Database Screen'),
-      ),
-      body: const Center(
-        child: Text('Welcome to the Student Database Screen!'),
       ),
     );
   }
