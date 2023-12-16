@@ -23,9 +23,7 @@ import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 import 'package:sih_23_audiometer/pages/studenthome.dart';
 
-import 'package:sih_23_audiometer/pages/studenthome.dart';
 
-import 'package:sih_23_audiometer/pages/studenthome.dart';
 
 
 Future main() async {
@@ -67,8 +65,10 @@ class MyApp extends StatelessWidget {
             const StudentSignin(), //Student Login
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.leftear: (context) => const LeftEar(),
-        MyRoutes.rightear: (context) =>  const RightEar(leftValues: [0, 0, 0, 0, 0, 0]),
-        MyRoutes.graph: (context) =>  const Graph(leftValues: [0, 0, 0, 0, 0, 0],rightValues: [0, 0, 0, 0, 0, 0]),
+        MyRoutes.rightear: (context) =>
+            const RightEar(leftValues: [0, 0, 0, 0, 0, 0]),
+        MyRoutes.graph: (context) => const Graph(
+            leftValues: [0, 0, 0, 0, 0, 0], rightValues: [0, 0, 0, 0, 0, 0]),
         MyRoutes.calibration: (context) => const Calibration(),
         MyRoutes.logsignstu: (context) => const LogSignStu(),
         MyRoutes.loginadmin: (context) => const loginadmin(),

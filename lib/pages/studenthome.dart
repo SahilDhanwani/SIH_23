@@ -12,7 +12,7 @@ class studenthome extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Student Information',
-      home: const StudentInfoPage(),
+      home: StudentInfoPage(),
     );
   }
 }
