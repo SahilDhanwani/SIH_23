@@ -26,6 +26,8 @@ import 'package:sih_23_audiometer/pages/studenthome.dart';
 
 import 'package:sih_23_audiometer/pages/studenthome.dart';
 
+import 'package:sih_23_audiometer/pages/studenthome.dart';
+
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -81,6 +83,9 @@ class MyApp extends StatelessWidget {
         MyRoutes.mixstudent: (context) => const Mixstudent(),
         MyRoutes.headset: (context) => const Headset(),
         MyRoutes.adminhome: (context) => const adminhome(),
+        MyRoutes.graph: (context) => const Graph(leftValues: [0, 0, 0, 0, 0, 0],rightValues: [0, 0, 0, 0, 0, 0]),
+        MyRoutes.studenthome: (context) => const studenthome(),
+
         MyRoutes.graph: (context) => const Graph(leftValues: [0, 0, 0, 0, 0, 0],rightValues: [0, 0, 0, 0, 0, 0]),
         MyRoutes.studenthome: (context) => const studenthome(),
 
