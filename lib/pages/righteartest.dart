@@ -7,7 +7,6 @@ class RightEar extends StatefulWidget {
   final List<double> leftValues; 
  const RightEar({super.key, required this.leftValues});
 
-
   @override
   // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
