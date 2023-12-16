@@ -37,13 +37,8 @@ Future main() async {
       : await Firebase.initializeApp();
 
   runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
 }
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   // Permission.microphone.request();
-//   await Firebase.initializeApp();
-//   runApp(const MyApp());
-// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
