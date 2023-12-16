@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/pages/Calibration.dart';
@@ -57,7 +56,7 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.studenthome,
+      initialRoute: MyRoutes.rightear,
       routes: {
         // MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
         MyRoutes.studentLoginRoute: (context) =>
@@ -76,7 +75,6 @@ class MyApp extends StatelessWidget {
         MyRoutes.logsignadmin: (context) => logsignadmin(),
         MyRoutes.loginstudent: (context) => const LoginStudent(),
         MyRoutes.studentsignup: (context) => const StudentSignup(),
-
         // Files of AbhishekBHosale02
         MyRoutes.studadmin: (context) => const studadmin(),
         MyRoutes.mixadmin: (context) => const mixadmin(),
