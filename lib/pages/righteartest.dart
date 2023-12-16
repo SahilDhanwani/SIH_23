@@ -1,10 +1,7 @@
-// ignore_for_file: prefer_const_constructors_in_immutables
-
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
-import '../utils/routes.dart';
 
 class RightEar extends StatefulWidget {
   final List<double> leftValues; 
@@ -18,31 +15,53 @@ class RightEar extends StatefulWidget {
 
 class _MyHomePageState extends State<RightEar> {
 
-
-
-  late double right250 = 60.0;
-  late double right500 = 50;
-  late double right1000 = 40;
-  late double right2000 = 30;
-  late double right4000 = 20;
+  late double right250 = 10;
+  late double right500 = 10;
+  late double right1000 = 10;
+  late double right2000 = 10;
+  late double right4000 = 10;
   late double right8000 = 10;
   late final List<double> rightValues;
   int i = 0;
-  double j = 0.1;
+  int j = 0;
   bool isPlaying = true;
   late final AudioPlayer player;
   late AssetSource path;
   int currentFrequency = 250;
   int currentVolume = 10;
-  List<String> tunes = [
-    'audio/250hz.mp3',
-    'audio/500hz.mp3',
-    'audio/1000hz.mp3',
-    'audio/2000hz.mp3',
-    'audio/4000hz.mp3',
-    'audio/8000hz.mp3'
-  ];
-
+  List<List<String>> tunes = [
+    [
+      'rightear/hearingTest.online.warble_250_10_R.mp3','rightear/hearingTest.online.warble_250_20_R.mp3',
+      'rightear/hearingTest.online.warble_250_30_R.mp3','rightear/hearingTest.online.warble_250_40_R.mp3',
+      'rightear/hearingTest.online.warble_250_50_R.mp3','rightear/hearingTest.online.warble_250_60_R.mp3',
+      'rightear/hearingTest.online.warble_250_70_R.mp3','rightear/hearingTest.online.warble_250_80_R.mp3'],
+    [
+      'rightear/hearingTest.online.warble_500_10_R.mp3','rightear/hearingTest.online.warble_500_20_R.mp3',
+      'rightear/hearingTest.online.warble_500_30_R.mp3','rightear/hearingTest.online.warble_500_40_R.mp3',
+      'rightear/hearingTest.online.warble_500_50_R.mp3','rightear/hearingTest.online.warble_500_60_R.mp3',
+      'rightear/hearingTest.online.warble_500_70_R.mp3','rightear/hearingTest.online.warble_500_80_R.mp3'],
+    [
+      'rightear/hearingTest.online.warble_1000_10_R.mp3','rightear/hearingTest.online.warble_1000_20_R.mp3',
+      'rightear/hearingTest.online.warble_1000_30_R.mp3','rightear/hearingTest.online.warble_1000_40_R.mp3',
+      'rightear/hearingTest.online.warble_1000_50_R.mp3','rightear/hearingTest.online.warble_1000_60_R.mp3',
+      'rightear/hearingTest.online.warble_1000_70_R.mp3','rightear/hearingTest.online.warble_1000_80_R.mp3'],
+    [
+      'rightear/hearingTest.online.warble_2000_10_R.mp3','rightear/hearingTest.online.warble_2000_20_R.mp3',
+      'rightear/hearingTest.online.warble_2000_30_R.mp3','rightear/hearingTest.online.warble_2000_40_R.mp3',
+      'rightear/hearingTest.online.warble_2000_50_R.mp3','rightear/hearingTest.online.warble_2000_60_R.mp3',
+      'rightear/hearingTest.online.warble_2000_70_R.mp3','rightear/hearingTest.online.warble_2000_80_R.mp3'],
+    [
+      'rightear/hearingTest.online.warble_4000_10_R.mp3','rightear/hearingTest.online.warble_4000_20_R.mp3',
+      'rightear/hearingTest.online.warble_4000_30_R.mp3','rightear/hearingTest.online.warble_4000_40_R.mp3',
+      'rightear/hearingTest.online.warble_4000_50_R.mp3','rightear/hearingTest.online.warble_4000_60_R.mp3',
+      'rightear/hearingTest.online.warble_4000_70_R.mp3','rightear/hearingTest.online.warble_4000_80_R.mp3'],
+    [
+      'rightear/hearingTest.online.warble_8000_10_R.mp3','rightear/hearingTest.online.warble_8000_20_R.mp3',
+      'rightear/hearingTest.online.warble_8000_30_R.mp3','rightear/hearingTest.online.warble_8000_40_R.mp3',
+      'rightear/hearingTest.online.warble_8000_50_R.mp3','rightear/hearingTest.online.warble_8000_60_R.mp3',
+      'rightear/hearingTest.online.warble_8000_70_R.mp3','rightear/hearingTest.online.warble_8000_80_R.mp3'],
+    ];
+  
   @override
   void initState() {
     //Calibration
@@ -53,37 +72,31 @@ class _MyHomePageState extends State<RightEar> {
 
   Future<void> initPlayer() async {
     player = AudioPlayer();
-    path = AssetSource(tunes[i]);
+    path = AssetSource(tunes[i][j]);
+    setState(() {});
+    playTune();
   }
 
   @override
   void dispose() {
-    //Calibration
     player.dispose();
     super.dispose();
   }
 
   void playTune() async {
-    // Check if there are more tunes to play
     if (i < tunes.length) {
-      path = AssetSource(tunes[i]);
-      player.setVolume(j);
+      path = AssetSource(tunes[i][j]);
+      player.setVolume(1);
       player.setBalance(1.0);
       player.play(path);
       setState(() {});
     } else {
-      // All tunes played, you can handle this case accordingly
-      // For now, let's reset to the first tune
-      i = 0;
-      path = AssetSource(tunes[i]);
-      player.setVolume(j);
-      player.setBalance(1.0);
-      player.play(path);
+      dispose();
       setState(() {});
     }
   }
 
-  void stopTune() async {
+  void pauseTune() async {
     player.pause();
     setState(() {});
   }
@@ -91,30 +104,21 @@ class _MyHomePageState extends State<RightEar> {
   void onTickButtonPressed() {
     setState(() {
       currentVolume = 10;
-      j = 0.1;
+      j = 0;
       i = i + 1;
       currentFrequency = 2 * currentFrequency;
-      stopTune();
+      pauseTune();
       playTune();
     });
   }
 
   void onCrossButtonPressed() {
     setState(() {
-      j = j + 0.1;
-      stopTune();
+      j = j + 1;
+      currentVolume = currentVolume + 10;
+      pauseTune();
       playTune();
     });
-  }
-
-  void onProceedButtonPressed() {
-    // Logic when the proceed button for the right ear is pressed
-    Navigator.pushNamed(context, MyRoutes.rightear);
-    // ignore: avoid_print
-    print('Proceed');
-    // You can navigate to the next screen or perform other actions here
-    // ignore: avoid_print
-    print('Proceeding to the right ear');
   }
 
   @override
