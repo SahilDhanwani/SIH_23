@@ -97,6 +97,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     LineSeries<rightData, double>(
                       dataSource: _chartDatar,
+                        pointColorMapper:(rightData dbr, _) =>  dbr.color,
+                             //   xValueMapper: (ChartData data, _) => data.x,
                       xValueMapper: (rightData dbr, _) => dbr.frer,
                       yValueMapper: (rightData dbr, _) => dbr.dbr,
                       markerSettings: const MarkerSettings(
@@ -107,6 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       enableTooltip: true,
                     ),
                   ],
+                  
                   primaryXAxis: CategoryAxis(
                     opposedPosition: true,
                     labelIntersectAction: AxisLabelIntersectAction.rotate45,
@@ -146,12 +149,12 @@ class _MyHomePageState extends State<MyHomePage> {
   List<rightData> getChartDatar() {
    
     return [
-      rightData(250, widget.rightValues[0]),
-      rightData(500, widget.rightValues[1]),
-      rightData(1000, widget.rightValues[2]),
-      rightData(2000, widget.rightValues[3]),
-      rightData(4000, widget.rightValues[4]),
-      rightData(8000, widget.rightValues[5]),
+      rightData(250, widget.rightValues[0],Colors.red),
+      rightData(500, widget.rightValues[1],Colors.red),
+      rightData(1000, widget.rightValues[2],Colors.red),
+      rightData(2000, widget.rightValues[3],Colors.red),
+      rightData(4000, widget.rightValues[4],Colors.red),
+      rightData(8000, widget.rightValues[5],Colors.red),
     ];
   }
 }
@@ -165,9 +168,10 @@ class leftData {
 
 // ignore: camel_case_types
 class rightData {
-  rightData(this.frer, this.dbr);
+  rightData(this.frer, this.dbr, this.color);
   final double frer;
   final double dbr;
+   final Color color;
 }
 
 class StudentInfo {
