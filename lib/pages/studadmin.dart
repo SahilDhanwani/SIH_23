@@ -35,7 +35,7 @@ class studadmin extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(
-                    context, MyRoutes.logsignadmin); // Navigate to home screen
+                    context, MyRoutes.mixadmin); // Navigate to home screen
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor:
@@ -51,7 +51,7 @@ class studadmin extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(
-                    context, MyRoutes.logsignstu); // Navigate to home screen
+                    context, MyRoutes.mixstudent); // Navigate to home screen
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor:

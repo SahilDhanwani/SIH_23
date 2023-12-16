@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:noise_meter/noise_meter.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sih_23_audiometer/utils/routes.dart';
+import 'package:sih_23_audiometer/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Calibration extends StatefulWidget {
@@ -120,10 +122,10 @@ class _CalibrationState extends State<Calibration> {
               children: [
                 const SizedBox(height: 2),
                 Image.asset(
-                  'assets\\images\\abhi.png',
-                  width: 250,
+                  'assets/images/abhi.png',
+                  width: MediaQuery.of(context).size.width * 0.5,
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
                 // Use a Container to display the dynamic value inside a box
                 Container(
                   padding: const EdgeInsets.all(10),
@@ -148,6 +150,14 @@ class _CalibrationState extends State<Calibration> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    // InkWell(
+                    //   onTap: () {
+                    //     player.seek(Duration(seconds: _position.inSeconds - 10));
+                    //     setState(() {});
+                    //   },
+                    //   child: Image.asset('assets/icons/rewind.png'),
+                    // ),
+                    // const SizedBox(width: 20),
                     InkWell(
                       onTap: playPause,
                       child: Icon(
@@ -157,9 +167,24 @@ class _CalibrationState extends State<Calibration> {
                       ),
                     ),
                     const SizedBox(width: 20),
+ ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                    context, MyRoutes.leftear); // Navigate to home screen
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    MyTheme.buttonColor, // Use the button color from theme
+              ),
+              child: const Text('Signup'),
+            ),
+
                   ],
                 ),
+                
+               
               ],
             )));
   }
 }
+

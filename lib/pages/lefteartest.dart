@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:sih_23_audiometer/pages/righteartest.dart';
 import '../utils/routes.dart';
 
 class LeftEar extends StatefulWidget {
@@ -12,15 +13,54 @@ class LeftEar extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<LeftEar> {
+  late double left250 = 10;
+  late double left500 = 10;
+  late double left1000 = 10;
+  late double left2000 = 10;
+  late double left4000 = 10;
+  late double left8000 = 10;
+  late final List<double> leftValues;
+
   int i = 0;
-  double j = 0.1;
+  int j = 0;
   bool isPlaying = true;
   late final AudioPlayer player;
-  late final AssetSource path;
+  late AssetSource path;
   int currentFrequency = 250;
   int currentVolume = 10;
-  List<String> tunes = ['audio/250hz.mp3','audio/500hz.mp3','audio/1000hz.mp3','audio/2000hz.mp3','audio/4000hz.mp3','audio/8000hz.mp3'];
-
+  List<List<String>> tunes = [
+    [
+      'leftear/hearingTest.online.warble_250_10_L.mp3','leftear/hearingTest.online.warble_250_20_L.mp3',
+      'leftear/hearingTest.online.warble_250_30_L.mp3','leftear/hearingTest.online.warble_250_40_L.mp3',
+      'leftear/hearingTest.online.warble_250_50_L.mp3','leftear/hearingTest.online.warble_250_60_L.mp3',
+      'leftear/hearingTest.online.warble_250_70_L.mp3','leftear/hearingTest.online.warble_250_80_L.mp3'],
+    [
+      'leftear/hearingTest.online.warble_500_10_L.mp3','leftear/hearingTest.online.warble_500_20_L.mp3',
+      'leftear/hearingTest.online.warble_500_30_L.mp3','leftear/hearingTest.online.warble_500_40_L.mp3',
+      'leftear/hearingTest.online.warble_500_50_L.mp3','leftear/hearingTest.online.warble_500_60_L.mp3',
+      'leftear/hearingTest.online.warble_500_70_L.mp3','leftear/hearingTest.online.warble_500_80_L.mp3'],
+    [
+      'leftear/hearingTest.online.warble_1000_10_L.mp3','leftear/hearingTest.online.warble_1000_20_L.mp3',
+      'leftear/hearingTest.online.warble_1000_30_L.mp3','leftear/hearingTest.online.warble_1000_40_L.mp3',
+      'leftear/hearingTest.online.warble_1000_50_L.mp3','leftear/hearingTest.online.warble_1000_60_L.mp3',
+      'leftear/hearingTest.online.warble_1000_70_L.mp3','leftear/hearingTest.online.warble_1000_80_L.mp3'],
+    [
+      'leftear/hearingTest.online.warble_2000_10_L.mp3','leftear/hearingTest.online.warble_2000_20_L.mp3',
+      'leftear/hearingTest.online.warble_2000_30_L.mp3','leftear/hearingTest.online.warble_2000_40_L.mp3',
+      'leftear/hearingTest.online.warble_2000_50_L.mp3','leftear/hearingTest.online.warble_2000_60_L.mp3',
+      'leftear/hearingTest.online.warble_2000_70_L.mp3','leftear/hearingTest.online.warble_2000_80_L.mp3'],
+    [
+      'leftear/hearingTest.online.warble_4000_10_L.mp3','leftear/hearingTest.online.warble_4000_20_L.mp3',
+      'leftear/hearingTest.online.warble_4000_30_L.mp3','leftear/hearingTest.online.warble_4000_40_L.mp3',
+      'leftear/hearingTest.online.warble_4000_50_L.mp3','leftear/hearingTest.online.warble_4000_60_L.mp3',
+      'leftear/hearingTest.online.warble_4000_70_L.mp3','leftear/hearingTest.online.warble_4000_80_L.mp3'],
+    [
+      'leftear/hearingTest.online.warble_8000_10_L.mp3','leftear/hearingTest.online.warble_8000_20_L.mp3',
+      'leftear/hearingTest.online.warble_8000_30_L.mp3','leftear/hearingTest.online.warble_8000_40_L.mp3',
+      'leftear/hearingTest.online.warble_8000_50_L.mp3','leftear/hearingTest.online.warble_8000_60_L.mp3',
+      'leftear/hearingTest.online.warble_8000_70_L.mp3','leftear/hearingTest.online.warble_8000_80_L.mp3'],
+    ];
+  
   @override
   void initState() {
     //Calibration
@@ -29,45 +69,54 @@ class _MyHomePageState extends State<LeftEar> {
     playTune();
   }
 
-  Future initPlayer() async {
+  Future<void> initPlayer() async {
     player = AudioPlayer();
-    path = AssetSource(tunes[i]);
+    path = AssetSource(tunes[i][j]);
+    setState(() {});
+    playTune();
   }
 
   @override
   void dispose() {
-    //Calibration
     player.dispose();
     super.dispose();
   }
 
   void playTune() async {
-      player.setVolume(j);
+    if (i < tunes.length) {
+      path = AssetSource(tunes[i][j]);
+      player.setVolume(1);
+      player.setBalance(-1.0);
       player.play(path);
-    setState(() {});
+      setState(() {});
+    } else {
+      dispose();
+      setState(() {});
+    }
   }
 
-  void stopTune() async {
-      player.pause();
+  void pauseTune() async {
+    player.pause();
     setState(() {});
   }
 
   void onTickButtonPressed() {
     setState(() {
       currentVolume = 10;
-      j = 0.1;
+      j = 0;
       i = i + 1;
       currentFrequency = 2 * currentFrequency;
-      stopTune();
+      pauseTune();
       playTune();
     });
   }
 
   void onCrossButtonPressed() {
     setState(() {
-        j = j + 0.1;
-        stopTune();
-        playTune();
+      j = j + 1;
+      currentVolume = currentVolume + 10;
+      pauseTune();
+      playTune();
     });
   }
 
@@ -98,8 +147,7 @@ class _MyHomePageState extends State<LeftEar> {
                 const Text(
                   'Test for left ear',
                 ),
-                Image.asset('assets/images/leftear.png',
-                    height: 50, width: 50),
+                Image.asset('assets/images/leftear.png', height: 50, width: 50),
               ],
             ),
             const SizedBox(
@@ -139,15 +187,33 @@ class _MyHomePageState extends State<LeftEar> {
                 ),
               ],
             ),
+
             Expanded(
                 child: Container()), // Spacer to push buttons to the bottom
-            Align(
-              alignment: Alignment.bottomRight,
-              child: ElevatedButton(
-                onPressed: onProceedButtonPressed,
-                child: const Text('Proceed for right ear'),
-              ),
-            ),
+            ElevatedButton(
+                onPressed: () {
+                  // Navigator to the next page.
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      // Builder for the nextpage
+                      // class's constructor.
+
+                      // Date as arguments to
+                      // send to next page.
+                      builder: (context) =>  RightEar(
+                        leftValues: [
+                          left250,
+                          left500,
+                          left1000,
+                          left2000,
+                          left4000,
+                          left8000
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                child: const Text("SEND"))
           ],
         ),
       ),

@@ -36,7 +36,8 @@ class _BackgroundNoiseState extends State<BackgroundNoise> {
     stop();
   }
 
-  Future<bool> checkPermission() async => await Permission.microphone.isGranted;
+  Future<bool> checkPermission() async =>
+      await Permission.microphone.isGranted;
 
   Future<void> requestPermission() async =>
       await Permission.microphone.request();
@@ -61,48 +62,70 @@ class _BackgroundNoiseState extends State<BackgroundNoise> {
 
   bool isNoiseBelowThreshold() {
     return _latestReading?.meanDecibel != null &&
-        _latestReading!.meanDecibel < 40;
+        _latestReading!.meanDecibel < 80;
   }
 
   @override
   Widget build(BuildContext context) => MaterialApp(
         home: Scaffold(
+          backgroundColor: Colors.blueGrey.shade100,
           body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
+                const Text(
+                  'BACKGROUND NOISE ',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const Text(
+                  'CALIBRATION',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 30),
+                Image.asset(
+                  'assets/images/baground.jpg',
+                  width: MediaQuery.of(context).size.width * 0.5,
+                ),
+                Card(
                   margin: const EdgeInsets.all(25),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(top: 20),
-                        child: Text(
-                          _isRecording ? "Mic: ON" : "Mic: OFF",
-                          style: const TextStyle(
-                            fontSize: 25,
-                            color: Colors.blue,
+                  elevation: 5,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          _isRecording ? "Microphone: ON" : "Microphone: OFF",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: _isRecording ? Colors.red : Colors.green,
                           ),
                         ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 20),
-                        child: Text(
-                          'Noise: ${_latestReading?.meanDecibel.toStringAsFixed(2)} dB',
+                        const SizedBox(height: 20),
+                        Text(
+                          'Noise Level: ${_latestReading?.meanDecibel.toStringAsFixed(2)} dB',
+                          style: const TextStyle(
+                            fontSize: 18,
+                          ),
                         ),
-                      ),
-                      Text(
-                        'Max: ${_latestReading?.maxDecibel.toStringAsFixed(2)} dB',
-                      ),
-                      ElevatedButton(
-                        onPressed: isNoiseBelowThreshold()
-                            ? () {
-                                Navigator.pushNamed(context, MyRoutes.headset);
-                              }
-                            : null,
-                        child: const Text('Proceed'),
-                      ),
-                    ],
+                   
+                        const SizedBox(height: 20),
+                        ElevatedButton(
+                          onPressed: isNoiseBelowThreshold()
+                              ? () {
+                                  Navigator.pushNamed(
+                                      context, MyRoutes.leftear);
+                                }
+                              : null,
+                          child: const Text('Proceed'),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -111,8 +134,9 @@ class _BackgroundNoiseState extends State<BackgroundNoise> {
           floatingActionButton: FloatingActionButton(
             backgroundColor: _isRecording ? Colors.red : Colors.green,
             onPressed: _isRecording ? stop : start,
-            child:
-                _isRecording ? const Icon(Icons.stop) : const Icon(Icons.mic),
+            child: _isRecording
+                ? const Icon(Icons.stop)
+                : const Icon(Icons.mic),
           ),
         ),
       );

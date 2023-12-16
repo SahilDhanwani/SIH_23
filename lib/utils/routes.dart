@@ -16,6 +16,10 @@ class MyRoutes {
   static String logsignadmin = '/logsignadmin';
   static String studentsignup = '/studentsignup';
   static String graph = '/Graph';
-  // ignore: non_constant_identifier_names
-   static String Calibration = '/Calibration';
+ //   static String lefteartest = '/ lefteartest ';
+ //   static String righteartest = '/ righteartest ';
+   static String mixstudent = '/mixstudent';
+   static String mixadmin = '/mixadmin';
+   static String adminhome = '/adminhome';
+   
 }

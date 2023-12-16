@@ -2,28 +2,36 @@ name: sih_23_audiometer
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.1.2 <4.0.0'
+  sdk: ">=3.1.2 <4.0.0"
 
 dependencies:
   audio_streamer: ^4.0.0
   audioplayers: ^5.2.1
   audioplayers_web: ^4.1.0
+  cloud_firestore: ^4.13.6
   cupertino_icons: ^1.0.2
   datetime_picker_formfield_new: ^2.1.0
   file_picker: ^6.1.1
+  firebase_auth: ^4.15.3
+  firebase_core: ^2.24.2
+  firebase_storage: ^11.5.6
   flutter:
     sdk: flutter
   flutter_sound: ^9.2.13
   flutter_test:
     sdk: flutter
-  google_fonts: ^4.0.4
+  fluttertoast: ^8.2.4
+  font_awesome_flutter: ^10.6.0
+  google_fonts: ^6.1.0
+  google_sign_in: ^6.2.1
   headset_connection_event: ^3.1.0
-  microphone: ^0.1.0
+  volume_watcher: ^2.0.1
+  perfect_volume_control: ^1.0.5
   noise_meter: ^5.0.2
   permission_handler: ^11.1.0
   syncfusion_flutter_charts: ^23.2.7
@@ -33,44 +41,14 @@ dependencies:
 dev_dependencies:
   flutter_lints: ^3.0.1
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-# The following section is specific to Flutter packages.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
-  # To add assets to your application, add an assets section, like this:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+
   assets:
     - assets\audio\tone.mp3
     - assets\images\abhi.png
+    - assets\images\login.jpg
+    - assets\images\signup.png
     - assets\images\bluetooth.png
     - assets\images\headphone.png
     - assets\images\eduapp_student_login.jpg
@@ -78,29 +56,122 @@ flutter:
     - assets\images\leftear.png
     - assets\images\rightear.png
     - assets\images\eduapp_student_login.jpg
-  #  - assets\audio\
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+    - assets\audio\250hz.mp3
+    - assets\audio\500hz.mp3
+    - assets\audio\1000hz.mp3
+    - assets\audio\2000hz.mp3
+    - assets\audio\4000hz.mp3
+    - assets\audio\8000hz.mp3
+    - assets\images\bluecrossgraph.png
+    - assets\images\baground.jpg
+    - assets\images\admin.png
+
+    - assets\leftear\hearingTest.online.warble_250_10_L.mp3
+    - assets\leftear\hearingTest.online.warble_250_20_L.mp3
+    - assets\leftear\hearingTest.online.warble_250_30_L.mp3
+    - assets\leftear\hearingTest.online.warble_250_40_L.mp3
+    - assets\leftear\hearingTest.online.warble_250_50_L.mp3
+    - assets\leftear\hearingTest.online.warble_250_60_L.mp3
+    - assets\leftear\hearingTest.online.warble_250_70_L.mp3
+    - assets\leftear\hearingTest.online.warble_250_80_L.mp3
+    
+    - assets\leftear\hearingTest.online.warble_500_10_L.mp3
+    - assets\leftear\hearingTest.online.warble_500_20_L.mp3
+    - assets\leftear\hearingTest.online.warble_500_30_L.mp3
+    - assets\leftear\hearingTest.online.warble_500_40_L.mp3
+    - assets\leftear\hearingTest.online.warble_500_50_L.mp3
+    - assets\leftear\hearingTest.online.warble_500_60_L.mp3
+    - assets\leftear\hearingTest.online.warble_500_70_L.mp3
+    - assets\leftear\hearingTest.online.warble_500_80_L.mp3
+
+    - assets\leftear\hearingTest.online.warble_1000_10_L.mp3
+    - assets\leftear\hearingTest.online.warble_1000_20_L.mp3
+    - assets\leftear\hearingTest.online.warble_1000_30_L.mp3
+    - assets\leftear\hearingTest.online.warble_1000_40_L.mp3
+    - assets\leftear\hearingTest.online.warble_1000_50_L.mp3
+    - assets\leftear\hearingTest.online.warble_1000_60_L.mp3
+    - assets\leftear\hearingTest.online.warble_1000_70_L.mp3
+    - assets\leftear\hearingTest.online.warble_1000_80_L.mp3
+
+    - assets\leftear\hearingTest.online.warble_2000_10_L.mp3
+    - assets\leftear\hearingTest.online.warble_2000_20_L.mp3
+    - assets\leftear\hearingTest.online.warble_2000_30_L.mp3
+    - assets\leftear\hearingTest.online.warble_2000_40_L.mp3
+    - assets\leftear\hearingTest.online.warble_2000_50_L.mp3
+    - assets\leftear\hearingTest.online.warble_2000_60_L.mp3
+    - assets\leftear\hearingTest.online.warble_2000_70_L.mp3
+    - assets\leftear\hearingTest.online.warble_2000_80_L.mp3
+
+    - assets\leftear\hearingTest.online.warble_4000_10_L.mp3
+    - assets\leftear\hearingTest.online.warble_4000_20_L.mp3
+    - assets\leftear\hearingTest.online.warble_4000_30_L.mp3
+    - assets\leftear\hearingTest.online.warble_4000_40_L.mp3
+    - assets\leftear\hearingTest.online.warble_4000_50_L.mp3
+    - assets\leftear\hearingTest.online.warble_4000_60_L.mp3
+    - assets\leftear\hearingTest.online.warble_4000_70_L.mp3
+    - assets\leftear\hearingTest.online.warble_4000_80_L.mp3
+
+    - assets\leftear\hearingTest.online.warble_8000_10_L.mp3
+    - assets\leftear\hearingTest.online.warble_8000_20_L.mp3
+    - assets\leftear\hearingTest.online.warble_8000_30_L.mp3
+    - assets\leftear\hearingTest.online.warble_8000_40_L.mp3
+    - assets\leftear\hearingTest.online.warble_8000_50_L.mp3
+    - assets\leftear\hearingTest.online.warble_8000_60_L.mp3
+    - assets\leftear\hearingTest.online.warble_8000_70_L.mp3
+    - assets\leftear\hearingTest.online.warble_8000_80_L.mp3
+
+    # RIGHT EAR : 
+    
+    - assets\rightear\hearingTest.online.warble_250_10_R.mp3
+    - assets\rightear\hearingTest.online.warble_250_20_R.mp3
+    - assets\rightear\hearingTest.online.warble_250_30_R.mp3
+    - assets\rightear\hearingTest.online.warble_250_40_R.mp3
+    - assets\rightear\hearingTest.online.warble_250_50_R.mp3
+    - assets\rightear\hearingTest.online.warble_250_60_R.mp3
+    - assets\rightear\hearingTest.online.warble_250_70_R.mp3
+    - assets\rightear\hearingTest.online.warble_250_80_R.mp3
+    
+    - assets\rightear\hearingTest.online.warble_500_10_R.mp3
+    - assets\rightear\hearingTest.online.warble_500_20_R.mp3
+    - assets\rightear\hearingTest.online.warble_500_30_R.mp3
+    - assets\rightear\hearingTest.online.warble_500_40_R.mp3
+    - assets\rightear\hearingTest.online.warble_500_50_R.mp3
+    - assets\rightear\hearingTest.online.warble_500_60_R.mp3
+    - assets\rightear\hearingTest.online.warble_500_70_R.mp3
+    - assets\rightear\hearingTest.online.warble_500_80_R.mp3
+
+    - assets\rightear\hearingTest.online.warble_1000_10_R.mp3
+    - assets\rightear\hearingTest.online.warble_1000_20_R.mp3
+    - assets\rightear\hearingTest.online.warble_1000_30_R.mp3
+    - assets\rightear\hearingTest.online.warble_1000_40_R.mp3
+    - assets\rightear\hearingTest.online.warble_1000_50_R.mp3
+    - assets\rightear\hearingTest.online.warble_1000_60_R.mp3
+    - assets\rightear\hearingTest.online.warble_1000_70_R.mp3
+    - assets\rightear\hearingTest.online.warble_1000_80_R.mp3
+
+    - assets\rightear\hearingTest.online.warble_2000_10_R.mp3
+    - assets\rightear\hearingTest.online.warble_2000_20_R.mp3
+    - assets\rightear\hearingTest.online.warble_2000_30_R.mp3
+    - assets\rightear\hearingTest.online.warble_2000_40_R.mp3
+    - assets\rightear\hearingTest.online.warble_2000_50_R.mp3
+    - assets\rightear\hearingTest.online.warble_2000_60_R.mp3
+    - assets\rightear\hearingTest.online.warble_2000_70_R.mp3
+    - assets\rightear\hearingTest.online.warble_2000_80_R.mp3
+
+    - assets\rightear\hearingTest.online.warble_4000_10_R.mp3
+    - assets\rightear\hearingTest.online.warble_4000_20_R.mp3
+    - assets\rightear\hearingTest.online.warble_4000_30_R.mp3
+    - assets\rightear\hearingTest.online.warble_4000_40_R.mp3
+    - assets\rightear\hearingTest.online.warble_4000_50_R.mp3
+    - assets\rightear\hearingTest.online.warble_4000_60_R.mp3
+    - assets\rightear\hearingTest.online.warble_4000_70_R.mp3
+    - assets\rightear\hearingTest.online.warble_4000_80_R.mp3
+
+    - assets\rightear\hearingTest.online.warble_8000_10_R.mp3
+    - assets\rightear\hearingTest.online.warble_8000_20_R.mp3
+    - assets\rightear\hearingTest.online.warble_8000_30_R.mp3
+    - assets\rightear\hearingTest.online.warble_8000_40_R.mp3
+    - assets\rightear\hearingTest.online.warble_8000_50_R.mp3
+    - assets\rightear\hearingTest.online.warble_8000_60_R.mp3
+    - assets\rightear\hearingTest.online.warble_8000_70_R.mp3
+    - assets\rightear\hearingTest.online.warble_8000_80_R.mp3

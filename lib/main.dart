@@ -1,14 +1,18 @@
+import 'dart:io';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/pages/Calibration.dart';
+import 'package:sih_23_audiometer/pages/adminhome.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
+import 'package:sih_23_audiometer/pages/headset.dart';
+import 'package:sih_23_audiometer/pages/lefteartest.dart';
+import 'package:sih_23_audiometer/pages/logsignadmin.dart';
+import 'package:sih_23_audiometer/pages/mixadmin.dart';
+import 'package:sih_23_audiometer/pages/mixstudent.dart';
 import 'package:sih_23_audiometer/pages/studentsignup.dart';
 import 'package:sih_23_audiometer/pages/background_noise.dart';
-import 'package:sih_23_audiometer/pages/headset.dart';
-import 'package:sih_23_audiometer/pages/home_page.dart';
-import 'package:sih_23_audiometer/pages/lefteartest.dart';
 import 'package:sih_23_audiometer/pages/loginadmin.dart';
 import 'package:sih_23_audiometer/pages/loginstudent.dart';
-import 'package:sih_23_audiometer/pages/logsignadmin.dart';
 import 'package:sih_23_audiometer/pages/logsignstu.dart';
 import 'package:sih_23_audiometer/pages/righteartest.dart';
 import 'package:sih_23_audiometer/pages/studadmin.dart';
@@ -18,10 +22,22 @@ import 'package:sih_23_audiometer/pages/student_signin.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 
-void main() {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Permission.microphone.request();
+
+  Platform.isAndroid
+      ? await Firebase.initializeApp(
+          options: const FirebaseOptions(
+            apiKey: "AIzaSyDEVvqPd1AAmogTmT2dk3d7sJrFyLpD-XM",
+            appId: "1:760454313508:android:3dc77bb2c6739b4517cab1",
+            messagingSenderId: "760454313508",
+            projectId: "sih23-e0515",
+          ),
+        )
+      : await Firebase.initializeApp();
+
   runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
 }
 
 class MyApp extends StatelessWidget {
@@ -34,24 +50,33 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.headset,
+      initialRoute: MyRoutes.rightear,
       routes: {
-        MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
-        MyRoutes.studentLoginRoute: (context) => const student_login(), //Second page(Logini/Signup)
-        MyRoutes.studentDashboard: (context) => const StudentDashboard(), //Student Home Page
-        MyRoutes.studentSigninRoute: (context) => const StudentSignin(), //Student Login
+        // MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
+        MyRoutes.studentLoginRoute: (context) =>
+            const student_login(), //Second page(Logini/Signup)
+        MyRoutes.studentDashboard: (context) =>
+            const StudentDashboard(), //Student Home Page
+        MyRoutes.studentSigninRoute: (context) =>
+            const StudentSignin(), //Student Login
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
-        MyRoutes.headset: (context) => const Headset(),
         MyRoutes.leftear: (context) => const LeftEar(),
-        MyRoutes.rightear: (context) => RightEar(),
-        MyRoutes.graph: (context) => const Graph(),
+        MyRoutes.rightear: (context) =>  const RightEar(leftValues: [0, 0, 0, 0, 0, 0]),
+        MyRoutes.graph: (context) =>  const Graph(leftValues: [0, 0, 0, 0, 0, 0],rightValues: [0, 0, 0, 0, 0, 0]),
         MyRoutes.calibration: (context) => const Calibration(),
-        MyRoutes.studadmin: (context) => const studadmin(),
-        MyRoutes.logsignstu: (context) => const logsignstu(),
+        MyRoutes.logsignstu: (context) => const LogSignStu(),
         MyRoutes.loginadmin: (context) => const loginadmin(),
         MyRoutes.logsignadmin: (context) => logsignadmin(),
-        MyRoutes.loginstudent: (context) => const loginstudent(),
-        MyRoutes.studentsignup: (context) => const StudentSignup(), //Student signup
+        MyRoutes.loginstudent: (context) => const LoginStudent(),
+        MyRoutes.studentsignup: (context) => const StudentSignup(),
+        // Files of AbhishekBHosale02
+        MyRoutes.studadmin: (context) => const studadmin(),
+        MyRoutes.mixadmin: (context) => const mixadmin(),
+        MyRoutes.mixstudent: (context) => const mixstudent(),
+        MyRoutes.headset: (context) => const Headset(),
+        MyRoutes.adminhome: (context) => const adminhome(),
+        MyRoutes.graph: (context) => const Graph(
+            leftValues: [0, 0, 0, 0, 0, 0], rightValues: [0, 0, 0, 0, 0, 0]),
       },
     );
   }

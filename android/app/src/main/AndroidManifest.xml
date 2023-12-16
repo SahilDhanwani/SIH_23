@@ -29,5 +29,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+            <meta-data
+            android:name="com.google.firebase.sih23-e0515"
+            android:value="sih23-e0515" />
     </application>
 </manifest>
