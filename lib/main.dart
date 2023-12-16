@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/pages/adminhome.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
@@ -19,11 +22,28 @@ import 'package:sih_23_audiometer/pages/student_signin.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 
-void main() {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Permission.microphone.request();
+
+  Platform.isAndroid
+      ? await Firebase.initializeApp(
+          options: const FirebaseOptions(
+            apiKey: "AIzaSyDEVvqPd1AAmogTmT2dk3d7sJrFyLpD-XM",
+            appId: "1:760454313508:android:3dc77bb2c6739b4517cab1",
+            messagingSenderId: "760454313508",
+            projectId: "sih23-e0515",
+          ),
+        )
+      : await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   // Permission.microphone.request();
+//   await Firebase.initializeApp();
+//   runApp(const MyApp());
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
