@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:sih_23_audiometer/pages/Calibration.dart';
 import 'package:sih_23_audiometer/pages/adminhome.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
 import 'package:sih_23_audiometer/pages/headset.dart';
@@ -61,11 +62,9 @@ class MyApp extends StatelessWidget {
             const StudentSignin(), //Student Login
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.leftear: (context) => const LeftEar(),
-        MyRoutes.rightear: (context) =>
-            const RightEar(leftValues: [0, 0, 0, 0, 0, 0]),
-        MyRoutes.graph: (context) => const Graph(
-            leftValues: [0, 0, 0, 0, 0, 0], rightValues: [0, 0, 0, 0, 0, 0]),
-        //  MyRoutes.calibration: (context) => const Calibration(),
+        MyRoutes.rightear: (context) =>  const RightEar(leftValues: [0, 0, 0, 0, 0, 0]),
+        MyRoutes.graph: (context) =>  const Graph(leftValues: [0, 0, 0, 0, 0, 0],rightValues: [0, 0, 0, 0, 0, 0]),
+        MyRoutes.calibration: (context) => const Calibration(),
         MyRoutes.logsignstu: (context) => const LogSignStu(),
         MyRoutes.loginadmin: (context) => const loginadmin(),
         MyRoutes.logsignadmin: (context) => logsignadmin(),
