@@ -19,6 +19,7 @@ dependencies:
   file_picker: ^6.1.1
   firebase_auth: ^4.15.3
   firebase_core: ^2.24.2
+  firebase_database: ^10.3.8
   firebase_storage: ^11.5.6
   flutter:
     sdk: flutter
@@ -120,7 +121,6 @@ flutter:
     - assets\leftear\hearingTest.online.warble_8000_80_L.mp3
 
     # RIGHT EAR :
-    
     - assets\rightear\hearingTest.online.warble_250_10_R.mp3
     - assets\rightear\hearingTest.online.warble_250_20_R.mp3
     - assets\rightear\hearingTest.online.warble_250_30_R.mp3
