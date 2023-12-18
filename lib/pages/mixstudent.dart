@@ -83,6 +83,7 @@ class _StudentPageState extends State<StudentPage> {
 class StudentLoginForm extends StatelessWidget {
   StudentLoginForm({super.key});
 
+  final _formKey = GlobalKey<FormState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final password = TextEditingController();
   final email = TextEditingController();
@@ -91,6 +92,7 @@ class StudentLoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Form(
+        key: _formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

@@ -67,7 +67,7 @@ class _AdminPageState extends State<AdminPage> {
                 },
                 children: [
                   // Admin Login Page
-                  const AdminLoginForm(),
+                  AdminLoginForm(),
                   // Admin Signup Page
                   AdminSignupForm(),
                 ],
@@ -81,41 +81,49 @@ class _AdminPageState extends State<AdminPage> {
 }
 
 class AdminLoginForm extends StatelessWidget {
-  const AdminLoginForm({super.key});
+  AdminLoginForm({super.key});
+
+  final _formKey = GlobalKey<FormState>();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final password = TextEditingController();
+  final username = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const TextField(
-            decoration: InputDecoration(
-              labelText: 'Class Code',
-              hintText: 'Enter your class code',
+      child: Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Class Code',
+                hintText: 'Enter your class code',
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          const TextField(
-            decoration: InputDecoration(
-              labelText: 'Password',
-              hintText: 'Enter your password',
+            const SizedBox(
+              height: 16,
             ),
-            obscureText: true,
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              // Implement your admin login logic here
-            },
-            child: const Text('Login'),
-          ),
-        ],
-      ),
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Password',
+                hintText: 'Enter your password',
+              ),
+              obscureText: true,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _auth.signInWithEmailAndPassword(email: username.text.toString(), password: password.text.toString());
+              },
+              child: const Text('Login'),
+            ),
+          ],
+        ),
+      )
     );
   }
 }
@@ -124,7 +132,7 @@ class AdminSignupForm extends StatelessWidget {
   AdminSignupForm({super.key});
 
 
-  final name = TextEditingController();
+    final name = TextEditingController();
     final school = TextEditingController();
     // ignore: non_constant_identifier_names
     final class_code = TextEditingController();
