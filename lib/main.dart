@@ -54,21 +54,16 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.studenthome,
+      initialRoute: MyRoutes.mixadmin,
       routes: {
         // MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
-        MyRoutes.studentLoginRoute: (context) =>
-            const student_login(), //Second page(Logini/Signup)
-        MyRoutes.studentDashboard: (context) =>
-            const StudentDashboard(), //Student Home Page
-        MyRoutes.studentSigninRoute: (context) =>
-            const StudentSignin(), //Student Login
+        MyRoutes.studentLoginRoute: (context) => const student_login(), //Second page(Logini/Signup)
+        MyRoutes.studentDashboard: (context) => const StudentDashboard(), //Student Home Page
+        MyRoutes.studentSigninRoute: (context) => const StudentSignin(), //Student Login
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.leftear: (context) => const LeftEar(),
-        MyRoutes.rightear: (context) =>
-            const RightEar(leftValues: [0, 0, 0, 0, 0, 0]),
-        MyRoutes.graph: (context) => const Graph(
-            leftValues: [0, 0, 0, 0, 0, 0], rightValues: [0, 0, 0, 0, 0, 0]),
+        MyRoutes.rightear: (context) => const RightEar(leftValues: [0, 0, 0, 0, 0, 0]),
+        MyRoutes.graph: (context) => const Graph(leftValues: [0, 0, 0, 0, 0, 0], rightValues: [0, 0, 0, 0, 0, 0]),
         MyRoutes.calibration: (context) => const Calibration(),
         MyRoutes.logsignstu: (context) => const LogSignStu(),
         MyRoutes.loginadmin: (context) => const loginadmin(),
@@ -81,12 +76,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.Mixstudent: (context) => const Mixstudent(),
         MyRoutes.headset: (context) => const Headset(),
         MyRoutes.adminhome: (context) => const adminhome(),
-        MyRoutes.graph: (context) => const Graph(leftValues: [0, 0, 0, 0, 0, 0],rightValues: [0, 0, 0, 0, 0, 0]),
         MyRoutes.studenthome: (context) => const studenthome(),
-
-        MyRoutes.graph: (context) => const Graph(leftValues: [0, 0, 0, 0, 0, 0],rightValues: [0, 0, 0, 0, 0, 0]),
-        MyRoutes.studenthome: (context) => const studenthome(),
-
       },
     );
   }
