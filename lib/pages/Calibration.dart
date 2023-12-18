@@ -167,24 +167,20 @@ class _CalibrationState extends State<Calibration> {
                       ),
                     ),
                     const SizedBox(width: 20),
- ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                    context, MyRoutes.leftear); // Navigate to home screen
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    MyTheme.buttonColor, // Use the button color from theme
-              ),
-              child: const Text('Signup'),
-            ),
-
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context,
+                            MyRoutes.leftear); // Navigate to home screen
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: MyTheme
+                            .buttonColor, // Use the button color from theme
+                      ),
+                      child: const Text('Proceed'),
+                    ),
                   ],
                 ),
-                
-               
               ],
             )));
   }
 }
-
