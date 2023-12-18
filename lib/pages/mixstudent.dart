@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -150,6 +151,7 @@ class StudentSignupForm extends StatelessWidget {
   final email = TextEditingController();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final studentRef = FirebaseDatabase.instance.ref('student');
   
   @override
   Widget build(BuildContext context) {
@@ -163,8 +165,8 @@ class StudentSignupForm extends StatelessWidget {
             TextFormField(
               controller: email,
               decoration: const InputDecoration(
-                labelText: 'E-mail Address',
-                hintText: 'Enter your email address',
+              labelText: 'E-mail Address',
+              hintText: 'Enter your email address',
               ),
             ),
 
@@ -272,9 +274,20 @@ class StudentSignupForm extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 _auth.createUserWithEmailAndPassword(
-                  email: email.text.toString(), 
-                  password: password.text.toString()
+                  email: email.text.toString(),
+                  password: password.text.toString(),
                 );
+ 
+                studentRef.child(DateTime.now().millisecondsSinceEpoch.toString()).set({
+                  'E-mail' : email.text.toString(),
+                  'name' : name.text.toString(),
+                  'roll no' : roll_no.text.toString(),
+                  'std' : std.text.toString(),
+                  'dob' : dob.text.toString(),
+                  'age' : age.text.toString(),
+                  'gender' : gender.text.toString(),
+                  'class_code' : class_code.text.toString()
+                });
               },
               child: const Text('Signup'),
             ),
