@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:sih_23_audiometer/pages/adminhome.dart';
 
 // ignore: camel_case_types
 class mixadmin extends StatelessWidget {
@@ -86,7 +87,9 @@ class AdminLoginForm extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final password = TextEditingController();
-  final username = TextEditingController();
+  // ignore: non_constant_identifier_names
+  final class_code = TextEditingController();
+  final String adder = '@karn.com';
 
   @override
   Widget build(BuildContext context) {
@@ -97,6 +100,7 @@ class AdminLoginForm extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextFormField(
+              controller: class_code,
               decoration: const InputDecoration(
                 labelText: 'Class Code',
                 hintText: 'Enter your class code',
@@ -106,6 +110,7 @@ class AdminLoginForm extends StatelessWidget {
               height: 16,
             ),
             TextFormField(
+              controller: password,
               decoration: const InputDecoration(
                 labelText: 'Password',
                 hintText: 'Enter your password',
@@ -117,7 +122,9 @@ class AdminLoginForm extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                _auth.signInWithEmailAndPassword(email: username.text.toString(), password: password.text.toString());
+                _auth.signInWithEmailAndPassword(email: class_code.text.toString()+adder, password: password.text.toString());
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) =>  adminhome(username: class_code.text.toString())));
               },
               child: const Text('Login'),
             ),
@@ -131,7 +138,7 @@ class AdminLoginForm extends StatelessWidget {
 class AdminSignupForm extends StatelessWidget {
   AdminSignupForm({super.key});
 
-
+    final String adder = '@karn.com';
     final name = TextEditingController();
     final school = TextEditingController();
     // ignore: non_constant_identifier_names
@@ -215,6 +222,9 @@ class AdminSignupForm extends StatelessWidget {
                   'School' : school.text.toString(),
                   'class_code' : class_code.text.toString(),
                 });
+
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) =>  adminhome(username: class_code.text.toString()+adder)));
               },
               child: const Text('Signup'),
             ),

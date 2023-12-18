@@ -47,6 +47,7 @@ Future main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -75,7 +76,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.mixadmin: (context) => const mixadmin(),
         MyRoutes.Mixstudent: (context) => const Mixstudent(),
         MyRoutes.headset: (context) => const Headset(),
-        MyRoutes.adminhome: (context) => const adminhome(),
+        MyRoutes.adminhome: (context) => const adminhome(username: 'NA'),
         MyRoutes.studenthome: (context) => const studenthome(),
       },
     );
