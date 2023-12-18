@@ -195,11 +195,6 @@ class _MyHomePageState extends State<LeftEar> {
                   // Navigator to the next page.
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      // Builder for the nextpage
-                      // class's constructor.
-
-                      // Date as arguments to
-                      // send to next page.
                       builder: (context) =>  RightEar(
                         leftValues: [
                           left250,

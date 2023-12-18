@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const studenthome());
-}
-
 // ignore: camel_case_types
 class studenthome extends StatelessWidget {
   const studenthome({super.key});

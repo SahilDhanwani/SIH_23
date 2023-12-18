@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 
 // ignore: camel_case_types
 class adminhome extends StatelessWidget {
-  const adminhome({super.key});
+  final String username; 
+  const adminhome({super.key, required this.username});
 
   @override
   Widget build(BuildContext context) {
