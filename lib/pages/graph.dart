@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -5,7 +7,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 class Graph extends StatelessWidget {
   final List<double> leftValues; // Define a list parameter
   final List<double> rightValues;
-  Graph({super.key, required this.leftValues, required this.rightValues});
+  const Graph({super.key, required this.leftValues, required this.rightValues});
 
   // This widget is the root of your application.
   @override

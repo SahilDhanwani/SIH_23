@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
-import '../utils/routes.dart';
+import 'package:sih_23_audiometer/pages/righteartest.dart';
 
 class LeftEar extends StatefulWidget {
   const LeftEar({super.key});

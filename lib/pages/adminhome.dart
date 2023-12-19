@@ -1,13 +1,13 @@
-import 'dart:async';
 
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 
-// ignore: camel_case_types
+// ignore: camel_case_types, must_be_immutable
 class adminhome extends StatelessWidget {
-  final String username; 
-  const adminhome({super.key, required this.username});
+  String username; 
+  adminhome({super.key, required this.username});
 
   @override
   Widget build(BuildContext context) {
@@ -21,48 +21,19 @@ class adminhome extends StatelessWidget {
   }
 }
 
-class HomePage extends StatefulWidget {
-  final String username;
+// ignore: must_be_immutable
+class HomePage extends StatelessWidget {
+  
 
   // Updated constructor to take username
-  const HomePage(this.username,{super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  
-  final String adminName = "John Doe";
-  final String classCode = "CS101";
-  late Future<String> schoolName;
+  HomePage(this.username,{super.key});
+  late String username;
+  late String adminName;
+  late String classCode;
+  late String schoolName;
   final String adminImagePath = "assets/images/admin.png";
   final String outsideImagePath = "assets/images/admin.png";
-  final DatabaseReference adminRef = FirebaseDatabase.instance.ref('admin');
-
-  @override
-  void initState() {
-    // Calibration
-    schoolName = fetchSchool();
-    super.initState();
-  }
-
-  Future<String> fetchSchool() async {
-  try {
-    DatabaseReference userRef = FirebaseDatabase.instance.ref().child('admin').child(widget.username);
-    DataSnapshot dataSnapshot = await userRef.once();
-    
-    // Assuming 'School' is the key where the school name is stored
-    String schoolName = dataSnapshot.child('School').value.toString();
-    
-    return schoolName;
-  } catch (error) {
-    // Handle errors here, e.g., log the error or return a default value
-    print('Error fetching school name: $error');
-    return 'Unknown School';
-  }
-}
-
+  DatabaseReference adminRef = FirebaseDatabase.instance.ref('admin');
 
   // ignore: non_constant_identifier_names
   @override
@@ -98,6 +69,18 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+          FirebaseAnimatedList(
+          query: adminRef, 
+          itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
+            if(snapshot.child('class_code').value.toString() == username) {
+              classCode = snapshot.child('class_code').value.toString();
+              adminName = snapshot.child('Name').value.toString();
+              schoolName = snapshot.child('School').value.toString();
+            }
+            return Container();
+          },
+
+        ),
             ClipRRect(
               borderRadius: BorderRadius.circular(12.0),
               child: Image.asset(
@@ -139,7 +122,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
