@@ -1,4 +1,3 @@
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
@@ -23,12 +22,11 @@ class adminhome extends StatelessWidget {
 
 // ignore: must_be_immutable
 class HomePage extends StatefulWidget {
-  
+  String username;
 
   // Updated constructor to take username
   HomePage(this.username,{super.key});
-  String username = 'NA';
-
+  
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -79,18 +77,17 @@ class _HomePageState extends State<HomePage> {
           FirebaseAnimatedList(
           query: adminRef, 
           itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
-            print('INSIDE FIREBASE');
+            // print('INSIDE FIREBASE');
             if(snapshot.child('class_code').value.toString() == widget.username) {
-              
+
               setState(() {
                 classCode = snapshot.child('class_code').value.toString();
                 adminName = snapshot.child('Name').value.toString();
                 schoolName = snapshot.child('School').value.toString();
               });
             }
-            return Container();
+            return const SizedBox(height: 1);
           },
-
         ),
             ClipRRect(
               borderRadius: BorderRadius.circular(12.0),
