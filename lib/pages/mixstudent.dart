@@ -280,7 +280,7 @@ class StudentSignupForm extends StatelessWidget {
                   password: password.text.toString(),
                 );
  
-                studentRef.child(DateTime.now().millisecondsSinceEpoch.toString()).set({
+                studentRef.child(email.text.toString()).set({
                   'E-mail' : email.text.toString(),
                   'name' : name.text.toString(),
                   'roll no' : roll_no.text.toString(),

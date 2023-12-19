@@ -1,6 +1,8 @@
+import 'dart:async';
+
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
-import 'package:sih_23_audiometer/widgets/themes.dart';
 
 // ignore: camel_case_types
 class adminhome extends StatelessWidget {
@@ -14,7 +16,7 @@ class adminhome extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const HomePage(),
+      home: HomePage(username),
     );
   }
 }
@@ -25,8 +27,22 @@ class HomePage extends StatelessWidget {
   final String schoolName = "Flutter High School";
   final String adminImagePath = "assets/images/admin.png";
   final String outsideImagePath = "assets/images/admin.png";
+  final DatabaseReference adminRef = FirebaseDatabase.instance.ref('admin');
+  final String username; // Add this line to store the username
 
-  const HomePage({super.key});
+  // Updated constructor to take username
+  HomePage(this.username, {super.key});
+
+Future<String?> fetchSchool(String userId) async {
+  DatabaseReference userRef =
+      FirebaseDatabase.instance.ref().child('admin').child(username);
+
+  DataSnapshot dataSnapshot = (await userRef.once()) as DataSnapshot;
+
+  // Assuming 'department' is the key where department information is stored
+  return dataSnapshot.child('school').value.toString();
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,15 +61,14 @@ class HomePage extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-  onPressed: () {
-    Navigator.pushNamed(context, MyRoutes.leftear);
-  },
-  style: ElevatedButton.styleFrom(
-    backgroundColor: MyTheme.buttonColor,
-  ),
-  child: const Text('Database'),
-),
-
+              onPressed: () {
+                
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue, // Customize button color
+              ),
+              child: const Text('Database'),
+            ),
           ],
         ),
       ),
@@ -82,17 +97,18 @@ class HomePage extends StatelessWidget {
               style: const TextStyle(fontSize: 20.0),
             ),
             const SizedBox(height: 10.0),
+            // Display the fetched school name
             Text(
-              'School Name: $schoolName',
+              'School Name: $fetchSchool',
               style: const TextStyle(fontSize: 20.0),
             ),
             const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, MyRoutes. leftear);
+                Navigator.pushNamed(context, MyRoutes.leftear);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: MyTheme.buttonColor,
+                backgroundColor: Colors.blue, // Customize button color
               ),
               child: const Text('Home'),
             ),
@@ -101,7 +117,7 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-}    
+}
 
 
 class HomeScreen extends StatelessWidget {

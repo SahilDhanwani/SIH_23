@@ -90,7 +90,7 @@ class AdminLoginForm extends StatelessWidget {
   // ignore: non_constant_identifier_names
   final class_code = TextEditingController();
   final String adder = '@karn.com';
-
+  
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -106,6 +106,7 @@ class AdminLoginForm extends StatelessWidget {
                 hintText: 'Enter your class code',
               ),
             ),
+            
             const SizedBox(
               height: 16,
             ),
@@ -122,7 +123,9 @@ class AdminLoginForm extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                _auth.signInWithEmailAndPassword(email: class_code.text.toString()+adder, password: password.text.toString());
+                late String result;
+                result = class_code.text.toString() + adder;
+                _auth.signInWithEmailAndPassword(email: result, password: password.text.toString());
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) =>  adminhome(username: class_code.text.toString())));
               },
@@ -212,12 +215,13 @@ class AdminSignupForm extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
+                late String result;
+                result = class_code.text.toString() + adder;
                 _auth.createUserWithEmailAndPassword(
-                  email: class_code.text.toString(),
-                  password: pass1.text.toString(),
+                  email: result,password: pass1.text.toString(),
                 );
  
-                adminRef.child(DateTime.now().millisecondsSinceEpoch.toString()).set({
+                adminRef.child(class_code.text.toString()).set({
                   'Name' : name.text.toString(),
                   'School' : school.text.toString(),
                   'class_code' : class_code.text.toString(),
