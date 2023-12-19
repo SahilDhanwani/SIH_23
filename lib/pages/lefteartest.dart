@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
+// ignore: unused_import
 import 'package:sih_23_audiometer/pages/righteartest.dart';
 import '../utils/routes.dart';
 
 class LeftEar extends StatefulWidget {
+  // ignore: use_super_parameters
   const LeftEar({Key? key}) : super(key: key);
 
   @override

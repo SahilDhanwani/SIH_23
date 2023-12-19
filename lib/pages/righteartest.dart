@@ -9,6 +9,7 @@ class RightEar extends StatefulWidget {
   const RightEar({super.key, required this.leftValues});
 
   @override
+  // ignore: library_private_types_in_public_api
   _RightEarState createState() => _RightEarState();
 }
 
@@ -27,6 +28,7 @@ class _RightEarState extends State<RightEar> {
   late AssetSource path;
   int currentFrequency = 250;
   double currentVolume = 10;
+  bool isButtonEnabled = false;
   List<List<String>> tunes = [
     [
       'rightear/hearingTest.online.warble_250_10_R.mp3',
@@ -166,6 +168,7 @@ class _RightEarState extends State<RightEar> {
       // If it reaches the last frequency (8000), navigate to MyRoutes.rightear
       if (i == tunes.length - 1) {
         onProceedButtonPressed();
+        //isButtonEnabled = true;
       } else {
         currentVolume = 10;
         j = 0;
@@ -174,6 +177,8 @@ class _RightEarState extends State<RightEar> {
         pauseTune();
         playTune();
       }
+      isButtonEnabled = currentFrequency == 8000;
+      //  isButtonEnabled = false;
     });
   }
 
@@ -188,6 +193,7 @@ class _RightEarState extends State<RightEar> {
         // If it reaches Volume 80 and Frequency 8000, move to MyRoutes.rightear
         if (currentVolume == 80 && currentFrequency == 8000) {
           onProceedButtonPressed();
+          // isButtonEnabled = true;
         } else {
           // If it reaches Volume 80, move to the next frequency
           if (currentVolume == 80) {
@@ -197,11 +203,11 @@ class _RightEarState extends State<RightEar> {
             currentFrequency = 2 * currentFrequency;
             pauseTune();
             playTune();
-          } else {
-            // Handle other cases if needed
           }
+          // Handle other cases if needed
         }
       }
+      isButtonEnabled = currentFrequency == 8000;
     });
   }
 
@@ -326,37 +332,35 @@ class _RightEarState extends State<RightEar> {
             Expanded(
                 child: Container()), // Spacer to push buttons to the bottom
             ElevatedButton(
-                onPressed: () {
-                  // Navigator to the next page.
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      // Builder for the nextpage
-                      // class's constructor.
-
-                      // Date as arguments to
-                      // send to next page.
-                      builder: (context) => Graph(
-                        leftValues: [
-                          widget.leftValues[0],
-                          widget.leftValues[1],
-                          widget.leftValues[2],
-                          widget.leftValues[3],
-                          widget.leftValues[4],
-                          widget.leftValues[5]
-                        ],
-                        rightValues: [
-                          right250,
-                          right500,
-                          right1000,
-                          right2000,
-                          right4000,
-                          right8000
-                        ],
-                      ),
-                    ),
-                  );
-                },
-                child: const Text("Generate results"))
+              onPressed: isButtonEnabled
+                  ? () {
+                      // Navigator to the next page.
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => Graph(
+                            leftValues: [
+                              widget.leftValues[0],
+                              widget.leftValues[1],
+                              widget.leftValues[2],
+                              widget.leftValues[3],
+                              widget.leftValues[4],
+                              widget.leftValues[5]
+                            ],
+                            rightValues: [
+                              right250,
+                              right500,
+                              right1000,
+                              right2000,
+                              right4000,
+                              right8000
+                            ],
+                          ),
+                        ),
+                      );
+                    }
+                  : null,
+              child: const Text("SEND"),
+            ),
           ],
         ),
       ),
