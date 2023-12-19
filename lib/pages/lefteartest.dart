@@ -359,12 +359,6 @@ class _LeftEarState extends State<LeftEar> {
               ],
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-                onPressed: () {
-                  // Navigator to the next page.
-                  onProceedButtonPressed();
-                },
-                child: const Text("Proceed For Right Ear Test "))
           ],
         ),
       ),
