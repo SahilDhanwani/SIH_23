@@ -22,15 +22,22 @@ class adminhome extends StatelessWidget {
 }
 
 // ignore: must_be_immutable
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   
 
   // Updated constructor to take username
   HomePage(this.username,{super.key});
-  late String username;
-  late String adminName;
-  late String classCode;
-  late String schoolName;
+  String username = 'NA';
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  
+  String adminName = 'NA';
+  String classCode = 'NA';
+  String schoolName = 'NA';
   final String adminImagePath = "assets/images/admin.png";
   final String outsideImagePath = "assets/images/admin.png";
   DatabaseReference adminRef = FirebaseDatabase.instance.ref('admin');
@@ -72,10 +79,14 @@ class HomePage extends StatelessWidget {
           FirebaseAnimatedList(
           query: adminRef, 
           itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
-            if(snapshot.child('class_code').value.toString() == username) {
-              classCode = snapshot.child('class_code').value.toString();
-              adminName = snapshot.child('Name').value.toString();
-              schoolName = snapshot.child('School').value.toString();
+            print('INSIDE FIREBASE');
+            if(snapshot.child('class_code').value.toString() == widget.username) {
+              
+              setState(() {
+                classCode = snapshot.child('class_code').value.toString();
+                adminName = snapshot.child('Name').value.toString();
+                schoolName = snapshot.child('School').value.toString();
+              });
             }
             return Container();
           },

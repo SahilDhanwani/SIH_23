@@ -128,6 +128,7 @@ class AdminLoginForm extends StatelessWidget {
                 late String result;
                 result = class_code.text.toString() + adder;
                 _auth.signInWithEmailAndPassword(email: result, password: password.text.toString());
+                print('VERIFIED AND PROCEDDING TO ROUTE');
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) =>  adminhome(username: class_code.text.toString())));
               },
