@@ -21,29 +21,50 @@ class adminhome extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  final String username;
+
+  // Updated constructor to take username
+  const HomePage(this.username,{super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  
   final String adminName = "John Doe";
   final String classCode = "CS101";
-  final String schoolName = "Flutter High School";
+  late Future<String> schoolName;
   final String adminImagePath = "assets/images/admin.png";
   final String outsideImagePath = "assets/images/admin.png";
   final DatabaseReference adminRef = FirebaseDatabase.instance.ref('admin');
-  final String username; // Add this line to store the username
 
-  // Updated constructor to take username
-  HomePage(this.username, {super.key});
+  @override
+  void initState() {
+    // Calibration
+    schoolName = fetchSchool();
+    super.initState();
+  }
 
-Future<String?> fetchSchool(String userId) async {
-  DatabaseReference userRef =
-      FirebaseDatabase.instance.ref().child('admin').child(username);
-
-  DataSnapshot dataSnapshot = (await userRef.once()) as DataSnapshot;
-
-  // Assuming 'department' is the key where department information is stored
-  return dataSnapshot.child('school').value.toString();
+  Future<String> fetchSchool() async {
+  try {
+    DatabaseReference userRef = FirebaseDatabase.instance.ref().child('admin').child(widget.username);
+    DataSnapshot dataSnapshot = await userRef.once();
+    
+    // Assuming 'School' is the key where the school name is stored
+    String schoolName = dataSnapshot.child('School').value.toString();
+    
+    return schoolName;
+  } catch (error) {
+    // Handle errors here, e.g., log the error or return a default value
+    print('Error fetching school name: $error');
+    return 'Unknown School';
+  }
 }
 
 
+  // ignore: non_constant_identifier_names
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,7 +120,7 @@ Future<String?> fetchSchool(String userId) async {
             const SizedBox(height: 10.0),
             // Display the fetched school name
             Text(
-              'School Name: $fetchSchool',
+              'School Name: $schoolName',
               style: const TextStyle(fontSize: 20.0),
             ),
             const SizedBox(height: 20.0),

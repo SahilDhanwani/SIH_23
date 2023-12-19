@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.leftear,
+      initialRoute: MyRoutes.mixadmin,
       routes: {
         //  MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
         MyRoutes.studentLoginRoute: (context) =>
