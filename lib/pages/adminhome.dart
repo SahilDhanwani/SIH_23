@@ -20,7 +20,18 @@ class adminhome extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  final String username;
+
+  // Updated constructor to take username
+  const HomePage(this.username,{super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  
   final String adminName = "John Doe";
   final String classCode = "CS101";
   late Future<String> schoolName;
@@ -85,7 +96,7 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 10.0),
             // Display the fetched school name
             Text(
-              'School Name: $fetchSchool',
+              'School Name: $schoolName',
               style: const TextStyle(fontSize: 20.0),
             ),
             const SizedBox(height: 20.0),
