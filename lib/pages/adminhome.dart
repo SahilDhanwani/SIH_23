@@ -3,9 +3,24 @@ import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
-import 'package:sih_23_audiometer/widgets/themes.dart';
 
 class adminhome extends StatelessWidget {
+  final String username; 
+  const adminhome({super.key, required this.username});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: HomePage(username),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
   final String adminName = "John Doe";
   final String classCode = "CS101";
   late Future<String> schoolName;
@@ -70,8 +85,18 @@ class adminhome extends StatelessWidget {
             const SizedBox(height: 10.0),
             // Display the fetched school name
             Text(
-              'School Name: $schoolName',
+              'School Name: $fetchSchool',
               style: const TextStyle(fontSize: 20.0),
+            ),
+            const SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, MyRoutes.leftear);
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue, // Customize button color
+              ),
+              child: const Text('Home'),
             ),
           ],
         ),

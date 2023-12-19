@@ -109,6 +109,7 @@ class AdminLoginForm extends StatelessWidget {
                 hintText: 'Enter your class code',
               ),
             ),
+            
             const SizedBox(
               height: 16,
             ),
@@ -125,7 +126,9 @@ class AdminLoginForm extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                _auth.signInWithEmailAndPassword(email: class_code.text.toString()+adder, password: password.text.toString());
+                late String result;
+                result = class_code.text.toString() + adder;
+                _auth.signInWithEmailAndPassword(email: result, password: password.text.toString());
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) =>  const Mixstudent()));
               },
