@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
+import 'package:sih_23_audiometer/utils/routes.dart';
 
 class RightEar extends StatefulWidget {
   final List<double> leftValues;
@@ -149,24 +150,58 @@ class _RightEarState extends State<RightEar> {
     setState(() {});
   }
 
+  void onProceedButtonPressed() {
+    // Logic when the proceed button for the right ear is pressed
+    Navigator.pushNamed(context, MyRoutes.graph);
+    // ignore: avoid_print
+    print('Proceed');
+    // You can navigate to the next screen or perform other actions here
+    // ignore: avoid_print
+    print('Proceeding to the audiogram');
+  }
+
   void onTickButtonPressed() {
     setState(() {
       updaterightValues();
-      currentVolume = 10;
-      j = 0;
-      i = i + 1;
-      currentFrequency = 2 * currentFrequency;
-      pauseTune();
-      playTune();
+      // If it reaches the last frequency (8000), navigate to MyRoutes.rightear
+      if (i == tunes.length - 1) {
+        onProceedButtonPressed();
+      } else {
+        currentVolume = 10;
+        j = 0;
+        i = i + 1;
+        currentFrequency = 2 * currentFrequency;
+        pauseTune();
+        playTune();
+      }
     });
   }
 
   void onCrossButtonPressed() {
     setState(() {
-      j = j + 1;
-      currentVolume = currentVolume + 10;
-      pauseTune();
-      playTune();
+      if (j < tunes[i].length - 1) {
+        j = j + 1;
+        currentVolume = currentVolume + 10;
+        pauseTune();
+        playTune();
+      } else {
+        // If it reaches Volume 80 and Frequency 8000, move to MyRoutes.rightear
+        if (currentVolume == 80 && currentFrequency == 8000) {
+          onProceedButtonPressed();
+        } else {
+          // If it reaches Volume 80, move to the next frequency
+          if (currentVolume == 80) {
+            j = 0;
+            currentVolume = 10;
+            i = i + 1;
+            currentFrequency = 2 * currentFrequency;
+            pauseTune();
+            playTune();
+          } else {
+            // Handle other cases if needed
+          }
+        }
+      }
     });
   }
 
