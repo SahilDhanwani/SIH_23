@@ -6,9 +6,10 @@ import 'package:sih_23_audiometer/pages/graph.dart';
 class RightEar extends StatefulWidget {
   final List<double> leftValues;
 
-  const RightEar({Key? key, required this.leftValues}) : super(key: key);
+  const RightEar({super.key, required this.leftValues});
 
   @override
+  // ignore: library_private_types_in_public_api
   _RightEarState createState() => _RightEarState();
 }
 
