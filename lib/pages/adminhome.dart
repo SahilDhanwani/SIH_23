@@ -8,7 +8,7 @@ import 'package:sih_23_audiometer/widgets/themes.dart';
 class adminhome extends StatelessWidget {
   final String adminName = "John Doe";
   final String classCode = "CS101";
-  final String schoolName = "Flutter High School";
+  late Future<String> schoolName;
   final String adminImagePath = "assets/images/admin.png";
   final String outsideImagePath = "assets/images/admin.png";
 
@@ -70,7 +70,7 @@ class adminhome extends StatelessWidget {
             const SizedBox(height: 10.0),
             // Display the fetched school name
             Text(
-              'School Name: $fetchSchool',
+              'School Name: $schoolName',
               style: const TextStyle(fontSize: 20.0),
             ),
           ],
