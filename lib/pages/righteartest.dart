@@ -4,16 +4,15 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
 
 class RightEar extends StatefulWidget {
-  final List<double> leftValues; 
- const RightEar({super.key, required this.leftValues});
+  final List<double> leftValues;
+
+  const RightEar({Key? key, required this.leftValues}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
-  _MyHomePageState createState() => _MyHomePageState();
+  _RightEarState createState() => _RightEarState();
 }
 
-class _MyHomePageState extends State<RightEar> {
-
+class _RightEarState extends State<RightEar> {
   late double right250 = 10;
   late double right500 = 10;
   late double right1000 = 10;
@@ -30,40 +29,70 @@ class _MyHomePageState extends State<RightEar> {
   int currentVolume = 10;
   List<List<String>> tunes = [
     [
-      'rightear/hearingTest.online.warble_250_10_R.mp3','rightear/hearingTest.online.warble_250_20_R.mp3',
-      'rightear/hearingTest.online.warble_250_30_R.mp3','rightear/hearingTest.online.warble_250_40_R.mp3',
-      'rightear/hearingTest.online.warble_250_50_R.mp3','rightear/hearingTest.online.warble_250_60_R.mp3',
-      'rightear/hearingTest.online.warble_250_70_R.mp3','rightear/hearingTest.online.warble_250_80_R.mp3'],
+      'rightear/hearingTest.online.warble_250_10_R.mp3',
+      'rightear/hearingTest.online.warble_250_20_R.mp3',
+      'rightear/hearingTest.online.warble_250_30_R.mp3',
+      'rightear/hearingTest.online.warble_250_40_R.mp3',
+      'rightear/hearingTest.online.warble_250_50_R.mp3',
+      'rightear/hearingTest.online.warble_250_60_R.mp3',
+      'rightear/hearingTest.online.warble_250_70_R.mp3',
+      'rightear/hearingTest.online.warble_250_80_R.mp3'
+    ],
     [
-      'rightear/hearingTest.online.warble_500_10_R.mp3','rightear/hearingTest.online.warble_500_20_R.mp3',
-      'rightear/hearingTest.online.warble_500_30_R.mp3','rightear/hearingTest.online.warble_500_40_R.mp3',
-      'rightear/hearingTest.online.warble_500_50_R.mp3','rightear/hearingTest.online.warble_500_60_R.mp3',
-      'rightear/hearingTest.online.warble_500_70_R.mp3','rightear/hearingTest.online.warble_500_80_R.mp3'],
+      'rightear/hearingTest.online.warble_500_10_R.mp3',
+      'rightear/hearingTest.online.warble_500_20_R.mp3',
+      'rightear/hearingTest.online.warble_500_30_R.mp3',
+      'rightear/hearingTest.online.warble_500_40_R.mp3',
+      'rightear/hearingTest.online.warble_500_50_R.mp3',
+      'rightear/hearingTest.online.warble_500_60_R.mp3',
+      'rightear/hearingTest.online.warble_500_70_R.mp3',
+      'rightear/hearingTest.online.warble_500_80_R.mp3'
+    ],
     [
-      'rightear/hearingTest.online.warble_1000_10_R.mp3','rightear/hearingTest.online.warble_1000_20_R.mp3',
-      'rightear/hearingTest.online.warble_1000_30_R.mp3','rightear/hearingTest.online.warble_1000_40_R.mp3',
-      'rightear/hearingTest.online.warble_1000_50_R.mp3','rightear/hearingTest.online.warble_1000_60_R.mp3',
-      'rightear/hearingTest.online.warble_1000_70_R.mp3','rightear/hearingTest.online.warble_1000_80_R.mp3'],
+      'rightear/hearingTest.online.warble_1000_10_R.mp3',
+      'rightear/hearingTest.online.warble_1000_20_R.mp3',
+      'rightear/hearingTest.online.warble_1000_30_R.mp3',
+      'rightear/hearingTest.online.warble_1000_40_R.mp3',
+      'rightear/hearingTest.online.warble_1000_50_R.mp3',
+      'rightear/hearingTest.online.warble_1000_60_R.mp3',
+      'rightear/hearingTest.online.warble_1000_70_R.mp3',
+      'rightear/hearingTest.online.warble_1000_80_R.mp3'
+    ],
     [
-      'rightear/hearingTest.online.warble_2000_10_R.mp3','rightear/hearingTest.online.warble_2000_20_R.mp3',
-      'rightear/hearingTest.online.warble_2000_30_R.mp3','rightear/hearingTest.online.warble_2000_40_R.mp3',
-      'rightear/hearingTest.online.warble_2000_50_R.mp3','rightear/hearingTest.online.warble_2000_60_R.mp3',
-      'rightear/hearingTest.online.warble_2000_70_R.mp3','rightear/hearingTest.online.warble_2000_80_R.mp3'],
+      'rightear/hearingTest.online.warble_2000_10_R.mp3',
+      'rightear/hearingTest.online.warble_2000_20_R.mp3',
+      'rightear/hearingTest.online.warble_2000_30_R.mp3',
+      'rightear/hearingTest.online.warble_2000_40_R.mp3',
+      'rightear/hearingTest.online.warble_2000_50_R.mp3',
+      'rightear/hearingTest.online.warble_2000_60_R.mp3',
+      'rightear/hearingTest.online.warble_2000_70_R.mp3',
+      'rightear/hearingTest.online.warble_2000_80_R.mp3'
+    ],
     [
-      'rightear/hearingTest.online.warble_4000_10_R.mp3','rightear/hearingTest.online.warble_4000_20_R.mp3',
-      'rightear/hearingTest.online.warble_4000_30_R.mp3','rightear/hearingTest.online.warble_4000_40_R.mp3',
-      'rightear/hearingTest.online.warble_4000_50_R.mp3','rightear/hearingTest.online.warble_4000_60_R.mp3',
-      'rightear/hearingTest.online.warble_4000_70_R.mp3','rightear/hearingTest.online.warble_4000_80_R.mp3'],
+      'rightear/hearingTest.online.warble_4000_10_R.mp3',
+      'rightear/hearingTest.online.warble_4000_20_R.mp3',
+      'rightear/hearingTest.online.warble_4000_30_R.mp3',
+      'rightear/hearingTest.online.warble_4000_40_R.mp3',
+      'rightear/hearingTest.online.warble_4000_50_R.mp3',
+      'rightear/hearingTest.online.warble_4000_60_R.mp3',
+      'rightear/hearingTest.online.warble_4000_70_R.mp3',
+      'rightear/hearingTest.online.warble_4000_80_R.mp3'
+    ],
     [
-      'rightear/hearingTest.online.warble_8000_10_R.mp3','rightear/hearingTest.online.warble_8000_20_R.mp3',
-      'rightear/hearingTest.online.warble_8000_30_R.mp3','rightear/hearingTest.online.warble_8000_40_R.mp3',
-      'rightear/hearingTest.online.warble_8000_50_R.mp3','rightear/hearingTest.online.warble_8000_60_R.mp3',
-      'rightear/hearingTest.online.warble_8000_70_R.mp3','rightear/hearingTest.online.warble_8000_80_R.mp3'],
-    ];
-  
+      'rightear/hearingTest.online.warble_8000_10_R.mp3',
+      'rightear/hearingTest.online.warble_8000_20_R.mp3',
+      'rightear/hearingTest.online.warble_8000_30_R.mp3',
+      'rightear/hearingTest.online.warble_8000_40_R.mp3',
+      'rightear/hearingTest.online.warble_8000_50_R.mp3',
+      'rightear/hearingTest.online.warble_8000_60_R.mp3',
+      'rightear/hearingTest.online.warble_8000_70_R.mp3',
+      'rightear/hearingTest.online.warble_8000_80_R.mp3'
+    ],
+  ];
+
   @override
   void initState() {
-    //Calibration
+    // Calibration
     initPlayer();
     super.initState();
     playTune();
@@ -123,95 +152,143 @@ class _MyHomePageState extends State<RightEar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Right Ear Test'),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Test for left ear',
+            const SizedBox(height: 20),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Text(
+                'Test for Right Ear',
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width * 0.05,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
-                Image.asset('assets/images/rightear.png',
-                    height: 50, width: 50),
-              ],
+              ),
             ),
-            const SizedBox(
-              height: 16,
+            const SizedBox(height: 20),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Image.asset(
+                'assets/images/rightear.png',
+                height: MediaQuery.of(context).size.width * 0.3,
+                width: MediaQuery.of(context).size.width * 0.3,
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Frequency: $currentFrequency'),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Volume: $currentVolume'),
-                const SizedBox(width: 16),
-              ],
-            ),
-            const SizedBox(height: 16),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [Text('Can you hear?')],
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: onCrossButtonPressed,
-                  child: const Text('No'),
-                ),
-                const SizedBox(width: 16),
-                ElevatedButton(
-                  onPressed: onTickButtonPressed,
-                  child: const Text('Yes'),
-                ),
-              ],
-            ),
-            Expanded(
-                child: Container()), // Spacer to push buttons to the bottom
-             ElevatedButton(
-                onPressed: () {
-                  // Navigator to the next page.
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      // Builder for the nextpage
-                      // class's constructor.
-
-                      // Date as arguments to
-                      // send to next page.
-                      builder: (context) =>  Graph(
-                        leftValues: [
-                          widget.leftValues[0] ,
-                         widget.leftValues[1],
-                          widget.leftValues[2],
-                          widget.leftValues[3],
-                          widget.leftValues[4],
-                          widget.leftValues[5]
-                        ],
-                        rightValues: [
-                           right250,
-                           right500,
-                           right1000,
-                           right2000,
-                           right4000,
-                           right8000
-                        ],
-                      ),
+            const SizedBox(height: 20),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    'Frequency',
+                    style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width * 0.04,
+                      fontWeight: FontWeight.bold,
                     ),
-                  );
-                },
-                child: const Text("SEND"))
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    '$currentFrequency Hz',
+                    style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width * 0.05,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    'Volume',
+                    style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width * 0.04,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    '$currentVolume',
+                    style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width * 0.05,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            const Text('Can you hear?', style: TextStyle(fontSize: 30)),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: onCrossButtonPressed,
+                  child: Image.asset(
+                    'assets/images/notick.png',
+                    height: MediaQuery.of(context).size.width * 0.15,
+                    width: MediaQuery.of(context).size.width * 0.15,
+                  ),
+                ),
+                const SizedBox(width: 20),
+                GestureDetector(
+                  onTap: onTickButtonPressed,
+                  child: Image.asset(
+                    'assets/images/yestick.png',
+                    height: MediaQuery.of(context).size.width * 0.15,
+                    width: MediaQuery.of(context).size.width * 0.15,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Navigator to the next page.
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => Graph(
+                      leftValues: widget.leftValues,
+                      rightValues: [
+                        right250,
+                        right500,
+                        right1000,
+                        right2000,
+                        right4000,
+                        right8000
+                      ],
+                    ),
+                  ),
+                );
+              },
+              child: const Text("SEND"),
+            ),
           ],
         ),
       ),
