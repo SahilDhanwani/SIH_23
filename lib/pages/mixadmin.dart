@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:sih_23_audiometer/pages/adminhome.dart';
+// import 'package:sih_23_audiometer/pages/adminhome.dart';
+import 'package:sih_23_audiometer/pages/mixstudent.dart';
 
 // ignore: camel_case_types
 class mixadmin extends StatelessWidget {
@@ -124,7 +125,7 @@ class AdminLoginForm extends StatelessWidget {
               onPressed: () {
                 _auth.signInWithEmailAndPassword(email: class_code.text.toString()+adder, password: password.text.toString());
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) =>  adminhome(username: class_code.text.toString())));
+                    MaterialPageRoute(builder: (context) =>  const Mixstudent()));
               },
               child: const Text('Login'),
             ),
@@ -224,7 +225,7 @@ class AdminSignupForm extends StatelessWidget {
                 });
 
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) =>  adminhome(username: class_code.text.toString()+adder)));
+                    MaterialPageRoute(builder: (context) =>  const Mixstudent()));
               },
               child: const Text('Signup'),
             ),

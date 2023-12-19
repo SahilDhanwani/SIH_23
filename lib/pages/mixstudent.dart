@@ -5,9 +5,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 // ignore: camel_case_types
 class Mixstudent extends StatelessWidget {
   const Mixstudent({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_label
+   
     return const MaterialApp(
       home: StudentPage(),
     );
@@ -16,6 +19,7 @@ class Mixstudent extends StatelessWidget {
 
 class StudentPage extends StatefulWidget {
   const StudentPage({super.key});
+  
 
   @override
   // ignore: library_private_types_in_public_api

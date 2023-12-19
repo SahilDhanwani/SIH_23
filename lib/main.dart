@@ -20,6 +20,7 @@ import 'package:sih_23_audiometer/pages/studadmin.dart';
 import 'package:sih_23_audiometer/pages/student_dashboard.dart';
 import 'package:sih_23_audiometer/pages/student_login.dart';
 import 'package:sih_23_audiometer/pages/student_signin.dart';
+import 'package:sih_23_audiometer/pages/welcome.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 import 'package:sih_23_audiometer/pages/studenthome.dart';
@@ -56,10 +57,10 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.Dashboard,
+      initialRoute: MyRoutes.Welcome,
       routes: {
         // MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
-        MyRoutes.studentLoginRoute: (context) => const student_login(), //Second page(Logini/Signup)
+        MyRoutes.studentLoginRoute: (context) => studentlogin(), //Second page(Logini/Signup)
         MyRoutes.studentDashboard: (context) => const StudentDashboard(), //Student Home Page
         MyRoutes.studentSigninRoute: (context) => const StudentSignin(), //Student Login
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
@@ -77,9 +78,11 @@ class MyApp extends StatelessWidget {
         MyRoutes.mixadmin: (context) => const mixadmin(),
         MyRoutes.Mixstudent: (context) => const Mixstudent(),
         MyRoutes.headset: (context) => const Headset(),
-        MyRoutes.adminhome: (context) => const adminhome(username: 'NA'),
+        MyRoutes.adminhome: (context) => const adminhome(),
         MyRoutes.studenthome: (context) => const studenthome(),
         MyRoutes.Dashboard: (context) => Dashboard(),
+        MyRoutes.Welcome: (context) => Welcome(),
+        
         
       },
     );
