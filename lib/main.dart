@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/pages/Calibration.dart';
 import 'package:sih_23_audiometer/pages/adminhome.dart';
+import 'package:sih_23_audiometer/pages/dashbord.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
 import 'package:sih_23_audiometer/pages/headset.dart';
 // ignore: unused_import
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.leftear,
+      initialRoute: MyRoutes.Dashboard,
       routes: {
         //  MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
         MyRoutes.studentLoginRoute: (context) =>
@@ -87,6 +88,8 @@ class MyApp extends StatelessWidget {
             ),
 
         MyRoutes.studenthome: (context) => const studenthome(),
+        MyRoutes.Dashboard: (context) => Dashboard(),
+        
       },
     );
   }

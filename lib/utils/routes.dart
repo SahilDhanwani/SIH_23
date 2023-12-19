@@ -23,5 +23,6 @@ class MyRoutes {
   static String mixadmin = '/mixadmin';
   static String adminhome = '/adminhome';
   static String studenthome = '/studenthome';
+  static String Dashboard = '/Dashboard';
    
 }
