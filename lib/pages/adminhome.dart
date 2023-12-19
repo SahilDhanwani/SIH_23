@@ -2,31 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 
-// ignore: camel_case_types
 class adminhome extends StatelessWidget {
-  final String username; 
-  const adminhome({super.key, required this.username});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: const HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
   final String adminName = "John Doe";
   final String classCode = "CS101";
   final String schoolName = "Flutter High School";
   final String adminImagePath = "assets/images/admin.png";
   final String outsideImagePath = "assets/images/admin.png";
 
-  const HomePage({super.key});
+  const adminhome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +29,7 @@ class HomePage extends StatelessWidget {
             ),
             ElevatedButton(
   onPressed: () {
-    Navigator.pushNamed(context, MyRoutes.leftear);
+    Navigator.pushNamed(context, MyRoutes.Dashboard);
   },
   style: ElevatedButton.styleFrom(
     backgroundColor: MyTheme.buttonColor,
@@ -66,8 +49,8 @@ class HomePage extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.0),
               child: Image.asset(
                 outsideImagePath,
-                height: 120.0,
-                width: 120.0,
+                height: 150.0,
+                width: 150.0,
                 fit: BoxFit.cover,
               ),
             ),
@@ -85,16 +68,6 @@ class HomePage extends StatelessWidget {
             Text(
               'School Name: $schoolName',
               style: const TextStyle(fontSize: 20.0),
-            ),
-            const SizedBox(height: 20.0),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, MyRoutes. leftear);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: MyTheme.buttonColor,
-              ),
-              child: const Text('Home'),
             ),
           ],
         ),

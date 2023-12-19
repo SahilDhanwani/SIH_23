@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:sih_23_audiometer/pages/adminhome.dart';
+// import 'package:sih_23_audiometer/pages/adminhome.dart';
+import 'package:sih_23_audiometer/pages/mixstudent.dart';
 
 // ignore: camel_case_types
 class mixadmin extends StatelessWidget {
@@ -96,36 +97,43 @@ class AdminLoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const TextField(
-            decoration: InputDecoration(
-              labelText: 'Class Code',
-              hintText: 'Enter your class code',
+      child: Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextFormField(
+              controller: class_code,
+              decoration: const InputDecoration(
+                labelText: 'Class Code',
+                hintText: 'Enter your class code',
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          const TextField(
-            decoration: InputDecoration(
-              labelText: 'Password',
-              hintText: 'Enter your password',
+            const SizedBox(
+              height: 16,
             ),
-            obscureText: true,
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              // Implement your admin login logic here
-            },
-            child: const Text('Login'),
-          ),
-        ],
-      ),
+            TextFormField(
+              controller: password,
+              decoration: const InputDecoration(
+                labelText: 'Password',
+                hintText: 'Enter your password',
+              ),
+              obscureText: true,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _auth.signInWithEmailAndPassword(email: class_code.text.toString()+adder, password: password.text.toString());
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) =>  const Mixstudent()));
+              },
+              child: const Text('Login'),
+            ),
+          ],
+        ),
+      )
     );
   }
 }
@@ -220,14 +228,14 @@ class AdminSignupForm extends StatelessWidget {
                 'class_code': class_code.text.toString(),
               });
 
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>
-                      adminhome(username: class_code.text.toString() + adder)));
-            },
-            child: const Text('Signup'),
-          ),
-        ],
-      ),
-    ));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) =>  const Mixstudent()));
+              },
+              child: const Text('Signup'),
+            ),
+          ],
+        ),
+      )
+    );
   }
 }

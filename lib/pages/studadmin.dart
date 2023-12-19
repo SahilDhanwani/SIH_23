@@ -43,7 +43,7 @@ class studadmin extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Image.asset(
-              'assets/images/eduapp_student_login.jpg',
+              'assets/images/student.jpg',
               height: 150,
             ),
             ElevatedButton(

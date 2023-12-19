@@ -71,6 +71,7 @@ flutter:
     - assets\images\admin.png
     - assets\images\notick.png
     - assets\images\yestick.png
+    - assets\images\logo.png
 
     - assets\leftear\hearingTest.online.warble_250_10_L.mp3
     - assets\leftear\hearingTest.online.warble_250_20_L.mp3
