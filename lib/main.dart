@@ -5,6 +5,8 @@ import 'package:sih_23_audiometer/pages/Calibration.dart';
 import 'package:sih_23_audiometer/pages/adminhome.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
 import 'package:sih_23_audiometer/pages/headset.dart';
+// ignore: unused_import
+import 'package:sih_23_audiometer/pages/home_page.dart';
 import 'package:sih_23_audiometer/pages/lefteartest.dart';
 import 'package:sih_23_audiometer/pages/logsignadmin.dart';
 import 'package:sih_23_audiometer/pages/mixadmin.dart';
@@ -44,7 +46,6 @@ Future main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -54,20 +55,26 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: MyRoutes.leftear,
       routes: {
-        // MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
-        MyRoutes.studentLoginRoute: (context) => const student_login(), //Second page(Logini/Signup)
-        MyRoutes.studentDashboard: (context) => const StudentDashboard(), //Student Home Page
-        MyRoutes.studentSigninRoute: (context) => const StudentSignin(), //Student Login
+        //  MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
+        MyRoutes.studentLoginRoute: (context) =>
+            const student_login(), //Second page(Logini/Signup)
+        MyRoutes.studentDashboard: (context) =>
+            const StudentDashboard(), //Student Home Page
+        MyRoutes.studentSigninRoute: (context) =>
+            const StudentSignin(), //Student Login
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.leftear: (context) => const LeftEar(),
         MyRoutes.rightear: (context) =>
-           RightEar(leftValues: [0, 0, 0, 0, 0, 0]),
-        MyRoutes.graph: (context) =>  Graph(
+            RightEar(leftValues: [0, 0, 0, 0, 0, 0]),
+        MyRoutes.graph: (context) => Graph(
             leftValues: [0, 0, 0, 0, 0, 0], rightValues: [0, 0, 0, 0, 0, 0]),
         MyRoutes.calibration: (context) => const Calibration(),
         MyRoutes.logsignstu: (context) => const LogSignStu(),
         MyRoutes.loginadmin: (context) => const loginadmin(),
         MyRoutes.logsignadmin: (context) => logsignadmin(),
+        MyRoutes.loginstudent: (context) => const LoginStudent(),
+        //MyRoutes.adminsignup: (context) => const adminsignup(),
+        // MyRoutes.Calibration: (context) => const Calibration(),
         MyRoutes.loginstudent: (context) => const LoginStudent(),
         MyRoutes.studentsignup: (context) => const StudentSignup(),
         // Files of AbhishekBHosale02
@@ -75,8 +82,10 @@ class MyApp extends StatelessWidget {
         MyRoutes.mixadmin: (context) => const mixadmin(),
         MyRoutes.Mixstudent: (context) => const Mixstudent(),
         MyRoutes.headset: (context) => const Headset(),
-        MyRoutes.adminhome: (context) => const adminhome(username: '',),
-      
+        MyRoutes.adminhome: (context) => const adminhome(
+              username: '',
+            ),
+
         MyRoutes.studenthome: (context) => const studenthome(),
       },
     );

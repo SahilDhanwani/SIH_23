@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
+import 'package:sih_23_audiometer/utils/routes.dart';
 
 class RightEar extends StatefulWidget {
   final List<double> leftValues;
   const RightEar({super.key, required this.leftValues});
 
   @override
+  // ignore: library_private_types_in_public_api
   _RightEarState createState() => _RightEarState();
 }
 
 class _RightEarState extends State<RightEar> {
-  late double right250 =0;
+  late double right250 = 0;
   late double right500 = 0;
   late double right1000 = 0;
   late double right2000 = 0;
@@ -26,6 +28,7 @@ class _RightEarState extends State<RightEar> {
   late AssetSource path;
   int currentFrequency = 250;
   double currentVolume = 10;
+  bool isButtonEnabled = false;
   List<List<String>> tunes = [
     [
       'rightear/hearingTest.online.warble_250_10_R.mp3',
@@ -149,24 +152,62 @@ class _RightEarState extends State<RightEar> {
     setState(() {});
   }
 
+  void onProceedButtonPressed() {
+    // Logic when the proceed button for the right ear is pressed
+    Navigator.pushNamed(context, MyRoutes.graph);
+    // ignore: avoid_print
+    print('Proceed');
+    // You can navigate to the next screen or perform other actions here
+    // ignore: avoid_print
+    print('Proceeding to the audiogram');
+  }
+
   void onTickButtonPressed() {
     setState(() {
       updaterightValues();
-      currentVolume = 10;
-      j = 0;
-      i = i + 1;
-      currentFrequency = 2 * currentFrequency;
-      pauseTune();
-      playTune();
+      // If it reaches the last frequency (8000), navigate to MyRoutes.rightear
+      if (i == tunes.length - 1) {
+        onProceedButtonPressed();
+        //isButtonEnabled = true;
+      } else {
+        currentVolume = 10;
+        j = 0;
+        i = i + 1;
+        currentFrequency = 2 * currentFrequency;
+        pauseTune();
+        playTune();
+      }
+      isButtonEnabled = currentFrequency == 8000;
+      //  isButtonEnabled = false;
     });
   }
 
   void onCrossButtonPressed() {
     setState(() {
-      j = j + 1;
-      currentVolume = currentVolume + 10;
-      pauseTune();
-      playTune();
+      if (j < tunes[i].length - 1) {
+        j = j + 1;
+        currentVolume = currentVolume + 10;
+        pauseTune();
+        playTune();
+      } else {
+        // If it reaches Volume 80 and Frequency 8000, move to MyRoutes.rightear
+        if (currentVolume == 80 && currentFrequency == 8000) {
+          onProceedButtonPressed();
+          // isButtonEnabled = true;
+        } else {
+          // If it reaches Volume 80, move to the next frequency
+          if (currentVolume == 80) {
+            j = 0;
+            currentVolume = 10;
+            i = i + 1;
+            currentFrequency = 2 * currentFrequency;
+            pauseTune();
+            playTune();
+          }
+          // Handle other cases if needed
+        }
+      }
+      isButtonEnabled = currentFrequency == 8000;
     });
   }
 
@@ -291,37 +332,35 @@ class _RightEarState extends State<RightEar> {
             Expanded(
                 child: Container()), // Spacer to push buttons to the bottom
             ElevatedButton(
-                onPressed: () {
-                  // Navigator to the next page.
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      // Builder for the nextpage
-                      // class's constructor.
-
-                      // Date as arguments to
-                      // send to next page.
-                      builder: (context) => Graph(
-                        leftValues: [
-                          widget.leftValues[0],
-                          widget.leftValues[1],
-                          widget.leftValues[2],
-                          widget.leftValues[3],
-                          widget.leftValues[4],
-                          widget.leftValues[5]
-                        ],
-                        rightValues: [
-                          right250,
-                          right500,
-                          right1000,
-                          right2000,
-                          right4000,
-                          right8000
-                        ],
-                      ),
-                    ),
-                  );
-                },
-                child: const Text("Generate results"))
+              onPressed: isButtonEnabled
+                  ? () {
+                      // Navigator to the next page.
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => Graph(
+                            leftValues: [
+                              widget.leftValues[0],
+                              widget.leftValues[1],
+                              widget.leftValues[2],
+                              widget.leftValues[3],
+                              widget.leftValues[4],
+                              widget.leftValues[5]
+                            ],
+                            rightValues: [
+                              right250,
+                              right500,
+                              right1000,
+                              right2000,
+                              right4000,
+                              right8000
+                            ],
+                          ),
+                        ),
+                      );
+                    }
+                  : null,
+              child: const Text("SEND"),
+            ),
           ],
         ),
       ),

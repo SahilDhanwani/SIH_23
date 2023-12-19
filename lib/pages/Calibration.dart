@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:noise_meter/noise_meter.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+// ignore: file_names
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -167,24 +168,20 @@ class _CalibrationState extends State<Calibration> {
                       ),
                     ),
                     const SizedBox(width: 20),
- ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                    context, MyRoutes.leftear); // Navigate to home screen
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    MyTheme.buttonColor, // Use the button color from theme
-              ),
-              child: const Text('Signup'),
-            ),
-
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context,
+                            MyRoutes.leftear); // Navigate to home screen
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: MyTheme
+                            .buttonColor, // Use the button color from theme
+                      ),
+                      child: const Text('Proceed'),
+                    ),
                   ],
                 ),
-                
-               
               ],
             )));
   }
 }
-

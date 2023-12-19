@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
+// ignore: unused_import
 import 'package:sih_23_audiometer/pages/righteartest.dart';
 import '../utils/routes.dart';
 
 class LeftEar extends StatefulWidget {
+  // ignore: use_super_parameters
   const LeftEar({Key? key}) : super(key: key);
 
   @override
@@ -13,48 +15,87 @@ class LeftEar extends StatefulWidget {
 }
 
 class _LeftEarState extends State<LeftEar> {
-  late double left250=0;
+  late double left250 = 0;
   late double left500 = 0;
   late double left1000 = 0;
   late double left2000 = 0;
   late double left4000 = 0;
   late double left8000 = 0;
+  bool _isDisposed = false;
   late final List<double> leftValues;
 
   int i = 0;
   int j = 0;
-  bool isPlaying = true;
   late final AudioPlayer player;
   late AssetSource path;
   int currentFrequency = 250;
   double currentVolume = 10;
   List<List<String>> tunes = [
-    ['leftear/hearingTest.online.warble_250_10_L.mp3', 'leftear/hearingTest.online.warble_250_20_L.mp3',
-      'leftear/hearingTest.online.warble_250_30_L.mp3', 'leftear/hearingTest.online.warble_250_40_L.mp3',
-      'leftear/hearingTest.online.warble_250_50_L.mp3', 'leftear/hearingTest.online.warble_250_60_L.mp3',
-      'leftear/hearingTest.online.warble_250_70_L.mp3', 'leftear/hearingTest.online.warble_250_80_L.mp3'],
-    ['leftear/hearingTest.online.warble_500_10_L.mp3', 'leftear/hearingTest.online.warble_500_20_L.mp3',
-      'leftear/hearingTest.online.warble_500_30_L.mp3', 'leftear/hearingTest.online.warble_500_40_L.mp3',
-      'leftear/hearingTest.online.warble_500_50_L.mp3', 'leftear/hearingTest.online.warble_500_60_L.mp3',
-      'leftear/hearingTest.online.warble_500_70_L.mp3', 'leftear/hearingTest.online.warble_500_80_L.mp3'],
-    ['leftear/hearingTest.online.warble_1000_10_L.mp3', 'leftear/hearingTest.online.warble_1000_20_L.mp3',
-      'leftear/hearingTest.online.warble_1000_30_L.mp3', 'leftear/hearingTest.online.warble_1000_40_L.mp3',
-      'leftear/hearingTest.online.warble_1000_50_L.mp3', 'leftear/hearingTest.online.warble_1000_60_L.mp3',
-      'leftear/hearingTest.online.warble_1000_70_L.mp3', 'leftear/hearingTest.online.warble_1000_80_L.mp3'],
-    ['leftear/hearingTest.online.warble_2000_10_L.mp3', 'leftear/hearingTest.online.warble_2000_20_L.mp3',
-      'leftear/hearingTest.online.warble_2000_30_L.mp3', 'leftear/hearingTest.online.warble_2000_40_L.mp3',
-      'leftear/hearingTest.online.warble_2000_50_L.mp3', 'leftear/hearingTest.online.warble_2000_60_L.mp3',
-      'leftear/hearingTest.online.warble_2000_70_L.mp3', 'leftear/hearingTest.online.warble_2000_80_L.mp3'],
-    ['leftear/hearingTest.online.warble_4000_10_L.mp3', 'leftear/hearingTest.online.warble_4000_20_L.mp3',
-      'leftear/hearingTest.online.warble_4000_30_L.mp3', 'leftear/hearingTest.online.warble_4000_40_L.mp3',
-      'leftear/hearingTest.online.warble_4000_50_L.mp3', 'leftear/hearingTest.online.warble_4000_60_L.mp3',
-      'leftear/hearingTest.online.warble_4000_70_L.mp3', 'leftear/hearingTest.online.warble_4000_80_L.mp3'],
-    ['leftear/hearingTest.online.warble_8000_10_L.mp3', 'leftear/hearingTest.online.warble_8000_20_L.mp3',
-      'leftear/hearingTest.online.warble_8000_30_L.mp3', 'leftear/hearingTest.online.warble_8000_40_L.mp3',
-      'leftear/hearingTest.online.warble_8000_50_L.mp3', 'leftear/hearingTest.online.warble_8000_60_L.mp3',
-      'leftear/hearingTest.online.warble_8000_70_L.mp3', 'leftear/hearingTest.online.warble_8000_80_L.mp3'],
+    [
+      'leftear/hearingTest.online.warble_250_10_L.mp3',
+      'leftear/hearingTest.online.warble_250_20_L.mp3',
+      'leftear/hearingTest.online.warble_250_30_L.mp3',
+      'leftear/hearingTest.online.warble_250_40_L.mp3',
+      'leftear/hearingTest.online.warble_250_50_L.mp3',
+      'leftear/hearingTest.online.warble_250_60_L.mp3',
+      'leftear/hearingTest.online.warble_250_70_L.mp3',
+      'leftear/hearingTest.online.warble_250_80_L.mp3'
+    ],
+    [
+      'leftear/hearingTest.online.warble_500_10_L.mp3',
+      'leftear/hearingTest.online.warble_500_20_L.mp3',
+      'leftear/hearingTest.online.warble_500_30_L.mp3',
+      'leftear/hearingTest.online.warble_500_40_L.mp3',
+      'leftear/hearingTest.online.warble_500_50_L.mp3',
+      'leftear/hearingTest.online.warble_500_60_L.mp3',
+      'leftear/hearingTest.online.warble_500_70_L.mp3',
+      'leftear/hearingTest.online.warble_500_80_L.mp3'
+    ],
+    [
+      'leftear/hearingTest.online.warble_1000_10_L.mp3',
+      'leftear/hearingTest.online.warble_1000_20_L.mp3',
+      'leftear/hearingTest.online.warble_1000_30_L.mp3',
+      'leftear/hearingTest.online.warble_1000_40_L.mp3',
+      'leftear/hearingTest.online.warble_1000_50_L.mp3',
+      'leftear/hearingTest.online.warble_1000_60_L.mp3',
+      'leftear/hearingTest.online.warble_1000_70_L.mp3',
+      'leftear/hearingTest.online.warble_1000_80_L.mp3'
+    ],
+    [
+      'leftear/hearingTest.online.warble_2000_10_L.mp3',
+      'leftear/hearingTest.online.warble_2000_20_L.mp3',
+      'leftear/hearingTest.online.warble_2000_30_L.mp3',
+      'leftear/hearingTest.online.warble_2000_40_L.mp3',
+      'leftear/hearingTest.online.warble_2000_50_L.mp3',
+      'leftear/hearingTest.online.warble_2000_60_L.mp3',
+      'leftear/hearingTest.online.warble_2000_70_L.mp3',
+      'leftear/hearingTest.online.warble_2000_80_L.mp3'
+    ],
+    [
+      'leftear/hearingTest.online.warble_4000_10_L.mp3',
+      'leftear/hearingTest.online.warble_4000_20_L.mp3',
+      'leftear/hearingTest.online.warble_4000_30_L.mp3',
+      'leftear/hearingTest.online.warble_4000_40_L.mp3',
+      'leftear/hearingTest.online.warble_4000_50_L.mp3',
+      'leftear/hearingTest.online.warble_4000_60_L.mp3',
+      'leftear/hearingTest.online.warble_4000_70_L.mp3',
+      'leftear/hearingTest.online.warble_4000_80_L.mp3'
+    ],
+    [
+      'leftear/hearingTest.online.warble_8000_10_L.mp3',
+      'leftear/hearingTest.online.warble_8000_20_L.mp3',
+      'leftear/hearingTest.online.warble_8000_30_L.mp3',
+      'leftear/hearingTest.online.warble_8000_40_L.mp3',
+      'leftear/hearingTest.online.warble_8000_50_L.mp3',
+      'leftear/hearingTest.online.warble_8000_60_L.mp3',
+      'leftear/hearingTest.online.warble_8000_70_L.mp3',
+      'leftear/hearingTest.online.warble_8000_80_L.mp3'
+    ],
   ];
 
+  late bool _isPlayerInitialized;
+  // ignore: unused_field
+  late Future<void> _playerInitialization;
 
   @override
   void initState() {
@@ -67,79 +108,127 @@ class _LeftEarState extends State<LeftEar> {
   Future<void> initPlayer() async {
     player = AudioPlayer();
     path = AssetSource(tunes[i][j]);
+    _isPlayerInitialized = true;
     setState(() {});
     playTune();
   }
 
   @override
   void dispose() {
+    _isDisposed = true; // Set the flag to true when disposing
     player.dispose();
     super.dispose();
   }
 
   void playTune() async {
-    if (i < tunes.length) {
+    if (i < tunes.length && !_isDisposed && _isPlayerInitialized) {
       path = AssetSource(tunes[i][j]);
       player.setVolume(1);
       player.setBalance(-1.0);
       player.play(path);
-      setState(() {});
+      setState(() {}); // Check the flag before calling setState
     } else {
-      dispose();
-      setState(() {});
+      if (!_isDisposed) {
+        dispose();
+        // setState(() {}); // Check the flag before calling setState
+      }
     }
   }
 
   void pauseTune() async {
-    player.pause();
-    setState(() {});
+    if (!_isDisposed) {
+      player.pause();
+      setState(() {}); // Check the flag before calling setState
+    }
   }
 
   void onTickButtonPressed() {
     setState(() {
-     updateLeftValues();
-      currentVolume = 10;
-      j = 0;
-      i = i + 1;
-      currentFrequency = 2 * currentFrequency;
-      pauseTune();
-      playTune();
+      updateLeftValues();
+      // If it reaches the last frequency (8000), navigate to MyRoutes.rightear
+      if (i == tunes.length - 1) {
+        onProceedButtonPressed();
+      } else {
+        currentVolume = 10;
+        j = 0;
+        i = i + 1;
+        currentFrequency = 2 * currentFrequency;
+        pauseTune();
+        playTune();
+      }
     });
   }
-  void updateLeftValues() {
-  if (currentFrequency == 250) {
-    left250 = currentVolume;
-  }
-  if (currentFrequency == 500) {
-    left500 = currentVolume;
-  }
-  if (currentFrequency == 1000) {
-    left1000 = currentVolume;
-  }
-  if (currentFrequency == 2000) {
-    left2000 = currentVolume;
-  }
-  if (currentFrequency == 4000) {
-    left4000 = currentVolume;
-  }
-  if (currentFrequency == 8000) {
-    left8000 = currentVolume;
-  }
 
-}
+  void updateLeftValues() {
+    if (currentFrequency == 250) {
+      left250 = currentVolume;
+    }
+    if (currentFrequency == 500) {
+      left500 = currentVolume;
+    }
+    if (currentFrequency == 1000) {
+      left1000 = currentVolume;
+    }
+    if (currentFrequency == 2000) {
+      left2000 = currentVolume;
+    }
+    if (currentFrequency == 4000) {
+      left4000 = currentVolume;
+    }
+    if (currentFrequency == 8000) {
+      left8000 = currentVolume;
+    }
+  }
 
   void onCrossButtonPressed() {
     setState(() {
-      j = j + 1;
-      currentVolume = currentVolume + 10;
-      pauseTune();
-      playTune();
+      if (j < tunes[i].length - 1) {
+        j = j + 1;
+        currentVolume = currentVolume + 10;
+        pauseTune();
+        playTune();
+      } else {
+        // If it reaches Volume 80 and Frequency 8000, move to MyRoutes.rightear
+        if (currentVolume == 80 && currentFrequency == 8000) {
+          onProceedButtonPressed();
+        } else {
+          // If it reaches Volume 80, move to the next frequency
+          if (currentVolume == 80) {
+            j = 0;
+            currentVolume = 10;
+            i = i + 1;
+            currentFrequency = 2 * currentFrequency;
+            pauseTune();
+            playTune();
+          } else {
+            // Handle other cases if needed
+          }
+        }
+      }
     });
   }
 
   void onProceedButtonPressed() {
     // Logic when the proceed button for the right ear is pressed
-    Navigator.pushNamed(context, MyRoutes.rightear);
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        // Builder for the nextpage
+        // class's constructor.
+
+        // Date as arguments to
+        // send to next page.
+        builder: (context) => RightEar(
+          leftValues: [
+            left250,
+            left500,
+            left1000,
+            left2000,
+            left4000,
+            left8000
+          ],
+        ),
+      ),
+    );
     // ignore: avoid_print
     print('Proceed');
     // You can navigate to the next screen or perform other actions here
@@ -250,8 +339,10 @@ class _LeftEarState extends State<LeftEar> {
                   onTap: onCrossButtonPressed,
                   child: Image.asset(
                     'assets/images/notick.png',
-                    height: MediaQuery.of(context).size.width * 0.15, // Adjusted size
-                    width: MediaQuery.of(context).size.width * 0.15,  // Adjusted size
+                    height: MediaQuery.of(context).size.width *
+                        0.15, // Adjusted size
+                    width: MediaQuery.of(context).size.width *
+                        0.15, // Adjusted size
                   ),
                 ),
                 const SizedBox(width: 20),
@@ -259,8 +350,10 @@ class _LeftEarState extends State<LeftEar> {
                   onTap: onTickButtonPressed,
                   child: Image.asset(
                     'assets/images/yestick.png',
-                    height: MediaQuery.of(context).size.width * 0.15, // Adjusted size
-                    width: MediaQuery.of(context).size.width * 0.15,  // Adjusted size
+                    height: MediaQuery.of(context).size.width *
+                        0.15, // Adjusted size
+                    width: MediaQuery.of(context).size.width *
+                        0.15, // Adjusted size
                   ),
                 ),
               ],
@@ -269,25 +362,7 @@ class _LeftEarState extends State<LeftEar> {
             ElevatedButton(
                 onPressed: () {
                   // Navigator to the next page.
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      // Builder for the nextpage
-                      // class's constructor.
-
-                      // Date as arguments to
-                      // send to next page.
-                      builder: (context) => RightEar(
-                        leftValues: [
-                          left250,
-                          left500,
-                          left1000,
-                          left2000,
-                          left4000,
-                          left8000
-                        ],
-                      ),
-                    ),
-                  );
+                  onProceedButtonPressed();
                 },
                 child: const Text("Proceed For Right Ear Test "))
           ],
