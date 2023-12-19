@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sih_23_audiometer/utils/routes.dart';
 
 // ignore: camel_case_types
 class studenthome extends StatelessWidget {
@@ -36,10 +37,13 @@ class StudentInfoPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  onPressed: () => takeTest(context),
-                  child: const Text('Take Test'),
-                ),
+              ElevatedButton(
+            onPressed: () {
+             Navigator.pushNamed(
+                    context, MyRoutes.backgroundNoise);
+            },
+            child: const Text('Take test'),
+          ),
                 const SizedBox(width: 10.0),
                 ElevatedButton(
                   onPressed: () => viewReport(context),

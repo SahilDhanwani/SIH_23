@@ -23,9 +23,6 @@ import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 import 'package:sih_23_audiometer/pages/studenthome.dart';
 
-
-
-
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -63,8 +60,10 @@ class MyApp extends StatelessWidget {
         MyRoutes.studentSigninRoute: (context) => const StudentSignin(), //Student Login
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.leftear: (context) => const LeftEar(),
-        MyRoutes.rightear: (context) => const RightEar(leftValues: [0, 0, 0, 0, 0, 0]),
-        MyRoutes.graph: (context) => const Graph(leftValues: [0, 0, 0, 0, 0, 0], rightValues: [0, 0, 0, 0, 0, 0]),
+        MyRoutes.rightear: (context) =>
+           RightEar(leftValues: [0, 0, 0, 0, 0, 0]),
+        MyRoutes.graph: (context) =>  Graph(
+            leftValues: [0, 0, 0, 0, 0, 0], rightValues: [0, 0, 0, 0, 0, 0]),
         MyRoutes.calibration: (context) => const Calibration(),
         MyRoutes.logsignstu: (context) => const LogSignStu(),
         MyRoutes.loginadmin: (context) => const loginadmin(),
@@ -76,7 +75,8 @@ class MyApp extends StatelessWidget {
         MyRoutes.mixadmin: (context) => const mixadmin(),
         MyRoutes.Mixstudent: (context) => const Mixstudent(),
         MyRoutes.headset: (context) => const Headset(),
-        MyRoutes.adminhome: (context) => const adminhome(username: 'NA'),
+        MyRoutes.adminhome: (context) => const adminhome(username: '',),
+      
         MyRoutes.studenthome: (context) => const studenthome(),
       },
     );

@@ -8,16 +8,17 @@ class LeftEar extends StatefulWidget {
   const LeftEar({Key? key}) : super(key: key);
 
   @override
+  // ignore: no_logic_in_create_state, library_private_types_in_public_api
   _LeftEarState createState() => _LeftEarState();
 }
 
 class _LeftEarState extends State<LeftEar> {
-  late double left250 = 10;
-  late double left500 = 10;
-  late double left1000 = 10;
-  late double left2000 = 10;
-  late double left4000 = 10;
-  late double left8000 = 10;
+  late double left250=0;
+  late double left500 = 0;
+  late double left1000 = 0;
+  late double left2000 = 0;
+  late double left4000 = 0;
+  late double left8000 = 0;
   late final List<double> leftValues;
 
   int i = 0;
@@ -26,7 +27,7 @@ class _LeftEarState extends State<LeftEar> {
   late final AudioPlayer player;
   late AssetSource path;
   int currentFrequency = 250;
-  int currentVolume = 10;
+  double currentVolume = 10;
   List<List<String>> tunes = [
     ['leftear/hearingTest.online.warble_250_10_L.mp3', 'leftear/hearingTest.online.warble_250_20_L.mp3',
       'leftear/hearingTest.online.warble_250_30_L.mp3', 'leftear/hearingTest.online.warble_250_40_L.mp3',
@@ -96,6 +97,7 @@ class _LeftEarState extends State<LeftEar> {
 
   void onTickButtonPressed() {
     setState(() {
+     updateLeftValues();
       currentVolume = 10;
       j = 0;
       i = i + 1;
@@ -104,6 +106,27 @@ class _LeftEarState extends State<LeftEar> {
       playTune();
     });
   }
+  void updateLeftValues() {
+  if (currentFrequency == 250) {
+    left250 = currentVolume;
+  }
+  if (currentFrequency == 500) {
+    left500 = currentVolume;
+  }
+  if (currentFrequency == 1000) {
+    left1000 = currentVolume;
+  }
+  if (currentFrequency == 2000) {
+    left2000 = currentVolume;
+  }
+  if (currentFrequency == 4000) {
+    left4000 = currentVolume;
+  }
+  if (currentFrequency == 8000) {
+    left8000 = currentVolume;
+  }
+
+}
 
   void onCrossButtonPressed() {
     setState(() {
@@ -244,9 +267,29 @@ class _LeftEarState extends State<LeftEar> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: onProceedButtonPressed,
-              child: Text("Proceed to Right Ear", style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.04)),
-            ),
+                onPressed: () {
+                  // Navigator to the next page.
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      // Builder for the nextpage
+                      // class's constructor.
+
+                      // Date as arguments to
+                      // send to next page.
+                      builder: (context) => RightEar(
+                        leftValues: [
+                          left250,
+                          left500,
+                          left1000,
+                          left2000,
+                          left4000,
+                          left8000
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                child: const Text("Proceed For Right Ear Test "))
           ],
         ),
       ),

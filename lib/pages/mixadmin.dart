@@ -94,43 +94,36 @@ class AdminLoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Form(
-        key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            TextFormField(
-              controller: class_code,
-              decoration: const InputDecoration(
-                labelText: 'Class Code',
-                hintText: 'Enter your class code',
-              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const TextField(
+            decoration: InputDecoration(
+              labelText: 'Class Code',
+              hintText: 'Enter your class code',
             ),
-            const SizedBox(
-              height: 16,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          const TextField(
+            decoration: InputDecoration(
+              labelText: 'Password',
+              hintText: 'Enter your password',
             ),
-            TextFormField(
-              controller: password,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-                hintText: 'Enter your password',
-              ),
-              obscureText: true,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                _auth.signInWithEmailAndPassword(email: class_code.text.toString()+adder, password: password.text.toString());
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) =>  adminhome(username: class_code.text.toString())));
-              },
-              child: const Text('Login'),
-            ),
-          ],
-        ),
-      )
+            obscureText: true,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              // Implement your admin login logic here
+            },
+            child: const Text('Login'),
+          ),
+        ],
+      ),
     );
   }
 }

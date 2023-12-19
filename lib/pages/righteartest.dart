@@ -5,20 +5,19 @@ import 'package:sih_23_audiometer/pages/graph.dart';
 
 class RightEar extends StatefulWidget {
   final List<double> leftValues;
-
-  const RightEar({Key? key, required this.leftValues}) : super(key: key);
+  const RightEar({super.key, required this.leftValues});
 
   @override
   _RightEarState createState() => _RightEarState();
 }
 
 class _RightEarState extends State<RightEar> {
-  late double right250 = 10;
-  late double right500 = 10;
-  late double right1000 = 10;
-  late double right2000 = 10;
-  late double right4000 = 10;
-  late double right8000 = 10;
+  late double right250 =0;
+  late double right500 = 0;
+  late double right1000 = 0;
+  late double right2000 = 0;
+  late double right4000 = 0;
+  late double right8000 = 0;
   late final List<double> rightValues;
   int i = 0;
   int j = 0;
@@ -26,7 +25,7 @@ class _RightEarState extends State<RightEar> {
   late final AudioPlayer player;
   late AssetSource path;
   int currentFrequency = 250;
-  int currentVolume = 10;
+  double currentVolume = 10;
   List<List<String>> tunes = [
     [
       'rightear/hearingTest.online.warble_250_10_R.mp3',
@@ -124,6 +123,27 @@ class _RightEarState extends State<RightEar> {
     }
   }
 
+  void updaterightValues() {
+    if (currentFrequency == 250) {
+      right250 = currentVolume;
+    }
+    if (currentFrequency == 500) {
+      right500 = currentVolume;
+    }
+    if (currentFrequency == 1000) {
+      right1000 = currentVolume;
+    }
+    if (currentFrequency == 2000) {
+      right2000 = currentVolume;
+    }
+    if (currentFrequency == 4000) {
+      right4000 = currentVolume;
+    }
+    if (currentFrequency == 8000) {
+      right8000 = currentVolume;
+    }
+  }
+
   void pauseTune() async {
     player.pause();
     setState(() {});
@@ -131,6 +151,7 @@ class _RightEarState extends State<RightEar> {
 
   void onTickButtonPressed() {
     setState(() {
+      updaterightValues();
       currentVolume = 10;
       j = 0;
       i = i + 1;
@@ -267,28 +288,40 @@ class _RightEarState extends State<RightEar> {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            Expanded(
+                child: Container()), // Spacer to push buttons to the bottom
             ElevatedButton(
-              onPressed: () {
-                // Navigator to the next page.
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => Graph(
-                      leftValues: widget.leftValues,
-                      rightValues: [
-                        right250,
-                        right500,
-                        right1000,
-                        right2000,
-                        right4000,
-                        right8000
-                      ],
+                onPressed: () {
+                  // Navigator to the next page.
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      // Builder for the nextpage
+                      // class's constructor.
+
+                      // Date as arguments to
+                      // send to next page.
+                      builder: (context) => Graph(
+                        leftValues: [
+                          widget.leftValues[0],
+                          widget.leftValues[1],
+                          widget.leftValues[2],
+                          widget.leftValues[3],
+                          widget.leftValues[4],
+                          widget.leftValues[5]
+                        ],
+                        rightValues: [
+                          right250,
+                          right500,
+                          right1000,
+                          right2000,
+                          right4000,
+                          right8000
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
-              child: const Text("SEND"),
-            ),
+                  );
+                },
+                child: const Text("Generate results"))
           ],
         ),
       ),
