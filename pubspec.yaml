@@ -61,6 +61,7 @@ flutter:
     - assets\audio\1000hz.mp3
     - assets\audio\2000hz.mp3
     - assets\audio\4000hz.mp3
+    - assets\images\eduapp_student_login.jpg
     - assets\audio\8000hz.mp3
     - assets\images\bluecrossgraph.png
     - assets\images\baground.jpg

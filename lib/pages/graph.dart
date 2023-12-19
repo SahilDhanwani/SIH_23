@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class Graph extends StatelessWidget {
   final List<double> leftValues; // Define a list parameter
   final List<double> rightValues;
-  const Graph({super.key, required this.leftValues, required this.rightValues});
+  Graph({super.key, required this.leftValues, required this.rightValues});
 
   // This widget is the root of your application.
   @override
@@ -30,7 +31,7 @@ class Graph extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({
+   MyHomePage({
     super.key,
     required this.leftValues,
     required this.title,
@@ -88,19 +89,22 @@ class _MyHomePageState extends State<MyHomePage> {
                   margin: const EdgeInsets.all(15),
                   tooltipBehavior: _tooltipBehavior,
                   series: <ChartSeries<dynamic, double>>[
-                    LineSeries<leftData, double>(
-                      dataSource: _chartData,
-                      xValueMapper: (leftData dbl, _) => dbl.frel,
-                      yValueMapper: (leftData dbl, _) => dbl.dbl,
-                      markerSettings: const MarkerSettings(isVisible: true),
-                      enableTooltip: true,
-                    ),
+                   
                     LineSeries<rightData, double>(
                       dataSource: _chartDatar,
-                        pointColorMapper:(rightData dbr, _) =>  dbr.color,
-                             //   xValueMapper: (ChartData data, _) => data.x,
+                      pointColorMapper: (rightData dbr, _) => dbr.color,
+                      //   xValueMapper: (ChartData data, _) => data.x,
                       xValueMapper: (rightData dbr, _) => dbr.frer,
                       yValueMapper: (rightData dbr, _) => dbr.dbr,
+                      markerSettings: const MarkerSettings(isVisible: true),
+                      enableTooltip: true,
+                      
+                    ),
+                     LineSeries<leftData, double>(
+                      dataSource: _chartData,
+                      pointColorMapper: (leftData dbl, _) => dbl.colors,
+                      xValueMapper: (leftData dbl, _) => dbl.frel,
+                      yValueMapper: (leftData dbl, _) => dbl.dbl,
                       markerSettings: const MarkerSettings(
                         isVisible: true,
                         shape: DataMarkerType.image,
@@ -109,7 +113,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       enableTooltip: true,
                     ),
                   ],
-                  
                   primaryXAxis: CategoryAxis(
                     opposedPosition: true,
                     labelIntersectAction: AxisLabelIntersectAction.rotate45,
@@ -129,6 +132,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
+             ElevatedButton(
+            onPressed: () {
+             Navigator.pushNamed(
+                    context, MyRoutes.studenthome);
+            },
+            child: const Text('Login'),
+          ),
           ],
         ),
       ),
@@ -137,33 +147,33 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<leftData> getChartData() {
     return [
-      leftData(250, widget.leftValues[0]),
-      leftData(500, widget.leftValues[1]),
-      leftData(1000, widget.leftValues[2]),
-      leftData(2000, widget.leftValues[3]),
-      leftData(4000, widget.leftValues[4]),
-      leftData(8000, widget.leftValues[5]),
+      leftData(250, widget.leftValues[0], Colors.blue),
+      leftData(500, widget.leftValues[1], Colors.blue),
+      leftData(1000, widget.leftValues[2], Colors.blue),
+      leftData(2000, widget.leftValues[3], Colors.blue),
+      leftData(4000, widget.leftValues[4], Colors.blue),
+      leftData(8000, widget.leftValues[5], Colors.blue),
     ];
   }
 
   List<rightData> getChartDatar() {
-   
     return [
-      rightData(250, widget.rightValues[0],Colors.red),
-      rightData(500, widget.rightValues[1],Colors.red),
-      rightData(1000, widget.rightValues[2],Colors.red),
-      rightData(2000, widget.rightValues[3],Colors.red),
-      rightData(4000, widget.rightValues[4],Colors.red),
-      rightData(8000, widget.rightValues[5],Colors.red),
+      rightData(250, widget.rightValues[0], Colors.red),
+      rightData(500, widget.rightValues[1], Colors.red),
+      rightData(1000, widget.rightValues[2], Colors.red),
+      rightData(2000, widget.rightValues[3], Colors.red),
+      rightData(4000, widget.rightValues[4], Colors.red),
+      rightData(8000, widget.rightValues[5], Colors.red),
     ];
   }
 }
 
 // ignore: camel_case_types
 class leftData {
-  leftData(this.frel, this.dbl);
+  leftData(this.frel, this.dbl ,this.colors);
   final double frel;
   final double dbl;
+  final Color colors;
 }
 
 // ignore: camel_case_types
@@ -171,7 +181,7 @@ class rightData {
   rightData(this.frer, this.dbr, this.color);
   final double frer;
   final double dbr;
-   final Color color;
+  final Color color;
 }
 
 class StudentInfo {

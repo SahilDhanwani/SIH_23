@@ -119,7 +119,7 @@ class _BackgroundNoiseState extends State<BackgroundNoise> {
                           onPressed: isNoiseBelowThreshold()
                               ? () {
                                   Navigator.pushNamed(
-                                      context, MyRoutes.leftear);
+                                      context, MyRoutes.headset);
                                 }
                               : null,
                           child: const Text('Proceed'),
