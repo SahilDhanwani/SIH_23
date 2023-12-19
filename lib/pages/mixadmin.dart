@@ -84,7 +84,9 @@ class _AdminPageState extends State<AdminPage> {
 class AdminLoginForm extends StatelessWidget {
   AdminLoginForm({super.key});
 
+  // ignore: unused_field
   final _formKey = GlobalKey<FormState>();
+  // ignore: unused_field
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final password = TextEditingController();
   // ignore: non_constant_identifier_names
@@ -131,99 +133,101 @@ class AdminLoginForm extends StatelessWidget {
 class AdminSignupForm extends StatelessWidget {
   AdminSignupForm({super.key});
 
-    final String adder = '@karn.com';
-    final name = TextEditingController();
-    final school = TextEditingController();
-    // ignore: non_constant_identifier_names
-    final class_code = TextEditingController();
-    final pass1 = TextEditingController();
-    final pass2 = TextEditingController();
+  final String adder = '@karn.com';
+  final name = TextEditingController();
+  final school = TextEditingController();
+  // ignore: non_constant_identifier_names
+  final class_code = TextEditingController();
+  final pass1 = TextEditingController();
+  final pass2 = TextEditingController();
 
-    final _formKey = GlobalKey<FormState>();
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    final adminRef = FirebaseDatabase.instance.ref('admin');
+  final _formKey = GlobalKey<FormState>();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final adminRef = FirebaseDatabase.instance.ref('admin');
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Form(
-        key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            TextFormField(
-              controller: name,
-              decoration: const InputDecoration(
-                labelText: 'Full Name',
-                hintText: 'Enter your full name',
-              ),
+        child: Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TextFormField(
+            controller: name,
+            decoration: const InputDecoration(
+              labelText: 'Full Name',
+              hintText: 'Enter your full name',
             ),
-            const SizedBox(
-              height: 16,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          TextFormField(
+            controller: school,
+            decoration: const InputDecoration(
+              labelText: 'School Name',
+              hintText: 'Enter your school name',
             ),
-            TextFormField(
-              controller: school,
-              decoration: const InputDecoration(
-                labelText: 'School Name',
-                hintText: 'Enter your school name',
-              ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          TextFormField(
+            controller: class_code,
+            decoration: const InputDecoration(
+              labelText: 'Class Code',
+              hintText: 'Enter your class code',
             ),
-            const SizedBox(
-              height: 16,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          TextFormField(
+            controller: pass1,
+            decoration: const InputDecoration(
+              labelText: 'Password',
+              hintText: 'Enter your password',
             ),
-            TextFormField(
-              controller: class_code,
-              decoration: const InputDecoration(
-                labelText: 'Class Code',
-                hintText: 'Enter your class code',
-              ),
+            obscureText: true,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          TextFormField(
+            controller: pass2,
+            decoration: const InputDecoration(
+              labelText: 'Confirm Password',
+              hintText: 'Confirm your password',
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            TextFormField(
-              controller: pass1,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-                hintText: 'Enter your password',
-              ),
-              obscureText: true,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            TextFormField(
-              controller: pass2,
-              decoration: const InputDecoration(
-                labelText: 'Confirm Password',
-                hintText: 'Confirm your password',
-              ),
-              obscureText: true,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                _auth.createUserWithEmailAndPassword(
-                  email: class_code.text.toString(),
-                  password: pass1.text.toString(),
-                );
- 
-                adminRef.child(DateTime.now().millisecondsSinceEpoch.toString()).set({
-                  'Name' : name.text.toString(),
-                  'School' : school.text.toString(),
-                  'class_code' : class_code.text.toString(),
-                });
+            obscureText: true,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              _auth.createUserWithEmailAndPassword(
+                email: class_code.text.toString(),
+                password: pass1.text.toString(),
+              );
 
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) =>  adminhome(username: class_code.text.toString()+adder)));
-              },
-              child: const Text('Signup'),
-            ),
-          ],
-        ),
-      )
-    );
+              adminRef
+                  .child(DateTime.now().millisecondsSinceEpoch.toString())
+                  .set({
+                'Name': name.text.toString(),
+                'School': school.text.toString(),
+                'class_code': class_code.text.toString(),
+              });
+
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      adminhome(username: class_code.text.toString() + adder)));
+            },
+            child: const Text('Signup'),
+          ),
+        ],
+      ),
+    ));
   }
 }

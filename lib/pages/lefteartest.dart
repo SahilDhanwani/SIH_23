@@ -210,7 +210,25 @@ class _LeftEarState extends State<LeftEar> {
 
   void onProceedButtonPressed() {
     // Logic when the proceed button for the right ear is pressed
-    Navigator.pushNamed(context, MyRoutes.rightear);
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        // Builder for the nextpage
+        // class's constructor.
+
+        // Date as arguments to
+        // send to next page.
+        builder: (context) => RightEar(
+          leftValues: [
+            left250,
+            left500,
+            left1000,
+            left2000,
+            left4000,
+            left8000
+          ],
+        ),
+      ),
+    );
     // ignore: avoid_print
     print('Proceed');
     // You can navigate to the next screen or perform other actions here
@@ -344,25 +362,7 @@ class _LeftEarState extends State<LeftEar> {
             ElevatedButton(
                 onPressed: () {
                   // Navigator to the next page.
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      // Builder for the nextpage
-                      // class's constructor.
-
-                      // Date as arguments to
-                      // send to next page.
-                      builder: (context) => RightEar(
-                        leftValues: [
-                          left250,
-                          left500,
-                          left1000,
-                          left2000,
-                          left4000,
-                          left8000
-                        ],
-                      ),
-                    ),
-                  );
+                  onProceedButtonPressed();
                 },
                 child: const Text("Proceed For Right Ear Test "))
           ],
