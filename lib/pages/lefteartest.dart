@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 // ignore: unused_import
 import 'package:sih_23_audiometer/pages/righteartest.dart';
+// ignore: unused_import
 import '../utils/routes.dart';
 
 class LeftEar extends StatefulWidget {
@@ -15,12 +16,12 @@ class LeftEar extends StatefulWidget {
 }
 
 class _LeftEarState extends State<LeftEar> {
-  late double left250 = 0;
-  late double left500 = 0;
-  late double left1000 = 0;
-  late double left2000 = 0;
-  late double left4000 = 0;
-  late double left8000 = 0;
+  late double left250 = 80;
+  late double left500 = 80;
+  late double left1000 = 80;
+  late double left2000 = 80;
+  late double left4000 = 80;
+  late double left8000 = 80;
   bool _isDisposed = false;
   late final List<double> leftValues;
 
@@ -148,6 +149,7 @@ class _LeftEarState extends State<LeftEar> {
       // If it reaches the last frequency (8000), navigate to MyRoutes.rightear
       if (i == tunes.length - 1) {
         onProceedButtonPressed();
+        player.setBalance(0);
       } else {
         currentVolume = 10;
         j = 0;
@@ -233,7 +235,7 @@ class _LeftEarState extends State<LeftEar> {
     print('Proceed');
     // You can navigate to the next screen or perform other actions here
     // ignore: avoid_print
-    print('Proceeding to the right ear');
+    print('Proceeding to the right hear');
   }
 
   @override

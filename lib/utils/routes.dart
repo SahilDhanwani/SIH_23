@@ -16,12 +16,12 @@ class MyRoutes {
   static String logsignadmin = '/logsignadmin';
   static String studentsignup = '/studentsignup';
   static String graph = '/Graph';
- //   static String lefteartest = '/ lefteartest ';
- //   static String righteartest = '/ righteartest ';
+  static String chatbot = '/ChatBot';
+  //   static String lefteartest = '/ lefteartest ';
+  //   static String righteartest = '/ righteartest ';
   // ignore: non_constant_identifier_names
   static String Mixstudent = '/Mixstudent';
   static String mixadmin = '/mixadmin';
   static String adminhome = '/adminhome';
   static String studenthome = '/studenthome';
-   
 }

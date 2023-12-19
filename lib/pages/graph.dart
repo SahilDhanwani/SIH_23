@@ -31,7 +31,7 @@ class Graph extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-   MyHomePage({
+  MyHomePage({
     super.key,
     required this.leftValues,
     required this.title,
@@ -89,7 +89,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   margin: const EdgeInsets.all(15),
                   tooltipBehavior: _tooltipBehavior,
                   series: <ChartSeries<dynamic, double>>[
-                   
                     LineSeries<rightData, double>(
                       dataSource: _chartDatar,
                       pointColorMapper: (rightData dbr, _) => dbr.color,
@@ -98,9 +97,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       yValueMapper: (rightData dbr, _) => dbr.dbr,
                       markerSettings: const MarkerSettings(isVisible: true),
                       enableTooltip: true,
-                      
                     ),
-                     LineSeries<leftData, double>(
+                    LineSeries<leftData, double>(
                       dataSource: _chartData,
                       pointColorMapper: (leftData dbl, _) => dbl.colors,
                       xValueMapper: (leftData dbl, _) => dbl.frel,
@@ -132,13 +130,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-             ElevatedButton(
-            onPressed: () {
-             Navigator.pushNamed(
-                    context, MyRoutes.studenthome);
-            },
-            child: const Text('Login'),
-          ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, MyRoutes.leftear);
+              },
+              child: const Text('Login'),
+            ),
           ],
         ),
       ),
@@ -170,7 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 // ignore: camel_case_types
 class leftData {
-  leftData(this.frel, this.dbl ,this.colors);
+  leftData(this.frel, this.dbl, this.colors);
   final double frel;
   final double dbl;
   final Color colors;

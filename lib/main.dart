@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/pages/Calibration.dart';
 import 'package:sih_23_audiometer/pages/adminhome.dart';
+import 'package:sih_23_audiometer/pages/chatbot.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
 import 'package:sih_23_audiometer/pages/headset.dart';
 // ignore: unused_import
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.leftear,
+      initialRoute: MyRoutes.chatbot,
       routes: {
         //  MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
         MyRoutes.studentLoginRoute: (context) =>
@@ -64,11 +65,14 @@ class MyApp extends StatelessWidget {
             const StudentSignin(), //Student Login
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.leftear: (context) => const LeftEar(),
+        MyRoutes.chatbot: (context) => const ChatBot(),
         MyRoutes.rightear: (context) =>
-            RightEar(leftValues: [0, 0, 0, 0, 0, 0]),
+            RightEar(leftValues: [80, 80, 80, 80, 80, 80]),
         MyRoutes.graph: (context) => Graph(
-            leftValues: [0, 0, 0, 0, 0, 0], rightValues: [0, 0, 0, 0, 0, 0]),
+            leftValues: [80, 80, 80, 80, 80, 80],
+            rightValues: [80, 80, 80, 80, 80, 80]),
         MyRoutes.calibration: (context) => const Calibration(),
+        // MyRoutes.chatbot: (context) => const ChatBot(),
         MyRoutes.logsignstu: (context) => const LogSignStu(),
         MyRoutes.loginadmin: (context) => const loginadmin(),
         MyRoutes.logsignadmin: (context) => logsignadmin(),
