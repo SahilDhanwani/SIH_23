@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
@@ -65,8 +68,9 @@ class adminhome extends StatelessWidget {
               style: const TextStyle(fontSize: 20.0),
             ),
             const SizedBox(height: 10.0),
+            // Display the fetched school name
             Text(
-              'School Name: $schoolName',
+              'School Name: $fetchSchool',
               style: const TextStyle(fontSize: 20.0),
             ),
           ],
@@ -74,7 +78,7 @@ class adminhome extends StatelessWidget {
       ),
     );
   }
-}    
+}
 
 
 class HomeScreen extends StatelessWidget {
