@@ -3,6 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_pdf/pdf.dart';
+import 'dart:io';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 
 class Graph extends StatelessWidget {
   final List<double> leftValues;
@@ -55,9 +63,11 @@ class _MyHomePageState extends State<MyHomePage> {
   late TooltipBehavior _tooltipBehavior;
   late List<leftData> _chartData;
   late List<rightData> _chartDatar;
+  late GlobalKey<SfCartesianChartState> _cartesianChartKey;
 
   @override
   void initState() {
+    _cartesianChartKey = GlobalKey();
     _tooltipBehavior = TooltipBehavior(enable: true);
     _chartData = getChartData();
     _chartDatar = getChartDatar();
@@ -125,6 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SfCartesianChart(
+                   key: _cartesianChartKey,
                   borderColor: const Color.fromARGB(255, 11, 9, 9),
                   borderWidth: 2,
                   margin: const EdgeInsets.all(15),
@@ -176,6 +187,13 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: const Text('STUDENTHOME'),
             ),
+           ElevatedButton(
+              onPressed: () {
+                _renderPDF();
+              },
+              child: const Icon(Icons.picture_as_pdf),
+          ),
+            
           ],
         ),
       ),
@@ -204,6 +222,38 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
   }
 
+    Future<void> _renderPDF() async {
+          final List<int> imageBytes = await _readImageData();
+          final PdfBitmap bitmap = PdfBitmap(imageBytes);
+          final PdfDocument document = PdfDocument();
+          document.pageSettings.size =
+          Size(bitmap.width.toDouble(), bitmap.height.toDouble());
+          final PdfPage page = document.pages.add();
+          final Size pageSize = page.getClientSize();
+          page.graphics.drawImage(
+              bitmap, Rect.fromLTWH(0, 0, pageSize.width, pageSize.height));
+          final List<int> bytes = document.saveSync();
+          document.dispose();
+          //Get external storage directory
+          final Directory directory = await getApplicationSupportDirectory();
+          //Get directory path
+          final String path = directory.path;
+          //Create an empty file to write PDF data
+          File file = File('$path/Output.pdf');
+          //Write PDF bytes data
+          await file.writeAsBytes(bytes, flush: true);
+          //Open the PDF document in mobile
+          OpenFile.open('$path/Output.pdf');
+      }
+
+      Future<List<int>> _readImageData() async {
+          final ui.Image data =
+              await _cartesianChartKey.currentState!.toImage(pixelRatio: 3.0);
+          final ByteData? bytes =
+              await data.toByteData(format: ui.ImageByteFormat.png);
+          return bytes!.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+      }
+
   Future<List<String>> analyzeHearing(
       List<double> leftValues, List<double> rightValues) async {
     List<String> results = [];
@@ -219,10 +269,10 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     if (max > 0 && max <= 20) {
       ///  results.add('Left ear: Hearing loss detected at ${getFrequency(i)} Hz');
-      results.add('Your Passed the test for left year');
+      results.add('Your Passed the test for left ear');
     } else if (max >= 20 && max <= 40) {
       results.add(
-          'You may have mild hearing loss .Please visit doctoer for further testing');
+          'You may have mild hearing loss .Please visit doctor for further testing');
     } else {
       results.add(
           'You may have moderate to seveare hearing loss .Please visit doctoer for further testing');
@@ -256,13 +306,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
     // ignore: prefer_typing_uninitialized_variables
     return resultsr;
-      }
-    String getFrequency(int index) {
-      List<int> frequencies = [250, 500, 1000, 2000, 4000, 8000];
-      return frequencies[index].toString();
-    }
   }
 
+  String getFrequency(int index) {
+    List<int> frequencies = [250, 500, 1000, 2000, 4000, 8000];
+    return frequencies[index].toString();
+  }
+}
 
 // ignore: camel_case_types
 class leftData {
