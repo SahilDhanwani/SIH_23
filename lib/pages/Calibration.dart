@@ -143,14 +143,14 @@ class _CalibrationState extends State<Calibration> {
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
-                const SizedBox(height: 50),
+                // const SizedBox(height: 50),
                 const Text('HEADSET').text.xl5.bold.make(),
                 const Text('CALIBRATION').text.xl5.bold.make(),
                 const SizedBox(height: 30),
                 const Text("Play The Given Audio File ").text.xl2.bold.make(),
                 const Text("And Adjust Your ").text.xl2.bold.make(),
                 const Text("Phones Volume To 55 dB. ").text.xl2.bold.make(),
-                const SizedBox(height: 50),
+                // const SizedBox(height: 50),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

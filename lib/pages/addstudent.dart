@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sih_23_audiometer/object/student.dart';
+import 'package:sih_23_audiometer/pages/background_noise.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 
 // ignore: camel_case_types, must_be_immutable
@@ -79,7 +80,8 @@ class addstudent extends StatelessWidget {
                 temp.name = nameController.text.toString();
                 temp.rollNo = rollNoController.text.toString();
                 temp.std = classController.text.toString();
-                Navigator.pushNamed(context, MyRoutes.backgroundNoise);
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const BackgroundNoise()));
               },
               style: ElevatedButton.styleFrom(
                 elevation: 8,
