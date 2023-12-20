@@ -233,7 +233,7 @@ class AdminSignupForm extends StatelessWidget {
                 });
 
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) =>  const adminhome()));
+                    MaterialPageRoute(builder: (context) =>  adminhome(username: 'jh',)));
                 
               },
               child: const Text('Signup'),

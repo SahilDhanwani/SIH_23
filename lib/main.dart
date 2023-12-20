@@ -25,6 +25,7 @@ import 'package:sih_23_audiometer/pages/studadmin.dart';
 import 'package:sih_23_audiometer/pages/student_dashboard.dart';
 import 'package:sih_23_audiometer/pages/student_signin.dart';
 import 'package:sih_23_audiometer/pages/translations.dart';
+import 'package:sih_23_audiometer/pages/welcome.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 import 'package:sih_23_audiometer/pages/studenthome.dart';
