@@ -33,4 +33,5 @@ class MyRoutes {
   static const String Welcome = '/Welcome';
   // ignore: non_constant_identifier_names
   static String LanguageSelectionPage = '/LanguageSelectionPage';
+  static String addstudent = '/addstudent';
 }

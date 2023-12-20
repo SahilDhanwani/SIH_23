@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
-import 'package:sih_23_audiometer/widgets/themes.dart';
 
 // ignore: camel_case_types
 class adminhome extends StatelessWidget {
@@ -29,14 +28,48 @@ class adminhome extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, MyRoutes.Dashboard);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: MyTheme.buttonColor,
-              ),
-              child: const Text('Database'),
-            ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, MyRoutes.Dashboard);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    elevation: 8,
+                    backgroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                  ),
+                  child: const Text(
+                    'Admin Dashboard',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20.0),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, MyRoutes.addstudent);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    elevation: 8,
+                    backgroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                  ),
+                  child: const Text(
+                    'Add Student',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
           ],
         ),
       ),
