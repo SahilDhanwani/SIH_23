@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/pages/Calibration.dart';
-import 'package:sih_23_audiometer/pages/adminhome.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
 import 'package:sih_23_audiometer/pages/headset.dart';
 // ignore: unused_import
@@ -47,6 +46,8 @@ Future main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // Admin temp = Admin();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.sahil,
+      initialRoute: MyRoutes.mixadmin,
       routes: {
         //  MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
         MyRoutes.studentLoginRoute: (context) =>
@@ -83,9 +84,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.mixadmin: (context) => const mixadmin(),
         MyRoutes.Mixstudent: (context) => const Mixstudent(),
         MyRoutes.headset: (context) => const Headset(),
-        MyRoutes.adminhome: (context) => adminhome(
-              username: 'NA',
-            ),
+        // MyRoutes.adminhome: (context) => adminhome(),
         MyRoutes.studenthome: (context) => const studenthome(),
         MyRoutes.sahil: (context) => const Sahil(),
 
