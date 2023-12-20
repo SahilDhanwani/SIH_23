@@ -7,7 +7,6 @@ void main() {
   runApp(const studentlogin());
 }
 
-// ignore: camel_case_types
 class studentlogin extends StatelessWidget {
   const studentlogin({super.key});
 
@@ -19,6 +18,7 @@ class studentlogin extends StatelessWidget {
   }
 }
 
+// ignore: use_key_in_widget_constructors
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
 

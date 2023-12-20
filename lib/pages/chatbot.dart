@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/pages/Messages.dart';
 
 class ChatBot extends StatefulWidget {
-  // ignore: use_super_parameters
-  const ChatBot({Key? key}) : super(key: key);
+  const ChatBot({super.key});
 
   @override
   State<ChatBot> createState() => _ChatBotState();

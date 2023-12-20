@@ -1,11 +1,56 @@
 // second page student + admin
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 
 // ignore: camel_case_types
 class studadmin extends StatelessWidget {
-  const  studadmin({super.key});
+  studadmin({super.key});
+  final List locale = [
+    {'name': 'ENGLISH', 'locale': const Locale('en', 'US')},
+    {'name': 'ಕನ್ನಡ', 'locale': const Locale('kn', 'IN')},
+    {'name': 'हिंदी', 'locale': const Locale('hi', 'IN')},
+  ];
+  updateLanguage(Locale locale) {
+    Get.back();
+    Get.updateLocale(locale);
+  }
+
+  buildLanguageDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (builder) {
+          return AlertDialog(
+            title: const Text('Choose Your Language'),
+            content: SizedBox(
+              width: double.maxFinite,
+              child: ListView.separated(
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GestureDetector(
+                        child: Text(locale[index]['name']),
+                        onTap: () {
+                          print(locale[index]['name']);
+                          updateLanguage(locale[index]['locale']);
+                        },
+                      ),
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return const Divider(
+                      color: Colors.blue,
+                    );
+                  },
+                  itemCount: locale.length),
+            ),
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,19 +58,27 @@ class studadmin extends StatelessWidget {
       backgroundColor: MyTheme.creamColor,
       body: Center(
         child: Column(
-
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-              const Text(
-            'Welcome',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              //color: MyTheme.textColor,
+            ElevatedButton(
+              onPressed: () {
+                 buildLanguageDialog(context);
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    MyTheme.buttonColor, // Use the button color from theme
+              ),
+              child: const Text("chnage language"),
             ),
-          ),
-          const SizedBox(height: 20),
-
+            const Text(
+              'Welcome',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                //color: MyTheme.textColor,
+              ),
+            ),
+            const SizedBox(height: 20),
             Image.asset(
               'assets/images/admin.png',
               height: 150,
@@ -55,7 +108,7 @@ class studadmin extends StatelessWidget {
                 backgroundColor:
                     MyTheme.buttonColor, // Use the button color from theme
               ),
-              child: const Text('Student'),
+              child: Text('hello'.tr),
             ),
           ],
         ),

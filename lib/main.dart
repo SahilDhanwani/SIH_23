@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/pages/Calibration.dart';
-import 'package:sih_23_audiometer/pages/adminhome.dart';
+import 'package:sih_23_audiometer/pages/LocaleString.dart';
 import 'package:sih_23_audiometer/pages/chatbot.dart';
 import 'package:sih_23_audiometer/pages/dashbord.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
@@ -21,12 +21,13 @@ import 'package:sih_23_audiometer/pages/logsignstu.dart';
 import 'package:sih_23_audiometer/pages/righteartest.dart';
 import 'package:sih_23_audiometer/pages/studadmin.dart';
 import 'package:sih_23_audiometer/pages/student_dashboard.dart';
-import 'package:sih_23_audiometer/pages/student_login.dart';
 import 'package:sih_23_audiometer/pages/student_signin.dart';
 import 'package:sih_23_audiometer/pages/welcome.dart';
+import 'package:sih_23_audiometer/pages/translations.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 import 'package:sih_23_audiometer/pages/studenthome.dart';
+import 'package:get/get.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,9 +50,13 @@ Future main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // Admin temp = Admin();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      translations: LocalString(),
+      locale: const Locale('en', 'US'),
       themeMode: ThemeMode.light,
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
@@ -69,10 +74,11 @@ class MyApp extends StatelessWidget {
         MyRoutes.leftear: (context) => const LeftEar(),
         MyRoutes.chatbot: (context) => const ChatBot(),
         MyRoutes.rightear: (context) =>
-            RightEar(leftValues: [80, 80, 80, 80, 80, 80]),
+            // ignore: prefer_const_constructors
+            RightEar(leftValues: const [80, 80, 80, 80, 80, 80]),
         MyRoutes.graph: (context) => Graph(
-            leftValues: [80, 80, 80, 80, 80, 80],
-            rightValues: [80, 80, 80, 80, 80, 80]),
+            leftValues: const [80, 80, 80, 80, 80, 80],
+            rightValues: const [80, 80, 80, 80, 80, 80]),
         MyRoutes.calibration: (context) => const Calibration(),
         // MyRoutes.chatbot: (context) => const ChatBot(),
         MyRoutes.logsignstu: (context) => const LogSignStu(),
@@ -84,14 +90,15 @@ class MyApp extends StatelessWidget {
         MyRoutes.loginstudent: (context) => const LoginStudent(),
         MyRoutes.studentsignup: (context) => const StudentSignup(),
         // Files of AbhishekBHosale02
-        MyRoutes.studadmin: (context) => const studadmin(),
+        MyRoutes.studadmin: (context) => studadmin(),
+        MyRoutes.LanguageSelectionPage: (context) => LanguageSelectionPage(),
         MyRoutes.mixadmin: (context) => const mixadmin(),
         MyRoutes.Mixstudent: (context) => const Mixstudent(),
         MyRoutes.headset: (context) => const Headset(),
-        MyRoutes.adminhome: (context) => const adminhome(),
+        // MyRoutes.adminhome: (context) => adminhome(),
         MyRoutes.studenthome: (context) => const studenthome(),
-        MyRoutes.Dashboard: (context) => Dashboard(),
-        MyRoutes.Welcome: (context) => Welcome(),
+        MyRoutes.Dashboard: (context) => const Dashboard(),
+        MyRoutes.Welcome: (context) => const Welcome(),
       },
     );
   }

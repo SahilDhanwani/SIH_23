@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sih_23_audiometer/utils/routes.dart';
 
 // ignore: camel_case_types
 class studenthome extends StatelessWidget {
@@ -37,13 +36,7 @@ class StudentInfoPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-              ElevatedButton(
-            onPressed: () {
-             Navigator.pushNamed(
-                    context, MyRoutes.backgroundNoise);
-            },
-            child: const Text('Take test'),
-          ),
+                       
                 const SizedBox(width: 10.0),
                 ElevatedButton(
                   onPressed: () => viewReport(context),
@@ -57,13 +50,7 @@ class StudentInfoPage extends StatelessWidget {
     );
   }
 
-  void takeTest(BuildContext context) {
-    // Navigate to the MaxStudentPage when "Take Test" button is pressed
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const MaxStudentPage()),
-    );
-  }
+  
 
   void viewReport(BuildContext context) {
     // Add functionality for the "View Previous Report" button
