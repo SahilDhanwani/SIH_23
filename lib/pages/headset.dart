@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:headset_connection_event/headset_event.dart';
+import 'package:sih_23_audiometer/pages/lefteartest.dart';
 import 'package:velocity_x/velocity_x.dart';
-import '../utils/routes.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onBackPress;
@@ -158,8 +158,9 @@ class _HeadsetState extends State<Headset> {
                   onPressed: _headsetState == HeadsetState.CONNECT
                       ? () {
                           // Handle button click
-                          // This block will only execute if the headset is connected
-                          Navigator.pushNamed(context, MyRoutes.calibration);
+                          // This block will only execute if the headset
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const LeftEar()));
                           // ignore: avoid_print
                           print('Continue button clicked');
                         }

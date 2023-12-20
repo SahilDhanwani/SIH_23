@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sih_23_audiometer/pages/background_noise.dart';
 
 // ignore: camel_case_types
 class studenthome extends StatelessWidget {
@@ -28,7 +29,8 @@ class StudentInfoPage extends StatelessWidget {
           children: [
             const CircleAvatar(
               radius: 80.0,
-              backgroundImage: AssetImage('assets/images/student.jpg'), // Replace with the correct image path
+              backgroundImage: AssetImage(
+                  'assets/images/student.jpg'), // Replace with the correct image path
             ),
             const SizedBox(height: 20.0),
             const StudentDetails(),
@@ -36,7 +38,13 @@ class StudentInfoPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                       
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const BackgroundNoise()));
+                  },
+                  child: const Text('Take test'),
+                ),
                 const SizedBox(width: 10.0),
                 ElevatedButton(
                   onPressed: () => viewReport(context),
@@ -49,27 +57,33 @@ class StudentInfoPage extends StatelessWidget {
       ),
     );
   }
+}
 
-  
+void takeTest(BuildContext context) {
+  // Navigate to the MaxStudentPage when "Take Test" button is pressed
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const MaxStudentPage()),
+  );
+}
 
-  void viewReport(BuildContext context) {
-    // Add functionality for the "View Previous Report" button
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('View Previous Report'),
-          content: const Text('Viewing Previous Report...'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
-  }
+void viewReport(BuildContext context) {
+  // Add functionality for the "View Previous Report" button
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Under Development'),
+        content: const Text('By Team_Karn...'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('OK'),
+          ),
+        ],
+      );
+    },
+  );
 }
 
 class MaxStudentPage extends StatelessWidget {

@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'package:sih_23_audiometer/pages/mixstudent.dart';
-// ignore: unused_import
-import 'package:sih_23_audiometer/pages/studadmin.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 
 class Welcome extends StatelessWidget {

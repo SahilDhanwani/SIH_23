@@ -1,7 +1,4 @@
 // ignore: file_names
-// ignore: file_names
-// ignore_for_file: file_names, duplicate_ignore
-
 import 'package:flutter/material.dart';
 
 class MessagesScreen extends StatefulWidget {
@@ -42,8 +39,8 @@ class _MessagesScreenState extends State<MessagesScreen> {
                               widget.messages[index]['isUserMessage'] ? 20 : 0),
                         ),
                         color: widget.messages[index]['isUserMessage']
-                            ? Colors.grey.shade800
-                            : Colors.grey.shade900.withOpacity(0.8)),
+                            ? const Color.fromARGB(255, 174, 164, 212)
+                            : const Color.fromARGB(255, 180, 201, 123).withOpacity(0.8)),
                     constraints: BoxConstraints(maxWidth: w * 2 / 3),
                     child:
                         Text(widget.messages[index]['message'].text.text[0])),

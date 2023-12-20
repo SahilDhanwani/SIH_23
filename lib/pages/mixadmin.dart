@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import 'package:sih_23_audiometer/object/admin.dart';
 import 'package:sih_23_audiometer/pages/adminhome.dart';
 // import 'package:sih_23_audiometer/pages/adminhome.dart';
 
@@ -84,88 +82,60 @@ class _AdminPageState extends State<AdminPage> {
   }
 }
 
-// ignore: must_be_immutable
 class AdminLoginForm extends StatelessWidget {
   AdminLoginForm({super.key});
 
+  // ignore: unused_field
   final _formKey = GlobalKey<FormState>();
-  DatabaseReference adminRef = FirebaseDatabase.instance.ref('admin');
+  // ignore: unused_field
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
   final password = TextEditingController();
   // ignore: non_constant_identifier_names
   final class_code = TextEditingController();
   final String adder = '@karn.com';
-  // ignore: non_constant_identifier_names
-  Admin Aobj = Admin();
-  bool firstRun = true;
-  
-  getObject() {
-      FirebaseAnimatedList(
-          query: adminRef, 
-          itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
-            // print('INSIDE FIREBASE');
-            final title = snapshot.child('class_code').value.toString();
-            if(title.contains(class_code.text.toString())) {
-                Aobj.classCode = snapshot.child('class_code').value.toString();
-                Aobj.name = snapshot.child('Name').value.toString();
-                Aobj.school = snapshot.child('School').value.toString();
-                firstRun = false;
-                return const Placeholder();
-            }
-            else {
-              return Container();
-            }
-          },
-        );
-  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Form(
-        key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            TextFormField(
-              controller: class_code,
-              decoration: const InputDecoration(
-                labelText: 'Class Code',
-                hintText: 'Enter your class code',
-              ),
+        child: Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TextFormField(
+            controller: class_code,
+            decoration: const InputDecoration(
+              labelText: 'Class Code',
+              hintText: 'Enter your class code',
             ),
-            
-            const SizedBox(
-              height: 16,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          TextFormField(
+            controller: password,
+            decoration: const InputDecoration(
+              labelText: 'Password',
+              hintText: 'Enter your password',
             ),
-            TextFormField(
-              controller: password,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-                hintText: 'Enter your password',
-              ),
-              obscureText: true,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                late String result;
-                result = class_code.text.toString() + adder;
-                _auth.signInWithEmailAndPassword(email: result, password: password.text.toString());
-
-                getObject();
-
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) =>  adminhome(Aobj)));
-              },
-              child: const Text('Login'),
-            ),
-          ],
-        ),
-      )
-    );
+            obscureText: true,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              _auth.signInWithEmailAndPassword(
+                  email: class_code.text.toString() + adder,
+                  password: password.text.toString());
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const adminhome(username: 'hg',)));
+            },
+            child: const Text('Login'),
+          ),
+        ],
+      ),
+    ));
   }
 }
 
@@ -175,16 +145,14 @@ class AdminSignupForm extends StatelessWidget {
   final String adder = '@karn.com';
   final name = TextEditingController();
   final school = TextEditingController();
-  final classCode = TextEditingController();
+  // ignore: non_constant_identifier_names
+  final class_code = TextEditingController();
   final pass1 = TextEditingController();
   final pass2 = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final adminRef = FirebaseDatabase.instance.ref('admin');
-
-  // ignore: non_constant_identifier_names
-  final Admin Aobj = Admin();
 
   @override
   Widget build(BuildContext context) {
@@ -215,7 +183,7 @@ class AdminSignupForm extends StatelessWidget {
               height: 16,
             ),
             TextFormField(
-              controller: classCode,
+              controller: class_code,
               decoration: const InputDecoration(
                 labelText: 'Class Code',
                 hintText: 'Enter your class code',
@@ -249,29 +217,26 @@ class AdminSignupForm extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 late String result;
-                result = classCode.text.toString() + adder;
+                result = class_code.text.toString() + adder;
                 _auth.createUserWithEmailAndPassword(
                   email: result,password: pass1.text.toString(),
                 );
-
-                Aobj.name = name.text.toString();
-                Aobj.classCode = classCode.text.toString();
-                Aobj.school = school.text.toString();
  
-                adminRef.child(classCode.text.toString()).set({
+                adminRef.child(class_code.text.toString()).set({
                   'Name' : name.text.toString(),
                   'School' : school.text.toString(),
-                  'class_code' : classCode.text.toString(),
+                  'class_code' : class_code.text.toString(),
                 });
 
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>
-                      adminhome(Aobj)));
-            },
-            child: const Text('Signup'),
-          ),
-        ],
-      ),
-    ));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) =>  const adminhome(username: 'jh',)));
+                
+              },
+              child: const Text('Signup'),
+            ),
+          ],
+        ),
+      )
+    );
   }
 }
