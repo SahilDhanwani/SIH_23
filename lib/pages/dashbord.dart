@@ -11,6 +11,7 @@ class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _DashboardState createState() => _DashboardState();
 }
 
@@ -100,8 +101,7 @@ class _DashboardState extends State<Dashboard> {
                         // Add functionality for elevator button 1
                       },
                       style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        primary: Colors.blue,
+                        foregroundColor: Colors.white, backgroundColor: Colors.blue, // Change the text color
                       ),
                       child: const Text('Student Details'),
                     ),
@@ -112,8 +112,7 @@ class _DashboardState extends State<Dashboard> {
                         });
                       },
                       style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        primary: Colors.orange,
+                        foregroundColor: Colors.white, backgroundColor: Colors.orange, // Change the text color
                       ),
                       child: const Text('Filter'),
                     ),
@@ -126,8 +125,7 @@ class _DashboardState extends State<Dashboard> {
                               // Add functionality for additional button 1
                             },
                             style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.white,
-                              primary: const Color.fromARGB(255, 106, 184, 212),
+                              foregroundColor: Colors.white, backgroundColor: const Color.fromARGB(255, 106, 184, 212), // Change the text color
                             ),
                             child: const Text('Test not Taken'),
                           ),
@@ -136,8 +134,7 @@ class _DashboardState extends State<Dashboard> {
                               // Add functionality for additional button 2
                             },
                             style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.white,
-                              primary: const Color.fromARGB(255, 200, 85, 79),
+                              foregroundColor: Colors.white, backgroundColor: const Color.fromARGB(255, 200, 85, 79), // Change the text color
                             ),
                             child: const Text('Result of Hearing Loss'),
                           ),
@@ -146,8 +143,7 @@ class _DashboardState extends State<Dashboard> {
                               // Add functionality for additional button 3
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: const Color.fromARGB(255, 48, 150, 89),
-                              onPrimary: Colors.white,
+                              foregroundColor: Colors.white, backgroundColor: const Color.fromARGB(255, 48, 150, 89), // Change the text color
                             ),
                             child: const Text('All Fine'),
                           ),

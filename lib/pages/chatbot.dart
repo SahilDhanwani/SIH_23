@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/pages/Messages.dart';
 
 class ChatBot extends StatefulWidget {
-  // ignore: use_super_parameters
-  const ChatBot({Key? key}) : super(key: key);
+  const ChatBot({super.key});
 
   @override
   State<ChatBot> createState() => _ChatBotState();
@@ -46,7 +45,7 @@ class _ChatBotState extends State<ChatBot> {
                     Expanded(
                       child: TextField(
                         controller: _controller,
-                        style: const TextStyle(color: Color.fromARGB(255, 15, 16, 9)),
+                        style: const TextStyle(color: Color.fromARGB(255, 2, 3, 20)),
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: const Color.fromARGB(255, 53, 161, 160),
@@ -78,6 +77,8 @@ class _ChatBotState extends State<ChatBot> {
 
   sendMessage(String text) async {
     if (text.isEmpty) {
+      // ignore: avoid_print
+      print('Message is empty');
     } else {
       setState(() {
         addMessage(Message(text: DialogText(text: [text])), true);
@@ -88,6 +89,8 @@ class _ChatBotState extends State<ChatBot> {
       );
 
       if (response.message == null) {
+        // ignore: avoid_print
+        print('Error in processing response');
         return;
       }
 

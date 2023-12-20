@@ -5,7 +5,7 @@ void main() {
   runApp(const studentlogin());
 }
 
-// ignore: camel_case_types
+// ignore: use_key_in_widget_constructors, camel_case_types
 class studentlogin extends StatelessWidget {
   const studentlogin({super.key});
 
@@ -17,6 +17,7 @@ class studentlogin extends StatelessWidget {
   }
 }
 
+// ignore: use_key_in_widget_constructors
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
 
@@ -67,8 +68,7 @@ class WelcomePage extends StatelessWidget {
                 Navigator.pushNamed(context, MyRoutes.Mixstudent);
               },
               style: ElevatedButton.styleFrom(
-                    // ignore: deprecated_member_use
-                    primary: Colors.orange,
+                    backgroundColor: Colors.orange,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   ),
