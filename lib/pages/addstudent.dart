@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 
+// ignore: camel_case_types
 class addstudent extends StatelessWidget {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _rollNoController = TextEditingController();
@@ -10,11 +11,13 @@ class addstudent extends StatelessWidget {
   final CollectionReference studentsCollection =
       FirebaseFirestore.instance.collection('students');
 
+  addstudent({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Students'),
+        title: const Text('Add Students'),
       ),
       drawer: Drawer(
         child: ListView(
@@ -44,7 +47,7 @@ class addstudent extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             TextFormField(

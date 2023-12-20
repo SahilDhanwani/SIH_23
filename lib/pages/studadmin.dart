@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 
+// ignore: camel_case_types
 class studadmin extends StatelessWidget {
   const studadmin({super.key});
 
@@ -59,7 +60,7 @@ class studadmin extends StatelessWidget {
           // Add your custom action or navigation here
         },
         backgroundColor: MyTheme.buttonColor, // Use the button color from theme
-        child: Icon(Icons.home),
+        child: const Icon(Icons.home),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
