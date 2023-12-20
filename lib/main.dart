@@ -67,8 +67,7 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.Welcome,
-
+      initialRoute: MyRoutes.chatbot,
       routes: {
         //  MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
         MyRoutes.studentLoginRoute: (context) =>
@@ -106,7 +105,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.studenthome: (context) => studenthome(temp2),
         MyRoutes.Dashboard: (context) => const Dashboard(),
         MyRoutes.Welcome: (context) => const Welcome(),
-        MyRoutes.adminhome: (context) => adminhome(temp),
+        // MyRoutes.adminhome: (context) => adminhome(username: 'fg'),
         // MyRoutes.addstudent: (context) => const addstudent(),
       },
     );
