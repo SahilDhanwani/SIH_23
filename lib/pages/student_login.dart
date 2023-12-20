@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:sih_23_audiometer/pages/mixstudent.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 
 void main() {
-  runApp(studentlogin());
+  runApp(const studentlogin());
 }
 
+// ignore: camel_case_types
 class studentlogin extends StatelessWidget {
+  const studentlogin({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: WelcomePage(),
     );
   }
 }
 
 class WelcomePage extends StatelessWidget {
+  const WelcomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +33,7 @@ class WelcomePage extends StatelessWidget {
         ),
         child: Center(
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -47,7 +51,7 @@ class WelcomePage extends StatelessWidget {
                     color: Color.fromARGB(255, 65, 39, 149),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 const Text(
                   'Empower Your Silence: Deafness is Not a Barrier, Its a Unique Way of Listening.',
                   style: TextStyle(
@@ -63,9 +67,10 @@ class WelcomePage extends StatelessWidget {
                 Navigator.pushNamed(context, MyRoutes.Mixstudent);
               },
               style: ElevatedButton.styleFrom(
+                    // ignore: deprecated_member_use
                     primary: Colors.orange,
                     padding:
-                        EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   ),
                   child: const Text(
                     'Get Started'),

@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
+// ignore: duplicate_ignore
 class MyRoutes {
   static String homeRoute = '/Home';
   static String studentSigninRoute = '/StudentSignin';
@@ -22,12 +23,12 @@ class MyRoutes {
   static String chatbot = '/ChatBot';
   //   static String lefteartest = '/ lefteartest ';
   //   static String righteartest = '/ righteartest ';
-  // ignore: non_constant_identifier_names
   static String Mixstudent = '/Mixstudent';
   static String mixadmin = '/mixadmin';
   static String adminhome = '/adminhome';
   static String studenthome = '/studenthome';
   static String Dashboard = '/Dashboard';
+  // ignore: constant_identifier_names
   static const String Welcome = '/Welcome';
    
 }

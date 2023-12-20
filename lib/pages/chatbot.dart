@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/pages/Messages.dart';
 
 class ChatBot extends StatefulWidget {
+  // ignore: use_super_parameters
   const ChatBot({Key? key}) : super(key: key);
 
   @override
@@ -24,14 +25,15 @@ class _ChatBotState extends State<ChatBot> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primaryColor: Color.fromARGB(255, 191, 72, 9),
-        hintColor: Color.fromARGB(255, 76, 219, 24),
+        primaryColor: const Color.fromARGB(255, 191, 72, 9),
+        hintColor: const Color.fromARGB(255, 76, 219, 24),
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('KarnBot', style: TextStyle(fontSize: 18)),
+          title: const Text('KarnBot', style: TextStyle(fontSize: 18)),
           backgroundColor: Theme.of(context).primaryColor,
         ),
+        // ignore: avoid_unnecessary_containers
         body: Container(
           child: Column(
             children: [
@@ -44,13 +46,13 @@ class _ChatBotState extends State<ChatBot> {
                     Expanded(
                       child: TextField(
                         controller: _controller,
-                        style: TextStyle(color: Color.fromARGB(255, 2, 3, 20)),
+                        style: const TextStyle(color: Color.fromARGB(255, 15, 16, 9)),
                         decoration: InputDecoration(
                           filled: true,
-                          fillColor: Color.fromARGB(255, 53, 161, 160),
+                          fillColor: const Color.fromARGB(255, 53, 161, 160),
                           hintText: 'Type a message...',
-                          hintStyle: TextStyle(color: Colors.grey),
-                          contentPadding: EdgeInsets.all(10),
+                          hintStyle: const TextStyle(color: Colors.grey),
+                          contentPadding: const EdgeInsets.all(10),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -62,7 +64,7 @@ class _ChatBotState extends State<ChatBot> {
                         sendMessage(_controller.text);
                         _controller.clear();
                       },
-                      icon: Icon(Icons.send, color: Color.fromARGB(255, 25, 74, 190)),
+                      icon: const Icon(Icons.send, color: Color.fromARGB(255, 25, 74, 190)),
                     ),
                   ],
                 ),
@@ -76,7 +78,6 @@ class _ChatBotState extends State<ChatBot> {
 
   sendMessage(String text) async {
     if (text.isEmpty) {
-      print('Message is empty');
     } else {
       setState(() {
         addMessage(Message(text: DialogText(text: [text])), true);
@@ -87,7 +88,6 @@ class _ChatBotState extends State<ChatBot> {
       );
 
       if (response.message == null) {
-        print('Error in processing response');
         return;
       }
 

@@ -24,7 +24,6 @@ import 'package:sih_23_audiometer/pages/student_dashboard.dart';
 import 'package:sih_23_audiometer/pages/student_login.dart';
 import 'package:sih_23_audiometer/pages/student_signin.dart';
 import 'package:sih_23_audiometer/pages/welcome.dart';
-import 'package:sih_23_audiometer/pages/welcome.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 import 'package:sih_23_audiometer/pages/studenthome.dart';
@@ -57,12 +56,12 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.chatbot,
+      initialRoute: MyRoutes.Welcome,
 
       routes: {
         //  MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
         MyRoutes.studentLoginRoute: (context) =>
-            studentlogin(), //Second page(Logini/Signup)
+            const studentlogin(), //Second page(Logini/Signup)
         MyRoutes.studentDashboard: (context) =>
             const StudentDashboard(), //Student Home Page
         MyRoutes.studentSigninRoute: (context) =>
@@ -71,8 +70,8 @@ class MyApp extends StatelessWidget {
         MyRoutes.leftear: (context) => const LeftEar(),
         MyRoutes.chatbot: (context) => const ChatBot(),
         MyRoutes.rightear: (context) =>
-            RightEar(leftValues: [80, 80, 80, 80, 80, 80]),
-        MyRoutes.graph: (context) => Graph(
+            const RightEar(leftValues: [80, 80, 80, 80, 80, 80]),
+        MyRoutes.graph: (context) => const Graph(
             leftValues: [80, 80, 80, 80, 80, 80],
             rightValues: [80, 80, 80, 80, 80, 80]),
         MyRoutes.calibration: (context) => const Calibration(),
@@ -92,8 +91,8 @@ class MyApp extends StatelessWidget {
         MyRoutes.headset: (context) => const Headset(),
         MyRoutes.adminhome: (context) => const adminhome(),
         MyRoutes.studenthome: (context) => const studenthome(),
-        MyRoutes.Dashboard: (context) => Dashboard(),
-        MyRoutes.Welcome: (context) => Welcome(),
+        MyRoutes.Dashboard: (context) => const Dashboard(),
+        MyRoutes.Welcome: (context) => const Welcome(),
         
         
       },

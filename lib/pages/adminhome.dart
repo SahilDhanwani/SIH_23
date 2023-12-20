@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 
+// ignore: camel_case_types
 class adminhome extends StatelessWidget {
   final String adminName = "John Doe";
   final String classCode = "CS101";
