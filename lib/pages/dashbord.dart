@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 
 void main() {
-  runApp(Dashboard());
+  runApp(const Dashboard());
 }
 
 class Dashboard extends StatefulWidget {
+  const Dashboard({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _DashboardState createState() => _DashboardState();
 }
 
@@ -18,8 +21,8 @@ class _DashboardState extends State<Dashboard> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Teacher Dashboard'),
-          actions: [
+          title: const Text('Teacher Dashboard'),
+          actions: const [
             Padding(
               padding: EdgeInsets.all(8.0),
               child: CircleAvatar(
@@ -36,20 +39,20 @@ class _DashboardState extends State<Dashboard> {
                   future: fetchTeacherNameFromFirebase(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Text('Loading...');
+                      return const Text('Loading...');
                     } else {
                       return Text(snapshot.data ?? 'Teacher Name');
                     }
                   },
                 ),
                 accountEmail: null,
-                currentAccountPicture: CircleAvatar(
+                currentAccountPicture: const CircleAvatar(
                   backgroundImage: AssetImage('assets/images/admin.png'),
                 ),
               ),
               ListTile(
-                title: Text('Admin Home Page'),
-                leading: Icon(Icons.home),
+                title: const Text('Admin Home Page'),
+                leading: const Icon(Icons.home),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.pushNamed(context, MyRoutes.adminhome);
@@ -72,7 +75,7 @@ class _DashboardState extends State<Dashboard> {
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 2,
                         blurRadius: 7,
-                        offset: Offset(0, 3),
+                        offset: const Offset(0, 3),
                       ),
                     ],
                   ),
@@ -84,7 +87,7 @@ class _DashboardState extends State<Dashboard> {
                     ),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -94,10 +97,12 @@ class _DashboardState extends State<Dashboard> {
                         // Add functionality for elevator button 1
                       },
                       style: ElevatedButton.styleFrom(
+                        // ignore: deprecated_member_use
                         primary: Colors.blue, // Change the button color
+                        // ignore: deprecated_member_use
                         onPrimary: Colors.white, // Change the text color
                       ),
-                      child: Text('Student Details'),
+                      child: const Text('Student Details'),
                     ),
                     ElevatedButton(
                       onPressed: () {
@@ -107,10 +112,12 @@ class _DashboardState extends State<Dashboard> {
                         });
                       },
                       style: ElevatedButton.styleFrom(
+                        // ignore: deprecated_member_use
                         primary: Colors.orange, // Change the button color
+                        // ignore: deprecated_member_use
                         onPrimary: Colors.white, // Change the text color
                       ),
-                      child: Text('Filter'),
+                      child: const Text('Filter'),
                     ),
                     Visibility(
                       visible: showAdditionalButtons,
@@ -121,30 +128,39 @@ class _DashboardState extends State<Dashboard> {
                               // Add functionality for additional button 1
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Color.fromARGB(255, 106, 184, 212), // Change the button color
+                              // ignore: deprecated_member_use
+                              primary: const Color.fromARGB(255, 106, 184,
+                                  212), // Change the button color
+                              // ignore: deprecated_member_use
                               onPrimary: Colors.white, // Change the text color
                             ),
-                            child: Text('Test not Taken'),
+                            child: const Text('Test not Taken'),
                           ),
                           ElevatedButton(
                             onPressed: () {
                               // Add functionality for additional button 2
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Color.fromARGB(255, 200, 85, 79), // Change the button color
+                              // ignore: deprecated_member_use
+                              primary: const Color.fromARGB(
+                                  255, 200, 85, 79), // Change the button color
+                              // ignore: deprecated_member_use
                               onPrimary: Colors.white, // Change the text color
                             ),
-                            child: Text('Result of Hearing Loss'),
+                            child: const Text('Result of Hearing Loss'),
                           ),
                           ElevatedButton(
                             onPressed: () {
                               // Add functionality for additional button 3
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Color.fromARGB(255, 48, 150, 89), // Change the button color
+                              // ignore: deprecated_member_use
+                              primary: const Color.fromARGB(
+                                  255, 48, 150, 89), // Change the button color
+                              // ignore: deprecated_member_use
                               onPrimary: Colors.white, // Change the text color
                             ),
-                            child: Text('All Fine'),
+                            child: const Text('All Fine'),
                           ),
                         ],
                       ),
@@ -161,7 +177,7 @@ class _DashboardState extends State<Dashboard> {
   }
 
   Future<String> fetchTeacherNameFromFirebase() async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     return 'John Doe';
   }
 }

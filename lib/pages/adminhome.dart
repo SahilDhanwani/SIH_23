@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 
+// ignore: camel_case_types
 class adminhome extends StatelessWidget {
   final String adminName = "John Doe";
   final String classCode = "CS101";
@@ -28,15 +29,14 @@ class adminhome extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-  onPressed: () {
-    Navigator.pushNamed(context, MyRoutes.Dashboard);
-  },
-  style: ElevatedButton.styleFrom(
-    backgroundColor: MyTheme.buttonColor,
-  ),
-  child: const Text('Database'),
-),
-
+              onPressed: () {
+                Navigator.pushNamed(context, MyRoutes.Dashboard);
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: MyTheme.buttonColor,
+              ),
+              child: const Text('Database'),
+            ),
           ],
         ),
       ),
@@ -74,8 +74,7 @@ class adminhome extends StatelessWidget {
       ),
     );
   }
-}    
-
+}
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
