@@ -1,3 +1,4 @@
+// ignore: file_names
 
 import 'package:flutter/material.dart';
 
@@ -40,7 +41,8 @@ class _MessagesScreenState extends State<MessagesScreen> {
                         ),
                         color: widget.messages[index]['isUserMessage']
                             ? const Color.fromARGB(255, 174, 164, 212)
-                            : const Color.fromARGB(255, 180, 201, 123).withOpacity(0.8)),
+                            : const Color.fromARGB(255, 180, 201, 123)
+                                .withOpacity(0.8)),
                     constraints: BoxConstraints(maxWidth: w * 2 / 3),
                     child:
                         Text(widget.messages[index]['message'].text.text[0])),
