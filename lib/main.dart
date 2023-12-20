@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/pages/Calibration.dart';
 import 'package:sih_23_audiometer/pages/LocaleString.dart';
+import 'package:sih_23_audiometer/pages/adminhome.dart';
 import 'package:sih_23_audiometer/pages/chatbot.dart';
 import 'package:sih_23_audiometer/pages/dashbord.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
@@ -62,7 +63,7 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.Welcome,
+      initialRoute: MyRoutes.adminhome,
 
       routes: {
         //  MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
@@ -101,6 +102,8 @@ class MyApp extends StatelessWidget {
         MyRoutes.studenthome: (context) => const studenthome(),
         MyRoutes.Dashboard: (context) => const Dashboard(),
         MyRoutes.Welcome: (context) => const Welcome(),
+        MyRoutes.adminhome: (context) => const adminhome(username: 'fg',),
+        // MyRoutes.addstudent: (context) => const addstudent(),
       },
     );
   }
