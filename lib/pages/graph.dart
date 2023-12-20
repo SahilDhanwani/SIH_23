@@ -253,30 +253,30 @@ class _MyHomePageState extends State<MyHomePage> {
       }
 
   Future<List<String>> analyzeHearing(
-      List<double> leftValues, List<double> rightValues) async {
-    List<String> results = [];
+    List<double> leftValues, List<double> rightValues) async {
+  List<String> results = [];
 
-    // ignore: unused_local_variable
-    double normalRangeHigh = 20;
-    double max = leftValues[0];
+  double normalRangeHigh = 20;
+  double max = leftValues[0];
 
-    for (int i = 0; i < leftValues.length; i++) {
-      if (leftValues[i] > max) {
-        max = leftValues[i];
-      }
+  for (int i = 0; i < leftValues.length; i++) {
+    if (leftValues[i] > max) {
+      max = leftValues[i];
     }
-    if (max > 0 && max <= 20) {
-      ///  results.add('Left ear: Hearing loss detected at ${getFrequency(i)} Hz');
-      results.add('Your Passed the test for left ear');
-    } else if (max >= 20 && max <= 40) {
-      results.add(
-          'You may have mild hearing loss in left ear. Please visit doctor for further testing');
-    } else {
-      results.add(
-          'You may have moderate to seveare hearing loss in left ear. Please visit doctor for further testing');
-    }
-    return results;
   }
+
+  if (max > 0 && max <= 20) {
+    results.add('Your Passed the test for left ear');
+  } else if (max >= 20 && max <= 40) {
+    results.add(
+        'You may have mild hearing loss in left ear. Please visit doctor for further testing');
+  } else {
+    results.add(
+        'You may have moderate to severe hearing loss in left ear. Please visit doctor for further testing');
+  }
+
+  return results.map((result) => '**$result**').toList(); // Making the text bold
+}
 
   Future<List<String>> analyzeHearingr(
       List<double> leftValues, List<double> rightValues) async {
@@ -299,7 +299,7 @@ class _MyHomePageState extends State<MyHomePage> {
           'You may have mild hearing loss in right ear. Please visit doctor for further testing');
     } else {
       resultsr.add(
-          'You may have moderate to seveare hearing loss in right ear. Please visit doctor for further testing');
+          'You may have moderate to severe hearing loss in right ear. Please visit doctor for further testing');
     }
 
     // ignore: prefer_typing_uninitialized_variables

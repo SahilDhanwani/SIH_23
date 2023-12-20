@@ -79,15 +79,15 @@ class _HeadsetState extends State<Headset> {
           // ),
           body: Container(
             decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color.fromARGB(255, 33, 164, 187),
-                  Color.fromARGB(255, 20, 162, 170),
-                ],
-              ),
-            ),
+          gradient: RadialGradient(
+            colors: [
+              Color.fromARGB(255, 238, 244, 244),
+              Color.fromARGB(255, 136, 186, 200),
+            ],
+            center: Alignment.center,
+            radius: 1.30,
+          ),
+        ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[

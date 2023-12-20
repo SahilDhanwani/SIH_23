@@ -238,8 +238,19 @@ class _LeftEarState extends State<LeftEar> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
+  return Scaffold(
+    body: Container(
+      decoration: const BoxDecoration(
+        gradient: RadialGradient(
+          colors: [
+            Color.fromARGB(255, 238, 244, 244),
+            Color.fromARGB(255, 136, 186, 200),
+          ],
+          center: Alignment.center,
+          radius: 1.30,
+        ),
+      ),
+      child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -247,10 +258,16 @@ class _LeftEarState extends State<LeftEar> {
             const SizedBox(height: 20),
             Container(
               padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(10),
-              ),
+ decoration: const BoxDecoration(
+          gradient: RadialGradient(
+            colors: [
+              Color.fromARGB(255, 238, 244, 244),
+              Color.fromARGB(255, 136, 186, 200),
+            ],
+            center: Alignment.center,
+            radius: 1.30,
+          ),
+        ),
               child: Text(
                 'Test for Left Ear',
                 style: TextStyle(
@@ -339,10 +356,8 @@ class _LeftEarState extends State<LeftEar> {
                   onTap: onCrossButtonPressed,
                   child: Image.asset(
                     'assets/images/notick.png',
-                    height: MediaQuery.of(context).size.width *
-                        0.15, // Adjusted size
-                    width: MediaQuery.of(context).size.width *
-                        0.15, // Adjusted size
+                    height: MediaQuery.of(context).size.width * 0.15,
+                    width: MediaQuery.of(context).size.width * 0.15,
                   ),
                 ),
                 const SizedBox(width: 20),
@@ -350,10 +365,8 @@ class _LeftEarState extends State<LeftEar> {
                   onTap: onTickButtonPressed,
                   child: Image.asset(
                     'assets/images/yestick.png',
-                    height: MediaQuery.of(context).size.width *
-                        0.15, // Adjusted size
-                    width: MediaQuery.of(context).size.width *
-                        0.15, // Adjusted size
+                    height: MediaQuery.of(context).size.width * 0.15,
+                    width: MediaQuery.of(context).size.width * 0.15,
                   ),
                 ),
               ],
@@ -368,6 +381,7 @@ class _LeftEarState extends State<LeftEar> {
           ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 }

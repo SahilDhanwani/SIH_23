@@ -142,12 +142,17 @@ class StudentLoginForm extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              Sobj.email = email.text.toString();
+                        Navigator.pushNamed(context, MyRoutes.backgroundNoise);
+                      },
+            // onPressed: () {
+            //   Sobj.email = email.text.toString();
 
-              _auth.signInWithEmailAndPassword(
-                  email: email.text.toString(),
-                  password: password.text.toString());
-            },
+            //   _auth.signInWithEmailAndPassword(
+            //       email: email.text.toString(),
+            //       password: password.text.toString());
+            //        Navigator.pushNamed(context, MyRoutes.studenthome);
+
+            // },
               style: ElevatedButton.styleFrom(
                         elevation: 8,
                         backgroundColor: Color.fromARGB(255, 39, 115, 191) ,

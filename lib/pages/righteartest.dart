@@ -199,7 +199,7 @@ class _RightEarState extends State<RightEar> {
       } else {
         // If it reaches Volume 80 and Frequency 8000, move to MyRoutes.rightear
         if (currentVolume == 80 && currentFrequency == 8000) {
-          // onProceedButtonPressed();
+          // onProceedButtonPressed(); 
           EM().toastMessage("Click on send button if you cannot hear");
           // isButtonEnabled = true;
         } else {
@@ -220,7 +220,7 @@ class _RightEarState extends State<RightEar> {
   }
 
   @override
-  Widget build(BuildContext context) {
+ Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -385,5 +385,5 @@ class _RightEarState extends State<RightEar> {
         ),
       ),
     );
-  }
+  } 
 }

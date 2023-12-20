@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.Welcome,
+      initialRoute: MyRoutes.backgroundNoise,
       routes: {
         //  MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
         // MyRoutes.studentLoginRoute: (context) =>//EXTRA

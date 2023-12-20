@@ -8,7 +8,6 @@ class BackgroundNoise extends StatefulWidget {
   const BackgroundNoise({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _BackgroundNoiseState createState() => _BackgroundNoiseState();
 }
 
@@ -67,68 +66,79 @@ class _BackgroundNoiseState extends State<BackgroundNoise> {
   @override
   Widget build(BuildContext context) => MaterialApp(
         home: Scaffold(
-          backgroundColor: Colors.blueGrey.shade100,
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'BACKGROUND NOISE ',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const Text(
-                  'CALIBRATION',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 30),
-                Image.asset(
-                  'assets/images/baground.jpg',
-                  width: MediaQuery.of(context).size.width * 0.5,
-                ),
-                Card(
-                  margin: const EdgeInsets.all(25),
-                  elevation: 5,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          _isRecording ? "Microphone: ON" : "Microphone: OFF",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: _isRecording ? Colors.red : Colors.green,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        Text(
-                          'Noise Level: ${_latestReading?.meanDecibel.toStringAsFixed(2)} dB',
-                          style: const TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        ElevatedButton(
-                          onPressed: isNoiseBelowThreshold()
-                              ? () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) =>
-                                          const Calibration()));
-                                }
-                              : null,
-                          child: const Text('Proceed'),
-                        ),
-                      ],
+          backgroundColor: Colors.transparent,
+          body: Stack(
+            children: [
+              // Background Image
+              Image.asset(
+                  'assets/images/bluebackground.png', // Replace with your image path
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: double.infinity,
+              ),
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'BACKGROUND NOISE ',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
+                    const Text(
+                      'CALIBRATION',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    Image.asset(
+                      'assets/images/baground.jpg',
+                      width: MediaQuery.of(context).size.width * 0.5,
+                    ),
+                    Card(
+                      margin: const EdgeInsets.all(25),
+                      elevation: 5,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              _isRecording ? "Microphone: ON" : "Microphone: OFF",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: _isRecording ? Colors.red : Colors.green,
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            Text(
+                              'Noise Level: ${_latestReading?.meanDecibel.toStringAsFixed(2)} dB',
+                              style: const TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            ElevatedButton(
+                              onPressed: isNoiseBelowThreshold()
+                                  ? () {
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                          builder: (context) =>
+                                              const Calibration()));
+                                    }
+                                  : null,
+                              child: const Text('Proceed'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           floatingActionButton: FloatingActionButton(
             backgroundColor: _isRecording ? Colors.red : Colors.green,
