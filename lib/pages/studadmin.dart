@@ -19,7 +19,6 @@ class studadmin extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                //color: MyTheme.textColor,
               ),
             ),
             const SizedBox(height: 20),
@@ -30,11 +29,10 @@ class studadmin extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(
-                    context, MyRoutes.mixadmin); // Navigate to home screen
+                    context, MyRoutes.mixadmin); // Navigate to admin screen
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    MyTheme.buttonColor, // Use the button color from theme
+                backgroundColor: MyTheme.buttonColor,
               ),
               child: const Text('Admin'),
             ),
@@ -46,17 +44,25 @@ class studadmin extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(
-                    context, MyRoutes.Mixstudent); // Navigate to home screen
+                    context, MyRoutes.Mixstudent); // Navigate to student screen
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    MyTheme.buttonColor, // Use the button color from theme
+                backgroundColor: MyTheme.buttonColor,
               ),
               child: const Text('Student'),
             ),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Handle the action when the floating button is pressed
+          // Add your custom action or navigation here
+        },
+        backgroundColor: MyTheme.buttonColor, // Use the button color from theme
+        child: const Icon(Icons.home),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
 }
