@@ -1,5 +1,5 @@
 class Admin {
   String name = 'Sahil Dhanwani';
   String school = 'PCCOE';
-  String classCode = 'TECHNO';
+  String classCode = 'SIH1403';
 }

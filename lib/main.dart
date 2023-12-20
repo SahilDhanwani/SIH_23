@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:sih_23_audiometer/object/admin.dart';
+import 'package:sih_23_audiometer/object/student.dart';
 import 'package:sih_23_audiometer/pages/Calibration.dart';
 import 'package:sih_23_audiometer/pages/LocaleString.dart';
 import 'package:sih_23_audiometer/pages/adminhome.dart';
@@ -45,14 +47,16 @@ Future main() async {
         )
       : await Firebase.initializeApp();
 
-  runApp(const MyApp());
+  runApp(MyApp());
   WidgetsFlutterBinding.ensureInitialized();
 }
 
+// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
-  // Admin temp = Admin();
+  Admin temp = Admin();
+  Student temp2 = Student();
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +67,7 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.adminhome,
+      initialRoute: MyRoutes.Welcome,
 
       routes: {
         //  MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
@@ -99,10 +103,10 @@ class MyApp extends StatelessWidget {
         MyRoutes.Mixstudent: (context) => const Mixstudent(),
         MyRoutes.headset: (context) => const Headset(),
         // MyRoutes.adminhome: (context) => adminhome(),
-        MyRoutes.studenthome: (context) => const studenthome(),
+        MyRoutes.studenthome: (context) => studenthome(temp2),
         MyRoutes.Dashboard: (context) => const Dashboard(),
         MyRoutes.Welcome: (context) => const Welcome(),
-        MyRoutes.adminhome: (context) => const adminhome(username: 'fg',),
+        MyRoutes.adminhome: (context) => adminhome(temp),
         // MyRoutes.addstudent: (context) => const addstudent(),
       },
     );
