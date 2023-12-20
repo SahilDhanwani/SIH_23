@@ -1,24 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:sih_23_audiometer/object/student.dart';
 import 'package:sih_23_audiometer/pages/background_noise.dart';
 
-// ignore: camel_case_types
+// ignore: camel_case_types, must_be_immutable
 class studenthome extends StatelessWidget {
-  const studenthome({super.key});
+  Student temp;
+  studenthome(this.temp, {super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Student Information',
-      home: StudentInfoPage(),
-    );
-  }
-}
-
-class StudentInfoPage extends StatelessWidget {
-  const StudentInfoPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
+ Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Student Information'),
@@ -33,7 +23,7 @@ class StudentInfoPage extends StatelessWidget {
                   'assets/images/student.jpg'), // Replace with the correct image path
             ),
             const SizedBox(height: 20.0),
-            const StudentDetails(),
+            StudentDetails(temp),
             const SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -57,7 +47,6 @@ class StudentInfoPage extends StatelessWidget {
       ),
     );
   }
-}
 
 void takeTest(BuildContext context) {
   // Navigate to the MaxStudentPage when "Take Test" button is pressed
@@ -85,6 +74,7 @@ void viewReport(BuildContext context) {
     },
   );
 }
+}
 
 class MaxStudentPage extends StatelessWidget {
   const MaxStudentPage({super.key});
@@ -102,19 +92,25 @@ class MaxStudentPage extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class StudentDetails extends StatelessWidget {
-  const StudentDetails({super.key});
+  Student temp;
+  StudentDetails(this.temp, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        StudentDetail(label: 'Class Code', value: 'ABC123'),
-        StudentDetail(label: 'Name', value: 'John Doe'),
-        StudentDetail(label: 'School', value: 'XYZ School'),
-        StudentDetail(label: 'Age', value: '15'),
-        StudentDetail(label: 'Roll No', value: '12345'),
-        StudentDetail(label: 'Mobile Number', value: '123-456-7890'),
+        StudentDetail(label: 'Class Code', value: temp.classCode),
+        StudentDetail(label: 'Name', value: temp.name),
+        StudentDetail(label: 'DOB', value: temp.dob),
+        StudentDetail(label: 'Age', value: temp.age),
+        StudentDetail(label: 'Roll No', value: temp.rollNo),
+        StudentDetail(label: 'Gender', value: temp.gender),
+        StudentDetail(label: 'STD', value: temp.std),
+
+
+
       ],
     );
   }

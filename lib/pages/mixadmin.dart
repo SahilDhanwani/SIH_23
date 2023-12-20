@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:sih_23_audiometer/object/admin.dart';
 import 'package:sih_23_audiometer/pages/adminhome.dart';
 // import 'package:sih_23_audiometer/pages/adminhome.dart';
 
@@ -82,6 +83,7 @@ class _AdminPageState extends State<AdminPage> {
   }
 }
 
+// ignore: must_be_immutable
 class AdminLoginForm extends StatelessWidget {
   AdminLoginForm({super.key});
 
@@ -93,6 +95,7 @@ class AdminLoginForm extends StatelessWidget {
   // ignore: non_constant_identifier_names
   final class_code = TextEditingController();
   final String adder = '@karn.com';
+  Admin temp = Admin();
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +132,7 @@ class AdminLoginForm extends StatelessWidget {
                   email: class_code.text.toString() + adder,
                   password: password.text.toString());
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const adminhome(username: 'hg',)));
+                  MaterialPageRoute(builder: (context) => adminhome(temp)));
             },
             child: const Text('Login'),
           ),
@@ -139,6 +142,7 @@ class AdminLoginForm extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class AdminSignupForm extends StatelessWidget {
   AdminSignupForm({super.key});
 
@@ -153,6 +157,7 @@ class AdminSignupForm extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final adminRef = FirebaseDatabase.instance.ref('admin');
+  Admin temp = Admin();
 
   @override
   Widget build(BuildContext context) {
@@ -228,8 +233,12 @@ class AdminSignupForm extends StatelessWidget {
                   'class_code' : class_code.text.toString(),
                 });
 
+                temp.name = name.text.toString();
+                temp.classCode = class_code.text.toString();
+                temp.school = school.text.toString();
+
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) =>  const adminhome(username: 'jh',)));
+                    MaterialPageRoute(builder: (context) => adminhome(temp)));
                 
               },
               child: const Text('Signup'),

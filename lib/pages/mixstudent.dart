@@ -97,6 +97,7 @@ class StudentLoginForm extends StatelessWidget {
   final email = TextEditingController();
   // ignore: non_constant_identifier_names
   Student Sobj = Student();
+  String adder = '@karn.com';
 
   @override
   Widget build(BuildContext context) {
@@ -109,8 +110,8 @@ class StudentLoginForm extends StatelessWidget {
           TextFormField(
             controller: email,
             decoration: const InputDecoration(
-              labelText: 'E-mail Address',
-              hintText: 'Enter your email address',
+              labelText: 'Roll no',
+              hintText: 'Enter your Roll no',
             ),
           ),
           const SizedBox(
@@ -129,14 +130,12 @@ class StudentLoginForm extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              Sobj.email = email.text.toString();
-
               _auth.signInWithEmailAndPassword(
-                  email: email.text.toString(),
+                  email: email.text.toString()+adder,
                   password: password.text.toString());
 
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) =>  const studenthome()));
+                    MaterialPageRoute(builder: (context) =>  studenthome(Sobj)));
             },
             child: const Text('Login'),
           ),
@@ -163,12 +162,12 @@ class StudentSignupForm extends StatelessWidget {
   // ignore: non_constant_identifier_names
   final class_code = TextEditingController();
   final password = TextEditingController();
-  final email = TextEditingController();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final studentRef = FirebaseDatabase.instance.ref('student');
   // ignore: non_constant_identifier_names
   Student Sobj = Student();
+  String adder = '@karn.com';
 
   @override
   Widget build(BuildContext context) {
@@ -178,16 +177,6 @@ class StudentSignupForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          TextFormField(
-            controller: email,
-            decoration: const InputDecoration(
-              labelText: 'E-mail Address',
-              hintText: 'Enter your email address',
-            ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
           TextFormField(
             controller: name,
             decoration: const InputDecoration(
@@ -211,8 +200,8 @@ class StudentSignupForm extends StatelessWidget {
           TextFormField(
             controller: std,
             decoration: const InputDecoration(
-              labelText: 'Class',
-              hintText: 'Enter your class',
+              labelText: 'Standard',
+              hintText: 'Enter your Standard/year',
             ),
           ),
           const SizedBox(
@@ -272,14 +261,14 @@ class StudentSignupForm extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               _auth.createUserWithEmailAndPassword(
-                email: email.text.toString(),
+                email: roll_no.text.toString()+adder,
                 password: password.text.toString(),
               );
 
               studentRef
                   .child(DateTime.now().millisecondsSinceEpoch.toString())
                   .set({
-                'E-mail': email.text.toString(),
+                'E-mail': roll_no.text.toString()+adder,
                 'name': name.text.toString(),
                 'roll no': roll_no.text.toString(),
                 'std': std.text.toString(),
@@ -288,8 +277,17 @@ class StudentSignupForm extends StatelessWidget {
                 'gender': gender.text.toString(),
                 'class_code': class_code.text.toString()
               });
+
+              Sobj.name = name.text.toString();
+              Sobj.rollNo = roll_no.text.toString();
+              Sobj.std = std.text.toString();
+              Sobj.dob = dob.text.toString();
+              Sobj.age = age.text.toString();
+              Sobj.gender = gender.text.toString();
+              Sobj.classCode = class_code.text.toString();
+
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const studenthome()));
+                  MaterialPageRoute(builder: (context) => studenthome(Sobj)));
             },
             child: const Text('Signup'),
           ),

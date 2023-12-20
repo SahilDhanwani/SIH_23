@@ -3,10 +3,6 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 
-void main() {
-  runApp(const Dashboard());
-}
-
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 

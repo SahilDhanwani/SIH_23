@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:sih_23_audiometer/object/admin.dart';
+import 'package:sih_23_audiometer/pages/dashbord.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 
-// ignore: camel_case_types
+// ignore: camel_case_types, must_be_immutable
 class adminhome extends StatelessWidget {
-  final String adminName = "John Doe";
-  final String classCode = "CS101";
-  final String schoolName = "Flutter High School";
-  final String adminImagePath = "assets/images/admin.png";
-  final String outsideImagePath = "assets/images/admin.png";
 
-  const adminhome({super.key, required String username});
+Admin temp;
+final String adminImagePath = "assets/images/admin.png";
+final String outsideImagePath = "assets/images/admin.png";
+
+  adminhome(this.temp, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +22,16 @@ class adminhome extends StatelessWidget {
         child: Column(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text(adminName),
-              accountEmail: null,
+              accountName: Text(temp.name),
+              accountEmail: const Text('sahildhanwani291203@gmail.com'),
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage(adminImagePath),
               ),
             ),
             ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, MyRoutes.Dashboard);
+                    Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const Dashboard()));
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: 8,
@@ -89,17 +91,17 @@ class adminhome extends StatelessWidget {
             ),
             const SizedBox(height: 20.0),
             Text(
-              'Admin Name: $adminName',
+              'Admin Name: ${temp.name}',
               style: const TextStyle(fontSize: 20.0),
             ),
             const SizedBox(height: 10.0),
             Text(
-              'Class Code: $classCode',
+              'Class Code: ${temp.classCode}',
               style: const TextStyle(fontSize: 20.0),
             ),
             const SizedBox(height: 10.0),
             Text(
-              'School Name: $schoolName',
+              'School Name: ${temp.school}',
               style: const TextStyle(fontSize: 20.0),
             ),
           ],
