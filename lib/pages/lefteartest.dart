@@ -6,7 +6,7 @@ import 'package:sih_23_audiometer/pages/righteartest.dart';
 import '../utils/routes.dart';
 
 class LeftEar extends StatefulWidget {
-  LeftEar({super.key});
+  const LeftEar({super.key});
 
   @override
   // ignore: library_private_types_in_public_api

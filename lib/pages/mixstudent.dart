@@ -87,6 +87,7 @@ class _StudentPageState extends State<StudentPage> {
   }
 }
 
+// ignore: must_be_immutable
 class StudentLoginForm extends StatelessWidget {
   StudentLoginForm({super.key});
 
@@ -94,6 +95,7 @@ class StudentLoginForm extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final password = TextEditingController();
   final email = TextEditingController();
+  // ignore: non_constant_identifier_names
   Student Sobj = Student();
 
   @override
@@ -134,7 +136,7 @@ class StudentLoginForm extends StatelessWidget {
                   password: password.text.toString());
 
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) =>  studenthome()));
+                    MaterialPageRoute(builder: (context) =>  const studenthome()));
             },
             child: const Text('Login'),
           ),
@@ -144,6 +146,7 @@ class StudentLoginForm extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class StudentSignupForm extends StatelessWidget {
   StudentSignupForm({super.key});
 
@@ -164,6 +167,7 @@ class StudentSignupForm extends StatelessWidget {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final studentRef = FirebaseDatabase.instance.ref('student');
+  // ignore: non_constant_identifier_names
   Student Sobj = Student();
 
   @override

@@ -73,12 +73,12 @@ class MyApp extends StatelessWidget {
         MyRoutes.studentSigninRoute: (context) =>
             const StudentSignin(), //Student Login
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
-        MyRoutes.leftear: (context) => LeftEar(),
+        MyRoutes.leftear: (context) => const LeftEar(),
         MyRoutes.chatbot: (context) => const ChatBot(),
         MyRoutes.rightear: (context) =>
             // ignore: prefer_const_constructors
-            RightEar(leftValues: [80, 80, 80, 80, 80, 80]),
-        MyRoutes.graph: (context) => Graph(
+            RightEar(leftValues: const [80, 80, 80, 80, 80, 80]),
+        MyRoutes.graph: (context) => const Graph(
             leftValues: [80, 80, 80, 80, 80, 80],
             rightValues: [80, 80, 80, 80, 80, 80]),
         MyRoutes.calibration: (context) => const Calibration(),
@@ -92,7 +92,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.loginstudent: (context) => const LoginStudent(),
         MyRoutes.studentsignup: (context) => const StudentSignup(),
         // Files of AbhishekBHosale02
-        MyRoutes.studadmin: (context) => studadmin(),
+        MyRoutes.studadmin: (context) => const studadmin(),
         MyRoutes.LanguageSelectionPage: (context) => LanguageSelectionPage(),
         MyRoutes.mixadmin: (context) => const mixadmin(),
         MyRoutes.Mixstudent: (context) => const Mixstudent(),

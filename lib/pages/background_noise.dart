@@ -3,7 +3,6 @@ import 'package:noise_meter/noise_meter.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sih_23_audiometer/pages/Calibration.dart';
-import 'package:sih_23_audiometer/utils/routes.dart';
 
 class BackgroundNoise extends StatefulWidget {
   const BackgroundNoise({super.key});

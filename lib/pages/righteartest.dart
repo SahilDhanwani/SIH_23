@@ -5,12 +5,11 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
 import 'package:sih_23_audiometer/utils/errormessage.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class RightEar extends StatefulWidget {
   final List<double> leftValues;
 
-  RightEar({super.key, required this.leftValues});
+  const RightEar({super.key, required this.leftValues});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -344,8 +343,11 @@ class _RightEarState extends State<RightEar> {
               onPressed: isButtonEnabled
                   ? () {
 
+                  // ignore: prefer_typing_uninitialized_variables
                   var name;
+                  // ignore: prefer_typing_uninitialized_variables
                   var school;
+                  // ignore: prefer_typing_uninitialized_variables
                   var classCode;
                   graphRef.child(DateTime.now().millisecondsSinceEpoch.toString()).set({
                   'email' : name.text.toString(),

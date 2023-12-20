@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sih_23_audiometer/object/student.dart';
 import 'package:sih_23_audiometer/pages/background_noise.dart';
-import 'package:sih_23_audiometer/utils/routes.dart';
 
 // ignore: camel_case_types
 class studenthome extends StatelessWidget {

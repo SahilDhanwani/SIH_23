@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sih_23_audiometer/pages/headset.dart';
 // ignore: file_names
-import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
