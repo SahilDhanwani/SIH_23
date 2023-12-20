@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/pages/Calibration.dart';
 import 'package:sih_23_audiometer/pages/LocaleString.dart';
-import 'package:sih_23_audiometer/pages/adminhome.dart';
 import 'package:sih_23_audiometer/pages/chatbot.dart';
 import 'package:sih_23_audiometer/pages/dashbord.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
@@ -14,7 +13,6 @@ import 'package:sih_23_audiometer/pages/lefteartest.dart';
 import 'package:sih_23_audiometer/pages/logsignadmin.dart';
 import 'package:sih_23_audiometer/pages/mixadmin.dart';
 import 'package:sih_23_audiometer/pages/mixstudent.dart';
-import 'package:sih_23_audiometer/pages/sahil.dart';
 import 'package:sih_23_audiometer/pages/studentsignup.dart';
 import 'package:sih_23_audiometer/pages/background_noise.dart';
 import 'package:sih_23_audiometer/pages/loginadmin.dart';
@@ -51,6 +49,8 @@ Future main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // Admin temp = Admin();
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -60,8 +60,7 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.chatbot,
-
+      initialRoute: MyRoutes.mixadmin,
       routes: {
         //  MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
        // MyRoutes.studentLoginRoute: (context) =>//EXTRA
@@ -95,9 +94,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.mixadmin: (context) => const mixadmin(),
         MyRoutes.Mixstudent: (context) => const Mixstudent(),
         MyRoutes.headset: (context) => const Headset(),
-        MyRoutes.adminhome: (context) => adminhome(
-              username: 'NA',
-            ),
+        // MyRoutes.adminhome: (context) => adminhome(),
         MyRoutes.studenthome: (context) => const studenthome(),
         MyRoutes.Dashboard: (context) => const Dashboard(),
         MyRoutes.Welcome: (context) => const Welcome(),
