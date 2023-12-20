@@ -1,3 +1,5 @@
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 
@@ -9,12 +11,13 @@ class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _DashboardState createState() => _DashboardState();
 }
 
 class _DashboardState extends State<Dashboard> {
   bool showAdditionalButtons = false;
+  final ref = FirebaseDatabase.instance.ref('admin');
+  final searchFilter = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -97,25 +100,20 @@ class _DashboardState extends State<Dashboard> {
                         // Add functionality for elevator button 1
                       },
                       style: ElevatedButton.styleFrom(
-                        // ignore: deprecated_member_use
-                        primary: Colors.blue, // Change the button color
-                        // ignore: deprecated_member_use
-                        onPrimary: Colors.white, // Change the text color
+                        foregroundColor: Colors.white,
+                        primary: Colors.blue,
                       ),
                       child: const Text('Student Details'),
                     ),
                     ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          // Toggle the visibility of additional buttons
                           showAdditionalButtons = !showAdditionalButtons;
                         });
                       },
                       style: ElevatedButton.styleFrom(
-                        // ignore: deprecated_member_use
-                        primary: Colors.orange, // Change the button color
-                        // ignore: deprecated_member_use
-                        onPrimary: Colors.white, // Change the text color
+                        foregroundColor: Colors.white,
+                        primary: Colors.orange,
                       ),
                       child: const Text('Filter'),
                     ),
@@ -128,11 +126,8 @@ class _DashboardState extends State<Dashboard> {
                               // Add functionality for additional button 1
                             },
                             style: ElevatedButton.styleFrom(
-                              // ignore: deprecated_member_use
-                              primary: const Color.fromARGB(255, 106, 184,
-                                  212), // Change the button color
-                              // ignore: deprecated_member_use
-                              onPrimary: Colors.white, // Change the text color
+                              foregroundColor: Colors.white,
+                              primary: const Color.fromARGB(255, 106, 184, 212),
                             ),
                             child: const Text('Test not Taken'),
                           ),
@@ -141,11 +136,8 @@ class _DashboardState extends State<Dashboard> {
                               // Add functionality for additional button 2
                             },
                             style: ElevatedButton.styleFrom(
-                              // ignore: deprecated_member_use
-                              primary: const Color.fromARGB(
-                                  255, 200, 85, 79), // Change the button color
-                              // ignore: deprecated_member_use
-                              onPrimary: Colors.white, // Change the text color
+                              foregroundColor: Colors.white,
+                              primary: const Color.fromARGB(255, 200, 85, 79),
                             ),
                             child: const Text('Result of Hearing Loss'),
                           ),
@@ -154,11 +146,8 @@ class _DashboardState extends State<Dashboard> {
                               // Add functionality for additional button 3
                             },
                             style: ElevatedButton.styleFrom(
-                              // ignore: deprecated_member_use
-                              primary: const Color.fromARGB(
-                                  255, 48, 150, 89), // Change the button color
-                              // ignore: deprecated_member_use
-                              onPrimary: Colors.white, // Change the text color
+                              primary: const Color.fromARGB(255, 48, 150, 89),
+                              onPrimary: Colors.white,
                             ),
                             child: const Text('All Fine'),
                           ),
@@ -169,7 +158,57 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ],
             ),
-            // Add any other widgets or content you want below the image and buttons
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: TextFormField(
+                controller: searchFilter,
+                decoration: const InputDecoration(
+                  hintText: 'Search',
+                  border: OutlineInputBorder(),
+                ),
+                onChanged: (String value) {
+                  setState(() {});
+                },
+              ),
+            ),
+            Expanded(
+              child: FirebaseAnimatedList(
+                query: ref,
+                itemBuilder: (BuildContext context, DataSnapshot snapshot,
+                    Animation<double> animation, int index) {
+                  final title = snapshot.child('class_code').value.toString();
+                  if (searchFilter.text.isEmpty ||
+                      title
+                          .toLowerCase()
+                          .contains(searchFilter.text.toLowerCase())) {
+                    return ListTile(
+                      title:
+                          Text(snapshot.child('class_code').value.toString()),
+                      subtitle: Text(snapshot.child('School').value.toString()),
+                      trailing: PopupMenuButton(
+                        icon: const Icon(Icons.more_vert),
+                        itemBuilder: (context) => [
+                          const PopupMenuItem(
+                              child: ListTile(
+                            leading: Icon(Icons.edit),
+                            title: Text('Edit'),
+                          )),
+                          const PopupMenuItem(
+                              value: 1,
+                              child: ListTile(
+                                leading: Icon(Icons.delete),
+                                title: Text('Delete'),
+                              ))
+                        ],
+                      ),
+                    );
+                  } else {
+                    return Container();
+                  }
+                },
+              ),
+            ),
           ],
         ),
       ),

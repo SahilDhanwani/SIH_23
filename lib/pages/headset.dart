@@ -159,7 +159,7 @@ class _HeadsetState extends State<Headset> {
                       ? () {
                           // Handle button click
                           // This block will only execute if the headset is connected
-                          Navigator.pushNamed(context, MyRoutes.calibration);
+                          Navigator.pushNamed(context, MyRoutes.leftear);
                           // ignore: avoid_print
                           print('Continue button clicked');
                         }

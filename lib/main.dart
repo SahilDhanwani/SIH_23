@@ -13,6 +13,7 @@ import 'package:sih_23_audiometer/pages/lefteartest.dart';
 import 'package:sih_23_audiometer/pages/logsignadmin.dart';
 import 'package:sih_23_audiometer/pages/mixadmin.dart';
 import 'package:sih_23_audiometer/pages/mixstudent.dart';
+import 'package:sih_23_audiometer/pages/student_login.dart';
 import 'package:sih_23_audiometer/pages/studentsignup.dart';
 import 'package:sih_23_audiometer/pages/background_noise.dart';
 import 'package:sih_23_audiometer/pages/loginadmin.dart';
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.Welcome,
+      initialRoute: MyRoutes.backgroundNoise,
       routes: {
         //  MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
         MyRoutes.studentLoginRoute: (context) =>
@@ -71,14 +72,14 @@ class MyApp extends StatelessWidget {
         MyRoutes.studentSigninRoute: (context) =>
             const StudentSignin(), //Student Login
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
-        MyRoutes.leftear: (context) => const LeftEar(),
+        MyRoutes.leftear: (context) => LeftEar(),
         MyRoutes.chatbot: (context) => const ChatBot(),
         MyRoutes.rightear: (context) =>
             // ignore: prefer_const_constructors
-            RightEar(leftValues: const [80, 80, 80, 80, 80, 80]),
+            RightEar(leftValues: [80, 80, 80, 80, 80, 80]),
         MyRoutes.graph: (context) => Graph(
-            leftValues: const [80, 80, 80, 80, 80, 80],
-            rightValues: const [80, 80, 80, 80, 80, 80]),
+            leftValues: [80, 80, 80, 80, 80, 80],
+            rightValues: [80, 80, 80, 80, 80, 80]),
         MyRoutes.calibration: (context) => const Calibration(),
         // MyRoutes.chatbot: (context) => const ChatBot(),
         MyRoutes.logsignstu: (context) => const LogSignStu(),

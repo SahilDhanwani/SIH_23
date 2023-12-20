@@ -174,7 +174,7 @@ class _CalibrationState extends State<Calibration> {
                     ElevatedButton(
                       onPressed: () {
                         Navigator.pushNamed(context,
-                            MyRoutes.leftear); // Navigate to home screen
+                            MyRoutes.headset); // Navigate to home screen
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: MyTheme

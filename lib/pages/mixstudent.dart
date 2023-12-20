@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sih_23_audiometer/pages/studenthome.dart';
 // ignore: unused_import
 import 'package:sih_23_audiometer/utils/routes.dart';
 
@@ -126,7 +127,9 @@ class StudentLoginForm extends StatelessWidget {
               _auth.signInWithEmailAndPassword(
                   email: email.text.toString(),
                   password: password.text.toString());
-              //Navigator.pushNamed(context, MyRoutes.backgroundNoise);
+
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const studenthome()));
             },
             child: const Text('Login'),
           ),
@@ -263,7 +266,9 @@ class StudentSignupForm extends StatelessWidget {
                 password: password.text.toString(),
               );
 
-              studentRef.child(email.text.toString()).set({
+              studentRef
+                  .child(DateTime.now().millisecondsSinceEpoch.toString())
+                  .set({
                 'E-mail': email.text.toString(),
                 'name': name.text.toString(),
                 'roll no': roll_no.text.toString(),
@@ -273,6 +278,8 @@ class StudentSignupForm extends StatelessWidget {
                 'gender': gender.text.toString(),
                 'class_code': class_code.text.toString()
               });
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const studenthome()));
             },
             child: const Text('Signup'),
           ),

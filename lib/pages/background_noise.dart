@@ -36,8 +36,7 @@ class _BackgroundNoiseState extends State<BackgroundNoise> {
     stop();
   }
 
-  Future<bool> checkPermission() async =>
-      await Permission.microphone.isGranted;
+  Future<bool> checkPermission() async => await Permission.microphone.isGranted;
 
   Future<void> requestPermission() async =>
       await Permission.microphone.request();
@@ -113,13 +112,12 @@ class _BackgroundNoiseState extends State<BackgroundNoise> {
                             fontSize: 18,
                           ),
                         ),
-                   
                         const SizedBox(height: 20),
                         ElevatedButton(
                           onPressed: isNoiseBelowThreshold()
                               ? () {
                                   Navigator.pushNamed(
-                                      context, MyRoutes.headset);
+                                      context, MyRoutes.calibration);
                                 }
                               : null,
                           child: const Text('Proceed'),
@@ -134,9 +132,8 @@ class _BackgroundNoiseState extends State<BackgroundNoise> {
           floatingActionButton: FloatingActionButton(
             backgroundColor: _isRecording ? Colors.red : Colors.green,
             onPressed: _isRecording ? stop : start,
-            child: _isRecording
-                ? const Icon(Icons.stop)
-                : const Icon(Icons.mic),
+            child:
+                _isRecording ? const Icon(Icons.stop) : const Icon(Icons.mic),
           ),
         ),
       );

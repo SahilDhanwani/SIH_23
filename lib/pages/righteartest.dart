@@ -8,7 +8,7 @@ import 'package:sih_23_audiometer/utils/routes.dart';
 class RightEar extends StatefulWidget {
   final List<double> leftValues;
 
-  const RightEar({super.key, required this.leftValues});
+  RightEar({super.key, required this.leftValues});
 
   @override
   // ignore: library_private_types_in_public_api
