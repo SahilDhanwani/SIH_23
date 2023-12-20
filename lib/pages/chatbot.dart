@@ -38,14 +38,16 @@ class _ChatBotState extends State<ChatBot> {
             children: [
               Expanded(child: MessagesScreen(messages: messages)),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                 color: Theme.of(context).primaryColor,
                 child: Row(
                   children: [
                     Expanded(
                       child: TextField(
                         controller: _controller,
-                        style: const TextStyle(color: Color.fromARGB(255, 2, 3, 20)),
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 2, 3, 20)),
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: const Color.fromARGB(255, 53, 161, 160),
@@ -63,7 +65,8 @@ class _ChatBotState extends State<ChatBot> {
                         sendMessage(_controller.text);
                         _controller.clear();
                       },
-                      icon: const Icon(Icons.send, color: Color.fromARGB(255, 25, 74, 190)),
+                      icon: const Icon(Icons.send,
+                          color: Color.fromARGB(255, 25, 74, 190)),
                     ),
                   ],
                 ),
@@ -103,7 +106,11 @@ class _ChatBotState extends State<ChatBot> {
   addMessage(Message message, [bool isUserMessage = false]) {
     setState(() {
       // Add different colors for questions and answers
-      messages.add({'message': message, 'isUserMessage': isUserMessage, 'color': isUserMessage ? Colors.blue : Colors.green});
+      messages.add({
+        'message': message,
+        'isUserMessage': isUserMessage,
+        'color': isUserMessage ? Colors.blue : Colors.green
+      });
     });
   }
 }

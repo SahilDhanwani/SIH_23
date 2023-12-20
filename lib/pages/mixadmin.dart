@@ -3,7 +3,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/pages/adminhome.dart';
 // import 'package:sih_23_audiometer/pages/adminhome.dart';
-import 'package:sih_23_audiometer/pages/mixstudent.dart';
 
 // ignore: camel_case_types
 class mixadmin extends StatelessWidget {
@@ -94,52 +93,49 @@ class AdminLoginForm extends StatelessWidget {
   // ignore: non_constant_identifier_names
   final class_code = TextEditingController();
   final String adder = '@karn.com';
-  
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Form(
-        key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            TextFormField(
-              controller: class_code,
-              decoration: const InputDecoration(
-                labelText: 'Class Code',
-                hintText: 'Enter your class code',
-              ),
+        child: Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TextFormField(
+            controller: class_code,
+            decoration: const InputDecoration(
+              labelText: 'Class Code',
+              hintText: 'Enter your class code',
             ),
-            
-            const SizedBox(
-              height: 16,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          TextFormField(
+            controller: password,
+            decoration: const InputDecoration(
+              labelText: 'Password',
+              hintText: 'Enter your password',
             ),
-            TextFormField(
-              controller: password,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-                hintText: 'Enter your password',
-              ),
-              obscureText: true,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                late String result;
-                result = class_code.text.toString() + adder;
-                _auth.signInWithEmailAndPassword(email: result, password: password.text.toString());
-
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) =>  adminhome(username: class_code.text.toString())));
-              },
-              child: const Text('Login'),
-            ),
-          ],
-        ),
-      )
-    );
+            obscureText: true,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              _auth.signInWithEmailAndPassword(
+                  email: class_code.text.toString() + adder,
+                  password: password.text.toString());
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const adminhome(username: 'hg',)));
+            },
+            child: const Text('Login'),
+          ),
+        ],
+      ),
+    ));
   }
 }
 
@@ -233,7 +229,7 @@ class AdminSignupForm extends StatelessWidget {
                 });
 
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) =>  adminhome(username: 'jh',)));
+                    MaterialPageRoute(builder: (context) =>  const adminhome(username: 'jh',)));
                 
               },
               child: const Text('Signup'),

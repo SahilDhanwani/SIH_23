@@ -122,7 +122,6 @@ class StudentLoginForm extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          
           ElevatedButton(
             onPressed: () {
               _auth.signInWithEmailAndPassword(
@@ -134,7 +133,6 @@ class StudentLoginForm extends StatelessWidget {
             },
             child: const Text('Login'),
           ),
-          
         ],
       ),
     ));
@@ -175,133 +173,118 @@ class StudentSignupForm extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'E-mail Address',
               hintText: 'Enter your email address',
-              ),
             ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          TextFormField(
+            controller: name,
+            decoration: const InputDecoration(
+              labelText: 'Full Name',
+              hintText: 'Enter your full name',
+            ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          TextFormField(
+            controller: roll_no,
+            decoration: const InputDecoration(
+              labelText: 'Roll No',
+              hintText: 'Enter your roll number',
+            ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          TextFormField(
+            controller: std,
+            decoration: const InputDecoration(
+              labelText: 'Class',
+              hintText: 'Enter your class',
+            ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          TextFormField(
+            controller: dob,
+            decoration: const InputDecoration(
+              labelText: 'DOB',
+              hintText: 'Enter your date of birth',
+            ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          TextFormField(
+            controller: age,
+            decoration: const InputDecoration(
+              labelText: 'Age',
+              hintText: 'Enter your age',
+            ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          TextFormField(
+            controller: gender,
+            decoration: const InputDecoration(
+              labelText: 'Gender',
+              hintText: 'Enter your gender',
+            ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          TextFormField(
+            controller: class_code,
+            decoration: const InputDecoration(
+              labelText: 'Class Code',
+              hintText: 'Enter your class code',
+            ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          TextFormField(
+            controller: password,
+            decoration: const InputDecoration(
+              labelText: 'Password',
+              hintText: 'Enter your password',
+            ),
+            obscureText: true,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              _auth.createUserWithEmailAndPassword(
+                email: email.text.toString(),
+                password: password.text.toString(),
+              );
 
-            const SizedBox(
-              height: 16,
-            ),
-
-            TextFormField(
-              controller: name,
-              decoration: const InputDecoration(
-                labelText: 'Full Name',
-                hintText: 'Enter your full name',
-              ),
-            ),
-
-            const SizedBox(
-              height: 16,
-            ),
-
-            TextFormField(
-              controller: roll_no,
-              decoration: const InputDecoration(
-                labelText: 'Roll No',
-                hintText: 'Enter your roll number',
-              ),
-            ),
-
-            const SizedBox(
-              height: 16,
-            ),
-
-            TextFormField(
-              controller: std,
-              decoration: const InputDecoration(
-                labelText: 'Class',
-                hintText: 'Enter your class',
-              ),
-            ),
-
-            const SizedBox(
-              height: 16,
-            ),
-
-            TextFormField(
-              controller: dob,
-              decoration: const InputDecoration(
-                labelText: 'DOB',
-                hintText: 'Enter your date of birth',
-              ),
-            ),
-
-            const SizedBox(
-              height: 16,
-            ),
-
-            TextFormField(
-              controller: age,
-              decoration: const InputDecoration(
-                labelText: 'Age',
-                hintText: 'Enter your age',
-              ),
-            ),
-
-            const SizedBox(
-              height: 16,
-            ),
-
-            TextFormField(
-              controller: gender,
-              decoration: const InputDecoration(
-                labelText: 'Gender',
-                hintText: 'Enter your gender',
-              ),
-            ),
-
-            const SizedBox(
-              height: 16,
-            ),
-
-            TextFormField(
-              controller: class_code,
-              decoration: const InputDecoration(
-                labelText: 'Class Code',
-                hintText: 'Enter your class code',
-              ),
-            ),
-
-            const SizedBox(
-              height: 16,
-            ),
-
-            TextFormField(
-              controller: password,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-                hintText: 'Enter your password',
-              ),
-              obscureText: true,
-            ),
-
-            const SizedBox(
-              height: 16,
-            ),
-
-            ElevatedButton(
-              onPressed: () {
-                _auth.createUserWithEmailAndPassword(
-                  email: email.text.toString(),
-                  password: password.text.toString(),
-                );
- 
-                studentRef.child(email.text.toString()).set({
-                  'E-mail' : email.text.toString(),
-                  'name' : name.text.toString(),
-                  'roll no' : roll_no.text.toString(),
-                  'std' : std.text.toString(),
-                  'dob' : dob.text.toString(),
-                  'age' : age.text.toString(),
-                  'gender' : gender.text.toString(),
-                  'class_code' : class_code.text.toString()
-                });
-              },
-              child: const Text('Signup'),
-            ),
-          ],
-        ),
-      )
-    );
+              studentRef
+                  .child(DateTime.now().millisecondsSinceEpoch.toString())
+                  .set({
+                'E-mail': email.text.toString(),
+                'name': name.text.toString(),
+                'roll no': roll_no.text.toString(),
+                'std': std.text.toString(),
+                'dob': dob.text.toString(),
+                'age': age.text.toString(),
+                'gender': gender.text.toString(),
+                'class_code': class_code.text.toString()
+              });
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const studenthome()));
+            },
+            child: const Text('Signup'),
+          ),
+        ],
+      ),
+    ));
   }
 }

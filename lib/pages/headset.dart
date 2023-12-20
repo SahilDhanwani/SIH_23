@@ -161,7 +161,7 @@ class _HeadsetState extends State<Headset> {
                           // Handle button click
                           // This block will only execute if the headset
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const LeftEar()));
+                              builder: (context) => LeftEar()));
                           // ignore: avoid_print
                           print('Continue button clicked');
                         }

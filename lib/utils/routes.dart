@@ -11,7 +11,7 @@ class MyRoutes {
   static String calibration = '/Calibration';
   static String leftear = '/LeftEar';
   static String rightear = '/RightEar';
-  // ignore: 
+  // ignore:
   static String logsignstu = '/logsignstu';
   static String studadmin = '/studadmin';
   static String loginstudent = '/loginstudent';
@@ -19,7 +19,7 @@ class MyRoutes {
   static String logsignadmin = '/logsignadmin';
   static String studentsignup = '/studentsignup';
   static String graph = '/Graph';
-  // ignore: 
+  // ignore:
   static String chatbot = '/ChatBot';
   //   static String lefteartest = '/ lefteartest ';
   //   static String righteartest = '/ righteartest ';
@@ -31,6 +31,6 @@ class MyRoutes {
   static String Dashboard = '/Dashboard';
   // ignore: constant_identifier_names
   static const String Welcome = '/Welcome';
-   // ignore: non_constant_identifier_names
-   static String LanguageSelectionPage = '/LanguageSelectionPage'; 
+  // ignore: non_constant_identifier_names
+  static String LanguageSelectionPage = '/LanguageSelectionPage';
 }
