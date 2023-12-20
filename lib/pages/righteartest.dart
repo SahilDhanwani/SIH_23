@@ -342,21 +342,7 @@ class _RightEarState extends State<RightEar> {
             ElevatedButton(
               onPressed: isButtonEnabled
                   ? () {
-                      // ignore: prefer_typing_uninitialized_variables
-                      var name;
-                      // ignore: prefer_typing_uninitialized_variables
-                      var school;
-                      // ignore: prefer_typing_uninitialized_variables
-                      var classCode;
-                      graphRef
-                          .child(
-                              DateTime.now().millisecondsSinceEpoch.toString())
-                          .set({
-                        'email': name.text.toString(),
-                        'School': school.text.toString(),
-                        'class_code': classCode.text.toString(),
-                      });
-
+                      
                       graphRef
                           .child(
                               DateTime.now().millisecondsSinceEpoch.toString())
