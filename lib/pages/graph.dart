@@ -7,7 +7,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 class Graph extends StatelessWidget {
   final List<double> leftValues;
   final List<double> rightValues;
-  // ignore: prefer_const_constructors_in_immutables
+
   Graph({super.key, required this.leftValues, required this.rightValues});
 
   @override
@@ -33,7 +33,7 @@ class Graph extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
+
   MyHomePage({
     super.key,
     required this.leftValues,

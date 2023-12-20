@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/object/admin.dart';
 import 'package:sih_23_audiometer/pages/adminhome.dart';
 // import 'package:sih_23_audiometer/pages/adminhome.dart';
-import 'package:sih_23_audiometer/pages/mixstudent.dart';
 
 // ignore: camel_case_types
 class mixadmin extends StatelessWidget {
