@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sih_23_audiometer/object/student.dart';
 import 'package:sih_23_audiometer/pages/studenthome.dart';
 // ignore: unused_import
 import 'package:sih_23_audiometer/utils/routes.dart';
@@ -8,6 +9,7 @@ import 'package:sih_23_audiometer/utils/routes.dart';
 // ignore: camel_case_types
 class Mixstudent extends StatelessWidget {
   const Mixstudent({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +94,7 @@ class StudentLoginForm extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final password = TextEditingController();
   final email = TextEditingController();
+  Student Sobj = Student();
 
   @override
   Widget build(BuildContext context) {
@@ -124,12 +127,14 @@ class StudentLoginForm extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
+              Sobj.email = email.text.toString();
+
               _auth.signInWithEmailAndPassword(
                   email: email.text.toString(),
                   password: password.text.toString());
 
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const studenthome()));
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) =>  studenthome()));
             },
             child: const Text('Login'),
           ),
@@ -159,6 +164,7 @@ class StudentSignupForm extends StatelessWidget {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final studentRef = FirebaseDatabase.instance.ref('student');
+  Student Sobj = Student();
 
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:sih_23_audiometer/object/student.dart';
 import 'package:sih_23_audiometer/pages/background_noise.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 
 // ignore: camel_case_types
 class studenthome extends StatelessWidget {
   const studenthome({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      title: 'Student Information',
+      home: StudentInfoPage(),
+    );
+  }
+}
+
+class StudentInfoPage extends StatelessWidget {
+  const StudentInfoPage({super.key});
 
   @override
   Widget build(BuildContext context) {
