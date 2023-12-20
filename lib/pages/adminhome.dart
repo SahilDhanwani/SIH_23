@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
+import 'package:sih_23_audiometer/widgets/themes.dart';
 
+// ignore: camel_case_types
 class adminhome extends StatelessWidget {
   final String username; 
   const adminhome({super.key, required this.username});
@@ -37,9 +39,34 @@ class _HomePageState extends State<HomePage> {
   late Future<String> schoolName;
   final String adminImagePath = "assets/images/admin.png";
   final String outsideImagePath = "assets/images/admin.png";
+  final DatabaseReference adminRef = FirebaseDatabase.instance.ref('admin');
 
-  const adminhome({super.key});
+  // @override
+  // void initState() {
+  //   // Calibration
+  //   schoolName = fetchSchool();
+  //   super.initState();
+  // }
 
+//   Future<String> fetchSchool() async {
+//   try {
+//     DatabaseReference userRef = FirebaseDatabase.instance.ref().child('admin').child(widget.username);
+//     DataSnapshot dataSnapshot = await userRef.once();
+    
+//     // Assuming 'School' is the key where the school name is stored
+//     String schoolName = dataSnapshot.child('School').value.toString();
+    
+//     return schoolName;
+//   } catch (error) {
+//     // Handle errors here, e.g., log the error or return a default value
+//     // ignore: avoid_print
+//     print('Error fetching school name: $error');
+//     return 'Unknown School';
+//   }
+// }
+
+
+  // ignore: non_constant_identifier_names
   @override
   Widget build(BuildContext context) {
     return Scaffold(

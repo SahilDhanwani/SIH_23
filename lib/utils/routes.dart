@@ -1,5 +1,6 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, duplicate_ignore
 
+// ignore: duplicate_ignore
 class MyRoutes {
   static String homeRoute = '/Home';
   static String studentSigninRoute = '/StudentSignin';
@@ -28,6 +29,8 @@ class MyRoutes {
   static String adminhome = '/adminhome';
   static String studenthome = '/studenthome';
   static String Dashboard = '/Dashboard';
+  // ignore: constant_identifier_names
   static const String Welcome = '/Welcome';
-   
+   // ignore: non_constant_identifier_names
+   static String LanguageSelectionPage = '/LanguageSelectionPage'; 
 }

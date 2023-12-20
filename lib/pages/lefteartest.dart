@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
-// ignore: unused_import
 import 'package:sih_23_audiometer/pages/righteartest.dart';
 // ignore: unused_import
 import '../utils/routes.dart';
@@ -360,6 +359,12 @@ class _LeftEarState extends State<LeftEar> {
               ],
             ),
             const SizedBox(height: 20),
+            // ElevatedButton(
+            //     onPressed: () {
+            //       // Navigator to the next page.
+            //       onProceedButtonPressed();
+            //     },
+            //     child: const Text("Proceed For Right Ear Test "))
           ],
         ),
       ),
