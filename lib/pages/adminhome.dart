@@ -1,14 +1,16 @@
 import 'dart:async';
 
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 
-// ignore: camel_case_types
+// ignore: camel_case_types, must_be_immutable
 class adminhome extends StatelessWidget {
-  final String username; 
-  const adminhome({super.key, required this.username});
+  String username; 
+  adminhome({super.key, required this.username});
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +36,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   
-  final String adminName = "John Doe";
-  final String classCode = "CS101";
+   String adminName = "John Doe";
+   String classCode = "CS101";
   late Future<String> schoolName;
   final String adminImagePath = "assets/images/admin.png";
   final String outsideImagePath = "assets/images/admin.png";
@@ -101,6 +103,21 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+          FirebaseAnimatedList(
+          query: adminRef, 
+          itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
+            // print('INSIDE FIREBASE');
+            if(snapshot.child('class_code').value.toString() == widget.username) {
+
+              setState(() {
+                classCode = snapshot.child('class_code').value.toString();
+                adminName = snapshot.child('Name').value.toString();
+                schoolName = snapshot.child('School').value.toString() as Future<String>;
+              });
+            }
+            return const SizedBox(height: 1);
+          },
+        ),
             ClipRRect(
               borderRadius: BorderRadius.circular(12.0),
               child: Image.asset(

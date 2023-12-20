@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';

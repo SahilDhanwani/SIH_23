@@ -14,6 +14,7 @@ import 'package:sih_23_audiometer/pages/lefteartest.dart';
 import 'package:sih_23_audiometer/pages/logsignadmin.dart';
 import 'package:sih_23_audiometer/pages/mixadmin.dart';
 import 'package:sih_23_audiometer/pages/mixstudent.dart';
+import 'package:sih_23_audiometer/pages/sahil.dart';
 import 'package:sih_23_audiometer/pages/studentsignup.dart';
 import 'package:sih_23_audiometer/pages/background_noise.dart';
 import 'package:sih_23_audiometer/pages/loginadmin.dart';
@@ -94,7 +95,9 @@ class MyApp extends StatelessWidget {
         MyRoutes.mixadmin: (context) => const mixadmin(),
         MyRoutes.Mixstudent: (context) => const Mixstudent(),
         MyRoutes.headset: (context) => const Headset(),
-        MyRoutes.adminhome: (context) => const adminhome(username: '',),
+        MyRoutes.adminhome: (context) => adminhome(
+              username: 'NA',
+            ),
         MyRoutes.studenthome: (context) => const studenthome(),
         MyRoutes.Dashboard: (context) => const Dashboard(),
         MyRoutes.Welcome: (context) => const Welcome(),

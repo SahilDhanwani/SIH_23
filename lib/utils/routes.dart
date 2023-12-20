@@ -28,6 +28,7 @@ class MyRoutes {
   static String mixadmin = '/mixadmin';
   static String adminhome = '/adminhome';
   static String studenthome = '/studenthome';
+  static String sahil = '/Sahil';
   static String Dashboard = '/Dashboard';
   // ignore: constant_identifier_names
   static const String Welcome = '/Welcome';
