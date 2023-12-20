@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sih_23_audiometer/object/student.dart';
 
 // ignore: camel_case_types
 class studenthome extends StatelessWidget {
-  const studenthome({super.key});
+  const studenthome(Student sobj, {super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,11 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
 import 'package:sih_23_audiometer/utils/errormessage.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class RightEar extends StatefulWidget {
   final List<double> leftValues;
@@ -31,6 +33,9 @@ class _RightEarState extends State<RightEar> {
   int currentFrequency = 250;
   double currentVolume = 10;
   bool isButtonEnabled = false;
+
+  final graphRef = FirebaseDatabase.instance.ref('graph');
+
   List<List<String>> tunes = [
     [
       'rightear/hearingTest.online.warble_250_10_R.mp3',
@@ -338,6 +343,12 @@ class _RightEarState extends State<RightEar> {
             ElevatedButton(
               onPressed: isButtonEnabled
                   ? () {
+
+                  graphRef.child(DateTime.now().millisecondsSinceEpoch.toString()).set({
+                  'email' : name.text.toString(),
+                  'School' : school.text.toString(),
+                  'class_code' : classCode.text.toString(),
+                });
                       // Navigator to the next page.
                       Navigator.of(context).push(
                         MaterialPageRoute(
