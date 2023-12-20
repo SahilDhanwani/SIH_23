@@ -342,18 +342,38 @@ class _RightEarState extends State<RightEar> {
             ElevatedButton(
               onPressed: isButtonEnabled
                   ? () {
+                      // ignore: prefer_typing_uninitialized_variables
+                      var name;
+                      // ignore: prefer_typing_uninitialized_variables
+                      var school;
+                      // ignore: prefer_typing_uninitialized_variables
+                      var classCode;
+                      graphRef
+                          .child(
+                              DateTime.now().millisecondsSinceEpoch.toString())
+                          .set({
+                        'email': name.text.toString(),
+                        'School': school.text.toString(),
+                        'class_code': classCode.text.toString(),
+                      });
 
-                  // ignore: prefer_typing_uninitialized_variables
-                  var name;
-                  // ignore: prefer_typing_uninitialized_variables
-                  var school;
-                  // ignore: prefer_typing_uninitialized_variables
-                  var classCode;
-                  graphRef.child(DateTime.now().millisecondsSinceEpoch.toString()).set({
-                  'email' : name.text.toString(),
-                  'School' : school.text.toString(),
-                  'class_code' : classCode.text.toString(),
-                });
+                      graphRef
+                          .child(
+                              DateTime.now().millisecondsSinceEpoch.toString())
+                          .set({
+                        'right250': right250.toString(),
+                        'right500': right250.toString(),
+                        'right1000': right250.toString(),
+                        'right2000': right250.toString(),
+                        'right4000': right250.toString(),
+                        'right8000': right250.toString(),
+                        'left250': right250.toString(),
+                        'left500': right250.toString(),
+                        'left1000': right250.toString(),
+                        'left2000': right250.toString(),
+                        'left4000': right250.toString(),
+                        'left8000': right250.toString(),
+                      });
                       // Navigator to the next page.
                       Navigator.of(context).push(
                         MaterialPageRoute(
