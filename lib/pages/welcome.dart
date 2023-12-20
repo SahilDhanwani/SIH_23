@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:sih_23_audiometer/pages/mixstudent.dart';
+// ignore: unused_import
 import 'package:sih_23_audiometer/pages/studadmin.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 
 class Welcome extends StatelessWidget {
+  const Welcome({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
               Color.fromARGB(255, 95, 215, 35),
@@ -31,7 +35,7 @@ class Welcome extends StatelessWidget {
                     scale: Tween<double>(begin: 0.5, end: 1.0).animate(
                       CurvedAnimation(
                         curve: Curves.easeInOut,
-                        parent: AlwaysStoppedAnimation(1),
+                        parent: const AlwaysStoppedAnimation(1),
                       ),
                     ),
                     child: Image.asset(
@@ -60,9 +64,9 @@ class Welcome extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 // Subtitle with a larger font size
-                Text(
+                const Text(
                   'Empower Your Silence: Deafness is Not a Barrier, Its a Unique Way of Listening.',
                   style: TextStyle(
                     fontSize: 18,
@@ -85,7 +89,7 @@ class Welcome extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Get Started',
                     style: TextStyle(
                       fontSize: 18,
