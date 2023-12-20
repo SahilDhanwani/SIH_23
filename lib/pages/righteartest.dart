@@ -344,6 +344,9 @@ class _RightEarState extends State<RightEar> {
               onPressed: isButtonEnabled
                   ? () {
 
+                  var name;
+                  var school;
+                  var classCode;
                   graphRef.child(DateTime.now().millisecondsSinceEpoch.toString()).set({
                   'email' : name.text.toString(),
                   'School' : school.text.toString(),
