@@ -35,51 +35,64 @@ class _StudentPageState extends State<StudentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent, // Set background color to transparent
       appBar: AppBar(
         title: const Text("Student Login/Signup"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            ToggleButtons(
-              isSelected: [_currentPage == 0, _currentPage == 1],
-              onPressed: (index) {
-                setState(() {
-                  _currentPage = index;
-                  _pageController.animateToPage(index,
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut);
-                });
-              },
-              children: const [
-                Text("Login"),
-                Text("Signup"),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Expanded(
-              child: PageView(
-                controller: _pageController,
-                onPageChanged: (index) {
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: RadialGradient(
+            colors: [
+              Color.fromARGB(255, 238, 244, 244),
+              Color.fromARGB(255, 136, 186, 200),
+            ],
+            center: Alignment.center,
+            radius: 1.30,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              ToggleButtons(
+                isSelected: [_currentPage == 0, _currentPage == 1],
+                onPressed: (index) {
                   setState(() {
                     _currentPage = index;
+                    _pageController.animateToPage(index,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut);
                   });
                 },
-                children: [
-                  // Student Login Page
-                  StudentLoginForm(),
-                  // Student Signup Page
-                  StudentSignupForm(),
+                children: const [
+                  Text("Login"),
+                  Text("Signup"),
                 ],
               ),
-            ),
-          ],
+              const SizedBox(
+                height: 20,
+              ),
+              Expanded(
+                child: PageView(
+                  controller: _pageController,
+                  onPageChanged: (index) {
+                    setState(() {
+                      _currentPage = index;
+                    });
+                  },
+                  children: [
+                    // Student Login Page
+                    StudentLoginForm(),
+                    // Student Signup Page
+                    StudentSignupForm(),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -130,6 +143,17 @@ class StudentLoginForm extends StatelessWidget {
                   email: email.text.toString(),
                   password: password.text.toString());
             },
+              style: ElevatedButton.styleFrom(
+                        elevation: 8,
+                        backgroundColor: Color.fromARGB(255, 39, 115, 191) ,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 12),
+                        shape: RoundedRectangleBorder(
+
+                          
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                      ),
             child: const Text('Login'),
           ),
           
@@ -295,6 +319,17 @@ class StudentSignupForm extends StatelessWidget {
                   'class_code' : class_code.text.toString()
                 });
               },
+                style: ElevatedButton.styleFrom(
+                        elevation: 8,
+                        backgroundColor: const Color.fromARGB(255, 39, 115, 191) ,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 12),
+                        shape: RoundedRectangleBorder(
+
+                          
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                      ),
               child: const Text('Signup'),
             ),
           ],

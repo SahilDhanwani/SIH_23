@@ -30,6 +30,7 @@ import 'package:sih_23_audiometer/utils/routes.dart';
 import 'package:sih_23_audiometer/widgets/themes.dart';
 import 'package:sih_23_audiometer/pages/studenthome.dart';
 import 'package:get/get.dart';
+
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -55,17 +56,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       translations: LocalString(),
-      locale: const Locale ('en' ,'US'),
+      locale: const Locale('en', 'US'),
       themeMode: ThemeMode.light,
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.calibration,
-
+      initialRoute: MyRoutes.Welcome,
       routes: {
         //  MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
-       // MyRoutes.studentLoginRoute: (context) =>//EXTRA
-         //   const student_login(), //Second page(Logini/Signup)
+        // MyRoutes.studentLoginRoute: (context) =>//EXTRA
+        //   const student_login(), //Second page(Logini/Signup)
         MyRoutes.studentDashboard: (context) =>
             const StudentDashboard(), //Student Home Page
         MyRoutes.studentSigninRoute: (context) =>
@@ -90,8 +90,8 @@ class MyApp extends StatelessWidget {
         MyRoutes.loginstudent: (context) => const LoginStudent(),
         MyRoutes.studentsignup: (context) => const StudentSignup(),
         // Files of AbhishekBHosale02
-        MyRoutes.studadmin: (context) =>  studadmin(),
-         MyRoutes.LanguageSelectionPage: (context) =>  LanguageSelectionPage(),
+        MyRoutes.studadmin: (context) => studadmin(),
+        MyRoutes.LanguageSelectionPage: (context) => LanguageSelectionPage(),
         MyRoutes.mixadmin: (context) => const mixadmin(),
         MyRoutes.Mixstudent: (context) => const Mixstudent(),
         MyRoutes.headset: (context) => const Headset(),
@@ -101,8 +101,6 @@ class MyApp extends StatelessWidget {
         MyRoutes.studenthome: (context) => const studenthome(),
         MyRoutes.Dashboard: (context) => const Dashboard(),
         MyRoutes.Welcome: (context) => const Welcome(),
-        
-        
       },
     );
   }
