@@ -1,7 +1,11 @@
+import 'dart:async';
+
+import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/object/admin.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
+import 'package:sih_23_audiometer/widgets/themes.dart';
 
 // ignore: camel_case_types, must_be_immutable
 class adminhome extends StatelessWidget {
@@ -32,14 +36,15 @@ class adminhome extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: () {
-                
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue, // Customize button color
-              ),
-              child: const Text('Database'),
-            ),
+  onPressed: () {
+    Navigator.pushNamed(context, MyRoutes.Dashboard);
+  },
+  style: ElevatedButton.styleFrom(
+    backgroundColor: MyTheme.buttonColor,
+  ),
+  child: const Text('Database'),
+),
+
           ],
         ),
       ),
@@ -52,8 +57,8 @@ class adminhome extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.0),
               child: Image.asset(
                 outsideImagePath,
-                height: 120.0,
-                width: 120.0,
+                height: 150.0,
+                width: 150.0,
                 fit: BoxFit.cover,
               ),
             ),
@@ -90,6 +95,7 @@ class adminhome extends StatelessWidget {
     );
   }
 }
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

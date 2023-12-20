@@ -7,7 +7,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.1.2 <4.0.0'
+  sdk: ">=3.1.2 <4.0.0"
 
 dependencies:
   audio_streamer: ^4.0.0
@@ -16,6 +16,7 @@ dependencies:
   cloud_firestore: ^4.13.6
   cupertino_icons: ^1.0.2
   datetime_picker_formfield_new: ^2.1.0
+  dialog_flowtter: ^0.3.3
   file_picker: ^6.1.1
   firebase_auth: ^4.15.3
   firebase_core: ^2.24.2
@@ -39,7 +40,8 @@ dependencies:
   url_launcher: ^6.2.2
   velocity_x: ^4.1.2
   volume_watcher: ^2.0.1
-
+  localization: ^2.1.1
+  get: ^4.6.6
 dev_dependencies:
   flutter_lints: ^3.0.1
 
@@ -47,6 +49,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets\dialog_flow_auth.json
     - assets\audio\tone.mp3
     - assets\images\abhi.png
     - assets\images\login.jpg
@@ -69,6 +72,7 @@ flutter:
     - assets\images\admin.png
     - assets\images\notick.png
     - assets\images\yestick.png
+    - assets\images\logo.png
 
     - assets\leftear\hearingTest.online.warble_250_10_L.mp3
     - assets\leftear\hearingTest.online.warble_250_20_L.mp3

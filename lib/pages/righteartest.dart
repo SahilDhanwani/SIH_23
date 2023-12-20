@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
+import 'package:sih_23_audiometer/utils/errormessage.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
 
 class RightEar extends StatefulWidget {
@@ -15,12 +16,12 @@ class RightEar extends StatefulWidget {
 }
 
 class _RightEarState extends State<RightEar> {
-  late double right250 = 0;
-  late double right500 = 0;
-  late double right1000 = 0;
-  late double right2000 = 0;
-  late double right4000 = 0;
-  late double right8000 = 0;
+  late double right250 = 80;
+  late double right500 = 80;
+  late double right1000 = 80;
+  late double right2000 = 80;
+  late double right4000 = 80;
+  late double right8000 = 80;
   late final List<double> rightValues;
   int i = 0;
   int j = 0;
@@ -168,7 +169,8 @@ class _RightEarState extends State<RightEar> {
       updaterightValues();
       // If it reaches the last frequency (8000), navigate to MyRoutes.rightear
       if (i == tunes.length - 1) {
-        onProceedButtonPressed();
+        // onProceedButtonPressed();
+        EM().toastMessage("Click on send button if you hear");
         //isButtonEnabled = true;
       } else {
         currentVolume = 10;
@@ -193,7 +195,8 @@ class _RightEarState extends State<RightEar> {
       } else {
         // If it reaches Volume 80 and Frequency 8000, move to MyRoutes.rightear
         if (currentVolume == 80 && currentFrequency == 8000) {
-          onProceedButtonPressed();
+          // onProceedButtonPressed();
+          EM().toastMessage("Click on send button if you cannot hear");
           // isButtonEnabled = true;
         } else {
           // If it reaches Volume 80, move to the next frequency
