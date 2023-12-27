@@ -9,8 +9,6 @@ import 'package:sih_23_audiometer/pages/chatbot.dart';
 import 'package:sih_23_audiometer/pages/dashbord.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
 import 'package:sih_23_audiometer/pages/headset.dart';
-// ignore: unused_import
-import 'package:sih_23_audiometer/pages/home_page.dart';
 import 'package:sih_23_audiometer/pages/lefteartest.dart';
 import 'package:sih_23_audiometer/pages/logsignadmin.dart';
 import 'package:sih_23_audiometer/pages/mixadmin.dart';
@@ -19,7 +17,7 @@ import 'package:sih_23_audiometer/pages/student_login.dart';
 import 'package:sih_23_audiometer/pages/studentsignup.dart';
 import 'package:sih_23_audiometer/pages/background_noise.dart';
 import 'package:sih_23_audiometer/pages/loginadmin.dart';
-import 'package:sih_23_audiometer/pages/loginstudent.dart';
+import 'package:sih_23_audiometer/pages/loginstudent.dart';   
 import 'package:sih_23_audiometer/pages/logsignstu.dart';
 import 'package:sih_23_audiometer/pages/righteartest.dart';
 import 'package:sih_23_audiometer/pages/studadmin.dart';

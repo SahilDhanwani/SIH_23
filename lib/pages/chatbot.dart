@@ -1,6 +1,6 @@
 import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/material.dart';
-import 'package:sih_23_audiometer/pages/Messages.dart';
+import 'package:sih_23_audiometer/pages/messages.dart';
 
 class ChatBot extends StatefulWidget {
   const ChatBot({super.key});
