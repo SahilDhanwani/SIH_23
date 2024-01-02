@@ -45,7 +45,7 @@ class Welcome extends StatelessWidget {
                 // Welcome text with a subtle shadow
                 const Center(
                   child: Text(
-                    'Welcome to Team_Karnas Audiometry App',
+                    "Welcome to Team_Karn's Audiometry App",
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
