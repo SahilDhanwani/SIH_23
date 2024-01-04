@@ -10,19 +10,11 @@ import 'package:sih_23_audiometer/pages/dashbord.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
 import 'package:sih_23_audiometer/pages/headset.dart';
 import 'package:sih_23_audiometer/pages/lefteartest.dart';
-import 'package:sih_23_audiometer/pages/logsignadmin.dart';
 import 'package:sih_23_audiometer/pages/mixadmin.dart';
 import 'package:sih_23_audiometer/pages/mixstudent.dart';
-import 'package:sih_23_audiometer/pages/student_login.dart';
-import 'package:sih_23_audiometer/pages/studentsignup.dart';
 import 'package:sih_23_audiometer/pages/background_noise.dart';
-import 'package:sih_23_audiometer/pages/loginadmin.dart';
-import 'package:sih_23_audiometer/pages/loginstudent.dart';   
-import 'package:sih_23_audiometer/pages/logsignstu.dart';
 import 'package:sih_23_audiometer/pages/righteartest.dart';
 import 'package:sih_23_audiometer/pages/studadmin.dart';
-import 'package:sih_23_audiometer/pages/student_dashboard.dart';
-import 'package:sih_23_audiometer/pages/student_signin.dart';
 import 'package:sih_23_audiometer/pages/translations.dart';
 import 'package:sih_23_audiometer/pages/welcome.dart';
 import 'package:sih_23_audiometer/utils/routes.dart';
@@ -64,46 +56,25 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
+      
       initialRoute: MyRoutes.Welcome,
       routes: {
-        //  MyRoutes.homeRoute: (context) => const HomePage(), //First page(Admin/Student)
-        MyRoutes.studentLoginRoute: (context) =>
-            const studentlogin(), //Second page(Logini/Signup)
-        MyRoutes.studentDashboard: (context) =>
-            const StudentDashboard(), //Student Home Page
-        MyRoutes.studentSigninRoute: (context) =>
-            const StudentSignin(), //Student Login
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.leftear: (context) => const LeftEar(),
         MyRoutes.chatbot: (context) => const ChatBot(),
-        MyRoutes.rightear: (context) =>
-            // ignore: prefer_const_constructors
-            RightEar(leftValues: const [80, 80, 80, 80, 80, 80]),
+        MyRoutes.rightear: (context) => const RightEar(leftValues: [80, 80, 80, 80, 80, 80]),
         MyRoutes.graph: (context) => const Graph(
             leftValues: [80, 80, 80, 80, 80, 80],
             rightValues: [80, 80, 80, 80, 80, 80]),
         MyRoutes.calibration: (context) => const Calibration(),
-        // MyRoutes.chatbot: (context) => const ChatBot(),
-        MyRoutes.logsignstu: (context) => const LogSignStu(),
-        MyRoutes.loginadmin: (context) => const loginadmin(),
-        MyRoutes.logsignadmin: (context) => logsignadmin(),
-        MyRoutes.loginstudent: (context) => const LoginStudent(),
-        //MyRoutes.adminsignup: (context) => const adminsignup(),
-        // MyRoutes.Calibration: (context) => const Calibration(),
-        MyRoutes.loginstudent: (context) => const LoginStudent(),
-        MyRoutes.studentsignup: (context) => const StudentSignup(),
-        // Files of AbhishekBHosale02
         MyRoutes.studadmin: (context) => const studadmin(),
         MyRoutes.LanguageSelectionPage: (context) => LanguageSelectionPage(),
         MyRoutes.mixadmin: (context) => const mixadmin(),
         MyRoutes.Mixstudent: (context) => const Mixstudent(),
         MyRoutes.headset: (context) => const Headset(),
-        // MyRoutes.adminhome: (context) => adminhome(),
         MyRoutes.studenthome: (context) => studenthome(temp2),
         MyRoutes.Dashboard: (context) => const Dashboard(),
         MyRoutes.Welcome: (context) => const Welcome(),
-        // MyRoutes.adminhome: (context) => adminhome(username: 'fg'),
-        // MyRoutes.addstudent: (context) => const addstudent(),
       },
     );
   }
