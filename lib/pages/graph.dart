@@ -133,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SfCartesianChart(
-                   key: _cartesianChartKey,
+                  key: _cartesianChartKey,
                   borderColor: const Color.fromARGB(255, 11, 9, 9),
                   borderWidth: 2,
                   margin: const EdgeInsets.all(15),
@@ -181,17 +181,16 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, MyRoutes.headset);
+                Navigator.pushNamed(context, MyRoutes.studenthome);
               },
               child: const Text('STUDENTHOME'),
             ),
-           ElevatedButton(
+            ElevatedButton(
               onPressed: () {
                 _renderPDF();
               },
               child: const Icon(Icons.picture_as_pdf),
-          ),
-            
+            ),
           ],
         ),
       ),
@@ -220,37 +219,37 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
   }
 
-    Future<void> _renderPDF() async {
-          final List<int> imageBytes = await _readImageData();
-          final PdfBitmap bitmap = PdfBitmap(imageBytes);
-          final PdfDocument document = PdfDocument();
-          document.pageSettings.size =
-          Size(bitmap.width.toDouble(), bitmap.height.toDouble());
-          final PdfPage page = document.pages.add();
-          final Size pageSize = page.getClientSize();
-          page.graphics.drawImage(
-              bitmap, Rect.fromLTWH(0, 0, pageSize.width, pageSize.height));
-          final List<int> bytes = document.saveSync();
-          document.dispose();
-          //Get external storage directory
-          final Directory directory = await getApplicationSupportDirectory();
-          //Get directory path
-          final String path = directory.path;
-          //Create an empty file to write PDF data
-          File file = File('$path/Output.pdf');
-          //Write PDF bytes data
-          await file.writeAsBytes(bytes, flush: true);
-          //Open the PDF document in mobile
-          OpenFile.open('$path/Output.pdf');
-      }
+  Future<void> _renderPDF() async {
+    final List<int> imageBytes = await _readImageData();
+    final PdfBitmap bitmap = PdfBitmap(imageBytes);
+    final PdfDocument document = PdfDocument();
+    document.pageSettings.size =
+        Size(bitmap.width.toDouble(), bitmap.height.toDouble());
+    final PdfPage page = document.pages.add();
+    final Size pageSize = page.getClientSize();
+    page.graphics.drawImage(
+        bitmap, Rect.fromLTWH(0, 0, pageSize.width, pageSize.height));
+    final List<int> bytes = document.saveSync();
+    document.dispose();
+    //Get external storage directory
+    final Directory directory = await getApplicationSupportDirectory();
+    //Get directory path
+    final String path = directory.path;
+    //Create an empty file to write PDF data
+    File file = File('$path/Output.pdf');
+    //Write PDF bytes data
+    await file.writeAsBytes(bytes, flush: true);
+    //Open the PDF document in mobile
+    OpenFile.open('$path/Output.pdf');
+  }
 
-      Future<List<int>> _readImageData() async {
-          final ui.Image data =
-              await _cartesianChartKey.currentState!.toImage(pixelRatio: 3.0);
-          final ByteData? bytes =
-              await data.toByteData(format: ui.ImageByteFormat.png);
-          return bytes!.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
-      }
+  Future<List<int>> _readImageData() async {
+    final ui.Image data =
+        await _cartesianChartKey.currentState!.toImage(pixelRatio: 3.0);
+    final ByteData? bytes =
+        await data.toByteData(format: ui.ImageByteFormat.png);
+    return bytes!.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+  }
 
   Future<List<String>> analyzeHearing(
       List<double> leftValues, List<double> rightValues) async {
