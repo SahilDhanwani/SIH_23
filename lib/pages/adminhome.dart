@@ -9,7 +9,7 @@ class adminhome extends StatelessWidget {
   final String adminImagePath = "assets/images/admin.png";
   final String outsideImagePath = "assets/images/admin.png";
 
-  adminhome(this.temp, {super.key});
+  adminhome(this.temp, {super.key, required String username});
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +52,7 @@ class adminhome extends StatelessWidget {
             const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => addstudent()));
+                Navigator.pushNamed(context, MyRoutes.addstudent);
               },
               style: ElevatedButton.styleFrom(
                 elevation: 8,
