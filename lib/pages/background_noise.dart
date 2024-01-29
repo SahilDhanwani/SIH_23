@@ -61,7 +61,7 @@ class _BackgroundNoiseState extends State<BackgroundNoise> {
 
   bool isNoiseBelowThreshold() {
     return _latestReading?.meanDecibel != null &&
-        _latestReading!.meanDecibel < 80;
+        _latestReading!.meanDecibel < 120;
   }
 
   @override
