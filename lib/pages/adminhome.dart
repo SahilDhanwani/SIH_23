@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sih_23_audiometer/object/admin.dart';
+// ignore: unused_import
 import 'package:sih_23_audiometer/pages/addstudent.dart';
 import 'package:sih_23_audiometer/pages/dashbord.dart';
+import 'package:sih_23_audiometer/utils/routes.dart';
 
 // ignore: camel_case_types, must_be_immutable
 class adminhome extends StatelessWidget {
@@ -9,7 +11,7 @@ class adminhome extends StatelessWidget {
   final String adminImagePath = "assets/images/admin.png";
   final String outsideImagePath = "assets/images/admin.png";
 
-  adminhome(this.temp, {super.key});
+  adminhome(this.temp, {super.key, required String username});
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +54,7 @@ class adminhome extends StatelessWidget {
             const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => addstudent()));
+                Navigator.pushNamed(context, MyRoutes.addstudent);
               },
               style: ElevatedButton.styleFrom(
                 elevation: 8,

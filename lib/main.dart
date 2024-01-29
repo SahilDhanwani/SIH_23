@@ -5,11 +5,16 @@ import 'package:sih_23_audiometer/object/admin.dart';
 import 'package:sih_23_audiometer/object/student.dart';
 import 'package:sih_23_audiometer/pages/Calibration.dart';
 import 'package:sih_23_audiometer/pages/LocaleString.dart';
+// ignore: unused_import
+import 'package:sih_23_audiometer/pages/addstudent.dart';
+// ignore: unused_import
+import 'package:sih_23_audiometer/pages/adminhome.dart';
 import 'package:sih_23_audiometer/pages/chatbot.dart';
 import 'package:sih_23_audiometer/pages/dashbord.dart';
 import 'package:sih_23_audiometer/pages/graph.dart';
 import 'package:sih_23_audiometer/pages/headset.dart';
 import 'package:sih_23_audiometer/pages/lefteartest.dart';
+import 'package:sih_23_audiometer/pages/middlelefttoright.dart';
 import 'package:sih_23_audiometer/pages/mixadmin.dart';
 import 'package:sih_23_audiometer/pages/mixstudent.dart';
 import 'package:sih_23_audiometer/pages/background_noise.dart';
@@ -56,13 +61,13 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      
       initialRoute: MyRoutes.Welcome,
       routes: {
         MyRoutes.backgroundNoise: (context) => const BackgroundNoise(),
         MyRoutes.leftear: (context) => const LeftEar(),
         MyRoutes.chatbot: (context) => const ChatBot(),
-        MyRoutes.rightear: (context) => const RightEar(leftValues: [80, 80, 80, 80, 80, 80]),
+        MyRoutes.rightear: (context) =>
+            const RightEar(leftValues: [80, 80, 80, 80, 80, 80]),
         MyRoutes.graph: (context) => const Graph(
             leftValues: [80, 80, 80, 80, 80, 80],
             rightValues: [80, 80, 80, 80, 80, 80]),
@@ -75,6 +80,9 @@ class MyApp extends StatelessWidget {
         MyRoutes.studenthome: (context) => studenthome(temp2),
         MyRoutes.Dashboard: (context) => const Dashboard(),
         MyRoutes.Welcome: (context) => const Welcome(),
+        MyRoutes.lefttoright: (context) => const LeftToRight(),
+        // MyRoutes.adminhome: (context) => adminhome(username: 'fg'),
+        // MyRoutes.addstudent: (context) => const addstudent(),
       },
     );
   }

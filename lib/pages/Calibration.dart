@@ -149,7 +149,7 @@ class _CalibrationState extends State<Calibration> {
                 const SizedBox(height: 30),
                 const Text("Play The Given Audio File ").text.xl2.bold.make(),
                 const Text("And Adjust Your ").text.xl2.bold.make(),
-                const Text("Phones Volume To 55 dB. ").text.xl2.bold.make(),
+                const Text("Phones Volume To 80 dB. ").text.xl2.bold.make(),
                 // const SizedBox(height: 50),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -173,8 +173,9 @@ class _CalibrationState extends State<Calibration> {
                     const SizedBox(width: 20),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const Headset())); // Navigate to home screen
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                const Headset())); // Navigate to home screen
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: MyTheme

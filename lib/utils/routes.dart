@@ -11,6 +11,7 @@ class MyRoutes {
   static String calibration = '/Calibration';
   static String leftear = '/LeftEar';
   static String rightear = '/RightEar';
+  static String lefttoright = '/LeftToRight';
   // ignore:
   static String logsignstu = '/logsignstu';
   static String studadmin = '/studadmin';
